@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vinnumat</title>
+  <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css">-->
+  
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <!--
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>-->
+  <style type="text/css" media="screen">
+
+    body {
+            background-color: #f4f3ea;
+            color: #333d51;
+            margin: 0%;
+            padding: 0%;
+            margin: 0%;
+            font-family: 'Open', sans-serif;
+
+            font-size: 16px;
+        }
+        h3 {
+          line-height: 200%;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        label
+        {
+          color: #333d51;
+        }
+        .small {
+          font-size:12px;
+        }
+        .medium {
+          font-size: 16px;
+        }
+        .large {
+          font-size:20px;
+        }
+       .nav-tabs {
+         padding: 2%;
+       }
+       .navbar-form {
+        width: 100%;
+       }
+       .hidden {
+         display: hide;
+       }
+       .visiblenon {
+        visibility:hidden;
+       }
+       .container-fluid{
+        color: #fff;
+        padding-left: 0%;
+        padding-right: 0%;
+        width: 100%;
+       }
+       .navbar-fixed-top {
+        border-width: 0px;
+       }
+       .modal-dialog {
+        background-color: #f4f3ea;
+       }
+       span {
+        color: #333d51;
+       }
+       .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+        color: #d3ac2b;
+      }
+      .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a:hover{
+        color: #f4f3ea;
+      }
+      .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+        background-color: #333d51;
+        color: #d3ac2b;
+       }
+       .alert {
+        background-color: #333d51;
+        color: #d3ac2b;
+        border-color: #f4f3ea;
+        background-image: none;
+       }
+       .navbar-inverse {
+        background-image: none;
+        background-color: #f4f3ea;
+       }
+        #myNavbar{
+        background-color: #333d51;
+        border-bottom-color: #333d51;
+        border-top-color: #333d51;
+        border-left-color: #333d51;
+        border-right-color: #333d51;
+        color: #333d51;
+
+       }
+       /* navbar */
+       .navbar-default {
+         background-color: #333d51;
+         border-color: #333d51;
+       }
+       /* title */
+      .navbar-default .navbar-brand {
+        color: #d3ac2b;
+      }
+      .navbar-default .navbar-brand:hover,
+      .navbar-default .navbar-brand:focus {
+        color: #f4f3ea;
+      }
+      /* link */
+      .navbar-default .navbar-nav > li > a {
+        color: #d3ac2b;
+      }
+      .dropdown-menu>li>a {
+         color: #d3ac2b;
+       }
+      .navbar-default .navbar-nav > li > a:hover,
+      .navbar-default .navbar-nav > li > a:focus {
+        color: #d3ac2b;
+      }
+      .navbar-default .navbar-nav > .active > a, 
+      .navbar-default .navbar-nav > .active > a:hover, 
+      .navbar-default .navbar-nav > .active > a:focus {
+        color: #f4f3ea;
+        background-color: #333d51;
+      }
+      .navbar-default .navbar-nav > .open > a, 
+      .navbar-default .navbar-nav > .open > a:hover, 
+      .navbar-default .navbar-nav > .open > a:focus {
+        color: #f4f3ea;
+        background-color: #333d51;
+      }
+      /* caret */
+     .navbar-default .navbar-nav > .dropdown > a .caret {
+       border-top-color: #d3ac2b;
+       border-bottom-color: #333d51;
+      }
+       .list-group-item {
+        background-color: #f4f3ea;
+       }
+       
+       .btn-secondary {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        white-space: normal;
+       }
+
+       .btn-primary {
+        background-color: #333d51;
+        background-image:none;
+        color: #f4f3ea;
+        border-color: #333d51;
+       }
+       .btn-primary:visited {
+        background-color: #333d51;
+        background-image:none;
+        color: #f4f3ea;
+        border-color: #333d51;
+       }
+       .btn-primary:hover{
+        background-color: #d3ac2b;
+       }
+       .form-control {
+        background-color: #f4f3ea;
+       }
+       h1 {
+        margin-top: 60px;
+       }
+       
+       ul .dropdown-menu {
+        background-color: #333d51;
+         color: #d3ac2b;
+       }
+       .dropdown-menu>li>a {
+        background-color: #333d51;
+         color: #d3ac2b;
+       }
+       .navbar-inverse .navbar-toggle {
+         border-color: #333d51;
+         border-top-color: #333d51;
+         border-right-color: #333d51;
+         border-bottom-color: #333d51;
+         border-left-color: #333d51;
+         margin-left: 30px;
+       }
+       .navbar-toggle {
+        background-color: #d3ac2b;
+        float: left;
+      }
+      
+      .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: #d3ac2b;
+      }
+      button.navbar-toggle.collapsed {
+        background-color: #d3ac2b;
+      }
+       .navbar-inverse .navbar-toggle .icon-bar {
+         background-color: #f4f3ea;
+       }
+       .navbar-header {
+        color:#d3ac2b;
+        background-color: #333d51;
+       }
+       hr {
+        background-color:#000000;
+       }
+       a:hover {
+        color: #D3AC2B ;
+       }
+ 
+       div .page-header {
+        color:#D3AC2B;
+       }
+       .main {
+        padding-left: 3%;
+        margin-top: 10px;
+        width:90%;
+       }
+       #a {
+        width: 75%;
+       }
+       #b {
+        width: 25%;
+       }
+       #c {
+        width: 100%;
+       }
+       .form-inline {
+          margin-bottom: 10px;
+        }
+       .hidden {
+        display: hide;
+       }
+       .flex-container {
+        padding-left:3%;
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+       }
+       .mainContainer {
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: stretch;
+        padding-left:1%;
+        width: 100%;
+       }
+       .form-col {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 22%;
+        max-width: 300px;
+        min-width: 130px;
+        padding: 1%;
+        border: 1px solid black;
+       }
+       .thumbnail {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 15%;
+        padding: 1%;
+        background-color: #cbd0d8;
+       }
+       .nidurstAfangar{
+        width: 70%;
+       }
+       .nidurstGrof{
+        width: 70%;
+       }
+       .nidurstGrof2{
+        width: 92%;
+        margin-bottom:5%;
+       }
+       .kennari {
+        width:80%;
+       }
+      
+       .hopanafn {
+        margin-bottom: 5%;
+        text-decoration: none;
+        color: #333d51;
+       }
+       a.hopanafn:hover {
+        text-decoration: none;
+        color: #333d51;
+       }
+       a.hopanafn:active {
+        text-decoration: none;
+        color: #333d51;
+       }
+       a.hopanafn:visited {
+        text-decoration: none;
+        color: #333d51;
+       }
+       a.hopanafn:link {
+        text-decoration: none;
+        color: #333d51;
+       }
+
+       .inside {
+        margin-right: 0.5%;
+       }
+       canvas {
+        width: 80%;
+        height: 300px;
+        width: 400px;
+       }
+       div .form-group {
+        margin-bottom: 2%;
+       }
+       .texta{
+        margin-top: 1%;
+       }
+       .panel {
+          border: 1px solid black;
+          margin-right: 40px;
+       }
+       .panel-group {
+        margin-top: 0px;
+       }
+       .affix {
+         top: 10px;
+         left: 50%;
+      }
+      .nava {
+        text-align: right;
+      }
+      .glyphicon-chevron-down{
+        display: none;
+      }
+      .glyphicon-chevron-up{
+        display: none;
+      }
+      .einingarinput {
+        max-width: 60px;
+      }
+      .einingar {
+        margin-left: 5px;
+      }
+      .takkisla {
+        margin-left: 1%;
+      }
+      nav {
+        padding-left: 0%;
+        padding-right: 0%;
+      }
+      .vidd {
+        max-width: 150px;
+      }
+      .navbar-form .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+      }
+      @media screen and (max-width: 1000px) {
+        .thumbnail {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 30%;
+        padding: 1%;
+       }
+      }
+      @media screen and (max-width: 800px) {
+        
+       .thumbnail {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 90%;
+        padding: 1%;
+       }
+       /*
+       .container-fluid {
+          width: 80%;
+       }*/
+
+       .feluleikur {
+          display: none;
+        }
+        .glyphicon-chevron-down{
+          display: inline-block;
+        }
+        .glyphicon-chevron-up{
+          display: inline-block;
+        }
+        .mainContainer {
+          display:flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+       }
+       #aftastur {
+        order: 10000;
+       }
+      /*
+      @media screen and (max-width: 500px) {
+        .thumbnail {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 1%;
+       }
+      }*/
+
+      }
+      /*
+      @media screen and (max-width: 765px) {
+        br {
+          display: none;
+        }
+      }*/
+      /*
+      @media screen and (max-width: 500px) {
+        .thumbnail {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 1%;
+       }
+       
+      }*/
+    </style>
+</head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="-20px">    <div class="modal fade" id="utreikningarlauna" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title large">Laun fyrir skatta</h4>
+        </div>
+        <div class="modal-body medium">
+          <ul class="list-group">
+          <li class="list-group-item"> Áætluð mánaðarlaun eru grunnlaun, plús einn tólfti af desemberuppbót og orlofsuppbót, plús laun vegna yfirvinnu. Þar sem vinnumat er reiknað að vori og hausti eru áætluð laun vegna yfirvinnu á mánuði reiknuð þannig. Yfirvinnutímar eru margfaldaðir með tveimur. Hver yfirvinnutími gefur í laun 1,0385% af launatöflu viðkomandi kennara. Einn tólfti af þessari upphæð reiknast þá sem áætluð mánaðarlaun vegna yfirvinnu.
+          </li>
+          <li class="list-group-item"> Grunnlaun 2013 eru reiknuð skv. launatöflu 1. mars 2013. Yfirvinna skv. samningunum 2013 var reiknuð þannig að fyrsta var reiknaður mismunur kennslustunda og kennsluskyldu. Ef sá mismunur reyndist jákvæður mátti reikna yfirvinnuna þannig að mismunurinn var margfaldaður með 1,3 og svo aftur með 18. Þannig fengust um 140 stundir fyrir þriggja eininga áfanga sem kenndur var í yfirvinnu. Í nýja kerfinu miðast dagvinnulaun við launatöflu 1. janúar 2016 og yfirvinnan einfaldlega heildarvinnumat mínus vinnuskylda. Ef sá mismunur er neikvæður þá reiknast engin yfirvinna.
+          </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Loka</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="chluti" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title large">C-hluti</h4>
+        </div>
+        <div class="modal-body medium">
+          <ul class="list-group">
+          <li class="list-group-item"> Í C-hluta vinnumats er hægt að skrá kennslutengda vinnu. Þessi vinna getur hækkað vinnuskyldu kennara í efstu tveimur aldursflokkunum.
+          </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Loka</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="manadarlaunGluggi" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title large">Mánaðarlaun í fullu starfi</h4>
+        </div>
+        <div class="modal-body medium" id="manadarlaunTexti">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Loka</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="vinnumatGluggi" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Þættir sem hafa áhrifa á vinnumat (sjá 7. grein kjarasamnings)</h4>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+          <li class="list-group-item"> <h4 class="medium">Gerð kennslu</h4> Áfangar eru flokkaðir í sýnidæmi. Sýnidæmin ákvarða hvernig vinnumat er reiknað. Þau eru sett fram í reikniverkinu.
+          </li>
+          <li class="list-group-item"> <h4 class="medium">Nemendafjöldi</h4> Hvert sýnidæmi inniheldur lágmarksviðmiðunarfjölda og eitt til tvö hámarksviðmið. Í flestum bóknámsáföngum er lágmarksviðmiðunarfjöldi 17. Það þýðir að áfangann má ekki meta með færri nemendum. Hámarksviðmiðin eru 28 og 30. 20% álag reiknast á 29. og 30. nemandann og 100% álag á nemendur umfram 30.
+          </li>
+          <li class="list-group-item"> <h4 class="medium">Einingafjöldi (ekki feiningafjöldi)</h4> Þrjár einingar svara alla jafna til sex 40 mínútna kennslustunda á viku.  Fjórar 40 mínútna kennslustundir í hægferðum svara til þriggja eininga. Fimm feiningar svara oftast nær til þriggja eininga.
+          </li>
+          <li class="list-group-item"> <h4 class="medium">Skerðingar</h4> Ef kennari tekur að sér að kenna tveimur hópum eða fleiri í sama áfanga þá skerðist vinnumat þeirra. Skólaárið 2016-2017 verður skerðingin 5% á hvorn hóp ef um tvo er að ræða, 6,33% af hverjum ef þeir eru þrír og 7,5% ef um fleiri er að ræða. Skerðingin er reiknuð út frá meðaltalsfjölda í áföngunum. Ef um tvo hópa er að ræða með 17 og 31 nemanda er skerðingin 10% af vinnumati 24 manna hóps. Dregst helmingurinn (5%) af vinnumati beggja áfanga.
+          </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Loka</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <nav class="visiblenon navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+       <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="skuffa">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+    </div>
+<div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a class = "fyrirsagnir" href="#vinnumat">Slá inn vinnumat</a></li>
+          <li><a class = "fyrirsagnir" href="#nidurstodur" id="yta">Niðurstöður</a></li>
+          <li><a class = "fyrirsagnir" href = "#samanburdur" tabindex = "-1">Röð</a></li>
+          <li><a class = "fyrirsagnir" href = "#samanburdur2" tabindex = "-1" id="yta2">Bera saman</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav> 
+    <div class="mainContainer">
+      
+      <div class="main" id="vinnumat">
+        <h1 class="large">
+          Vinnumat
+        </h1>
+        <h3 class="medium">
+         <!--Þið getið slegið inn upplýsingar fyrir einn hóp eða alla þá sem þið kennið. Allt eftir því hvernig þið viljið nota síðuna. Breytið forsendum og endurreiknið eins og ykkur listir. Vinnumat hvers áfanga ræðst af einingafjölda, nemendafjölda, tegund kennslu og hvort þið kennið sama áfangann mörgum hópum.--> Fyllið inn upplýsingar fyrir einn hóp eða fleiri. Vinnumat hópa ræðst af einingafjölda, nemendafjölda, tegund kennslu og endurtekningum. Gengið er út frá 15 vikna kennslu og að þrjár einingar svari til sex 40 mínútna kennslustunda á viku nema ef um hægferðir er að ræða. Athugið að skerðingar vegna kennslu fleiri en eins námshóps í sama áfanga aukast hjá kennurum skólaárið 2016-2017.  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
+      </div>
+      <div class="flex-container" id='tafla'>
+      <div class="thumbnail">
+      <div class="caption">
+      <h4 class="large">
+        Um Kennarann
+      </h4>
+      <form>
+       <div class="form-group">
+        <label class="medium" for="golf">Aldur</label>
+        <select class="form-control" id="golf">
+          <option>30 ára-</option>
+          <option>30-37 ára</option>
+          <option>38-54 ára</option>
+          <option>55-59 ára</option>
+          <option>60 ára+</option>
+        </select>
+       </div>
+       <div class="form-group">
+        <label class="medium" for="onnurVinna">C-hluti <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#chluti"></span></label>
+        <input type="text" class="form-control" id="onnurVinna" value="0">
+       </div>
+       <div class="form-group">
+        <label class="medium" for="launaflokkur">Launaflokkur</label>
+        <select class="form-control" id="launaflokkur">
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+           <option>5</option>
+           <option>6</option>
+           <option>7</option>
+           <option>8</option>
+           <option>9</option>
+           <option>10</option>
+           <option>11</option>
+           <option>12</option>
+           <option>13</option>
+           <option>14</option>
+           <option>15</option>
+           <option>16</option>
+           <option>17</option>
+           <option>18</option>
+        </select>
+       </div>
+       <div class="form-group">
+        <label class="medium" for="threp">Þrep </label>
+        <select class="form-control" id="threp">
+           <option>0</option>
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+           <option>5</option>
+           <option>6</option>
+           <option>7</option>
+           <option>8</option>
+        </select>
+       </div>
+       </form>
+     </div>
+      </div>
+      <div class="thumbnail">
+      <div class="caption">
+        
+        <a class="hopanafn large" href="#hopur1">
+          Hópur 1 &nbsp;<span id="orvar1" class="small glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <div id="hopur1">
+        <form>
+        <div class="form-group">
+          <label class="medium" for="h-1">Heiti áfanga</label>
+          <input type="text" class="form-control" id="h-1" placeholder="STÆ 193">
+        </div>
+        <div class="form-group">
+          <label class="medium" for="e-1">Einingafjöldi</label>
+          <input type="text" class="form-control" id="e-1" value="3">
+        </div>
+        <div class="form-group">
+          <label class="medium" for="f-1">Nemendafjöldi</label>
+          <input type="text" class="form-control" id="f-1" placeholder="15">
+        </div>
+        <div class="form-group">
+          <label class="medium" for="s-1">Sýnidæmi</label>
+          <select class="form-control" id="s-1">
+            <option>Almenn braut</option>
+            <option>Almennar raungreinar</option>
+            <option>Danska, efra þrep</option>
+            <option>Danska, hægferð</option>
+            <option>Danska, neðra þrep</option>
+            <option>Enska, efra þrep</option>
+            <option>Enska, hægferð</option>
+            <option>Enska, neðra þrep</option>
+            <option>Erlend mál, efra þrep</option>
+            <option>Erlend mál, neðra þrep</option>
+            <option>Fagbóklegt</option>
+            <option>Félagsgreinar, efra þrep</option>
+            <option>Félagsgreinar, neðra þrep</option>
+            <option>Íslenska, efra þrep</option>
+            <option>Íslenska, hægferð</option>
+            <option>Íslenska, neðra þrep</option>
+            <option>Íþróttafræði</option>
+            <option>Íþróttir</option>
+            <option>Jarðfræði</option>
+            <option>Listgreinar, efra þrep</option>
+            <option>Listgreinar, neðra þrep</option>
+            <option>Raungreinar, efra þrep</option>
+            <option>Raungreinar, neðra þrep</option>
+            <option>Sjúkraliðabraut</option>
+            <option>Starfsbraut (1/3)</option>
+            <option>Starfsbraut (4/6)</option>
+            <option>Starfsbraut (7/12)</option>
+            <option>Stærðfræði, efra þrep</option>
+            <option>Stærðfræði, hægferð</option>
+            <option>Stærðfræði, neðra þrep</option>
+            <option>Tölvuáfangar</option>
+            <option>Verklegt</option>
+          </select>
+        </div>
+        <div class="form-group" data-toggle="tooltip" data-placement="bottom" title="Prósentuhlutfall af kennslu">
+          <label  class="medium" for="p-1">Hlutfall (%)</label>
+          <input type="text" class="form-control" id="p-1" value="100" >
+        </div>
+        </form>
+        </div>
+      </div> <!-- end of caption -->
+      </div><!-- end of thumbnail-->
+      <div class="thumbnail">
+      <div class="caption">
+        <!--<a class="btn btn-primary hopanafn" role="button" data-toggle="collapse" href="#hopur2" aria-expanded="false" aria-controls="hopur2">
+          Hópur 2
+       </a>-->
+       <a class="hopanafn large" href="#hopur2" id="hopanafn2">
+          Hópur 2 &nbsp;<span id = "orvar2" class="small glyphicon glyphicon-chevron-up"></span>
+        </a>
+       <div id="hopur2" class="feluleikur">
+         <form>
+         <div class="form-group">
+          <label class="medium" for="h-2">Heiti áfanga</label>
+          <input type="text" class="form-control" id="h-2" placeholder="STÆ 193">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="e-2">Einingafjöldi</label>
+           <input type="text" class="form-control" id="e-2" value="3">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="f-2">Nemendafjöldi</label>
+           <input type="text" class="form-control" id="f-2" placeholder="15">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="s-2">Sýnidæmi</label>
+           <select class="form-control" id="s-2">
+             <option>Almenn braut</option>
+             <option>Almennar raungreinar</option>
+             <option>Danska, efra þrep</option>
+             <option>Danska, hægferð</option>
+             <option>Danska, neðra þrep</option>
+             <option>Enska, efra þrep</option>
+             <option>Enska, hægferð</option>
+             <option>Enska, neðra þrep</option>
+             <option>Erlend mál, efra þrep</option>
+             <option>Erlend mál, neðra þrep</option>
+             <option>Fagbóklegt</option>
+             <option>Félagsgreinar, efra þrep</option>
+             <option>Félagsgreinar, neðra þrep</option>
+             <option>Íslenska, efra þrep</option>
+             <option>Íslenska, hægferð</option>
+             <option>Íslenska, neðra þrep</option>
+             <option>Íþróttafræði</option>
+             <option>Íþróttir</option>
+             <option>Jarðfræði</option>
+             <option>Listgreinar, efra þrep</option>
+             <option>Listgreinar, neðra þrep</option>
+             <option>Raungreinar, efra þrep</option>
+             <option>Raungreinar, neðra þrep</option>
+             <option>Sjúkraliðabraut</option>
+             <option>Starfsbraut (1/3)</option>
+             <option>Starfsbraut (4/6)</option>
+             <option>Starfsbraut (7/12)</option>
+             <option>Stærðfræði, efra þrep</option>
+             <option>Stærðfræði, hægferð</option>
+             <option>Stærðfræði, neðra þrep</option>
+             <option>Tölvuáfangar</option>
+             <option>Verklegt</option>
+           </select>
+         </div>
+         <div class="form-group">
+           <label class="medium" for="p-2">Hlutfall (%)</label>
+           <input type="text" class="form-control" id="p-2" value="100" data-toggle="tooltip" data-placement="bottom" title="Prósentuhlutfall af kennslu">
+         </div>
+         </form>
+       </div>
+       <!--
+       <form>
+         <div class="form-group hidden v">
+           <label for="v-2">Vinnumat (klst)</label>
+           <input type="text" class="form-control" id="v-2" placeholder="0">
+         </div>
+       </form>-->
+      </div>
+      </div> <!-- end of thumbnail -->
+      <div class="thumbnail">
+      <div class="caption">
+       <!--<a class="btn btn-primary hopanafn" role="button" data-toggle="collapse" href="#hopur3" aria-expanded="false" aria-controls="hopur3">
+        Hópur 3
+       </a>-->
+       <a class="hopanafn large" href="#hopur3" id="hopanafn3">
+          Hópur 3 &nbsp;<span id = "orvar3" class="small glyphicon glyphicon-chevron-up"></span>
+        </a>
+       <div id="hopur3" class="feluleikur">
+         <form>
+           <div class="form-group">
+             <label class="medium" for="h-3">Heiti áfanga</label>
+             <input type="text" class="form-control" id="h-3" placeholder="STÆ 193">
+           </div>
+           <div class="form-group">
+             <label class="medium" for="e-3">Einingafjöldi</label>
+             <input type="text" class="form-control" id="e-3" value="3">
+           </div>
+           <div class="form-group">
+             <label class="medium" for="f-3">Nemendafjöldi</label>
+             <input type="text" class="form-control" id="f-3" placeholder="15">
+           </div>
+           <div class="form-group">
+             <label class="medium" for="s-3">Heiti áfanga</label>
+             <select class="form-control" id="s-3">
+               <option>Almenn braut</option>
+               <option>Almennar raungreinar</option>
+               <option>Danska, efra þrep</option>
+               <option>Danska, hægferð</option>
+               <option>Danska, neðra þrep</option>
+               <option>Enska, efra þrep</option>
+               <option>Enska, hægferð</option>
+               <option>Enska, neðra þrep</option>
+               <option>Erlend mál, efra þrep</option>
+               <option>Erlend mál, neðra þrep</option>
+               <option>Fagbóklegt</option>
+               <option>Félagsgreinar, efra þrep</option>
+               <option>Félagsgreinar, neðra þrep</option>
+               <option>Íslenska, efra þrep</option>
+               <option>Íslenska, hægferð</option>
+               <option>Íslenska, neðra þrep</option>
+               <option>Íþróttafræði</option>
+               <option>Íþróttir</option>
+               <option>Jarðfræði</option>
+               <option>Listgreinar, efra þrep</option>
+               <option>Listgreinar, neðra þrep</option>
+               <option>Raungreinar, efra þrep</option>
+               <option>Raungreinar, neðra þrep</option>
+               <option>Sjúkraliðabraut</option>
+               <option>Starfsbraut (1/3)</option>
+               <option>Starfsbraut (4/6)</option>
+               <option>Starfsbraut (7/12)</option>
+               <option>Stærðfræði, efra þrep</option>
+               <option>Stærðfræði, hægferð</option>
+               <option>Stærðfræði, neðra þrep</option>
+               <option>Tölvuáfangar</option>
+               <option>Verklegt</option>
+             </select>
+           </div>
+           <div class="form-group">
+             <label class="medium" for="p-3">Hlutfall (%)</label>
+             <input type="text" class="form-control" id="p-3" value="100" data-toggle="tooltip" data-placement="bottom" title="Prósentuhlutfall af kennslu">
+           </div>
+         </form>
+       </div>
+       <!--
+       <form>
+         <div class="form-group hidden v">
+           <label for="v-3">Vinnumat (klst)</label>
+           <input type="text" class="form-control" id="v-3" placeholder="0">
+         </div>
+       </form>-->
+      </div>
+      </div> <!-- end of thumbnail -->
+      <div class="thumbnail">
+      <div class="caption">
+        <!--<a class="btn btn-primary hopanafn" role="button" data-toggle="collapse" href="#hopur4" aria-expanded="false" aria-controls="hopur4">
+        Hópur 4
+        </a>-->
+        <a class="hopanafn large" href="#hopur4" id="hopanafn4">
+          Hópur 4 &nbsp;<span id="orvar4" class="small glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <div id="hopur4" class="feluleikur">
+        <form>
+          <div class="form-group">
+           <label class="medium" for="h-4">Heiti áfanga</label>
+           <input type="text" class="form-control" id="h-4" placeholder="STÆ 193">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="e-4">Einingafjöldi</label>
+           <input type="text" class="form-control" id="e-4" value="3">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="f-4">Nemendafjöldi</label>
+           <input type="text" class="form-control" id="f-4" placeholder="15">
+         </div>
+         <div class="form-group">
+           <label class="medium" for="s-4">Sýnidæmi</label>
+           <select class="form-control" id="s-4">
+             <option>Almenn braut</option>
+             <option>Almennar raungreinar</option>
+             <option>Danska, efra þrep</option>
+             <option>Danska, hægferð</option>
+             <option>Danska, neðra þrep</option>
+             <option>Enska, efra þrep</option>
+             <option>Enska, hægferð</option>
+             <option>Enska, neðra þrep</option>
+             <option>Erlend mál, efra þrep</option>
+             <option>Erlend mál, neðra þrep</option>
+             <option>Fagbóklegt</option>
+             <option>Félagsgreinar, efra þrep</option>
+             <option>Félagsgreinar, neðra þrep</option>
+             <option>Íslenska, efra þrep</option>
+             <option>Íslenska, hægferð</option>
+             <option>Íslenska, neðra þrep</option>
+             <option>Íþróttafræði</option>
+             <option>Íþróttir</option>
+             <option>Jarðfræði</option>
+             <option>Listgreinar, efra þrep</option>
+             <option>Listgreinar, neðra þrep</option>
+             <option>Raungreinar, efra þrep</option>
+             <option>Raungreinar, neðra þrep</option>
+             <option>Sjúkraliðabraut</option>
+             <option>Starfsbraut (1/3)</option>
+             <option>Starfsbraut (4/6)</option>
+             <option>Starfsbraut (7/12)</option>
+             <option>Stærðfræði, efra þrep</option>
+             <option>Stærðfræði, hægferð</option>
+             <option>Stærðfræði, neðra þrep</option>
+             <option>Tölvuáfangar</option>
+             <option>Verklegt</option>
+           </select>
+         </div>
+         <div class="form-group">
+           <label class="medium" for="p-4">Hlutfall (%)</label>
+           <input type="text" class="form-control" id="p-4" value="100" data-toggle="tooltip" data-placement="bottom" title="Prósentuhlutfall af kennslu">
+         </div>
+        </form>
+        </div>
+        <!--
+        <form>
+        <div class="form-group hidden v">
+          <label for="v-4">Vinnumat (klst)</label>
+          <input type="text" class="form-control" id="v-4" placeholder="0">
+        </div>
+        </form>-->
+      </div>
+      </div> <!-- end of thumbnail -->
+      <div class="thumbnail" id="aftastur">
+      <div class="caption">
+        <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-lg btn-block large" id="calculate">Reikna vinnumat</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block large" id="add">Bæta við hópi</button>
+        </div>
+      </div>
+      </div>
+      </div> <!-- end of tafla-->
+      <div class="main hidden" id="nidurstodur">
+        <h1 class="large">
+          Niðurstöður
+        </h1>
+      </div>
+      <div class="flex-container hidden" id="tafla2">
+        <div class="thumbnail">
+          <div class="caption">
+            <h4 class="medium">
+              Niðurstöður kennara
+            </h4>
+            <form>
+              <div class="form-group">
+                <label class="medium" for="dagsskoli">Vinnumat (klst) </label>
+                <input type="text" class="form-control" id="dagsskoli" value="0">
+              </div>
+              <div class="form-group">
+                <label class="medium" for="A-hluti">Yfirvinna (klst) </label>
+                <input type="text" class="form-control" id="A-hluti" value="0">
+              </div>
+              <div class="form-group">
+                <label class="medium" for="vinnuskylda">Vinnuskylda (klst) </label>
+                <input type="text" class="form-control" id="vinnuskylda" value="0">
+              </div>
+              <div class="form-group">
+                <label class="medium" for="skerding">Skerding (klst) </label>
+                <input type="text" class="form-control" id="skerding" value="0">
+              </div>
+              <div class="form-group">
+                <label class="medium" for="manadarlaun">Mánaðarlaun í fullu starfi  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#manadarlaunGluggi"></span></label>
+               <input type="text" class="form-control" id="manadarlaun" value="0">
+              </div>
+            </form>
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+        <div class="thumbnail">
+          <div class="caption" id="v-1">
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+        <div class="thumbnail">
+          <div class="caption" id="v-2">
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+        <div class="thumbnail">
+          <div class="caption" id="v-3">
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+        <div class="thumbnail">
+          <div class="caption" id='v-4'>
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+      </div><!--flex-container-->
+       <div class="main hidden" id="samanburdur">
+        <h1 class="large">
+          Samanburður við kennara á öðrum sýnidæmum
+        </h1>
+        <h3 class="medium">
+          Samanburðurinn miðast við sömu forsendur og slegnar voru inn en önnur sýnidæmi. Rauðu súlurnar merkja það að meðalfjöldi í hópum er kominn upp fyrir álagsmörk viðkomandi sýnidæma.
+        </h3>
+      </div>
+      <div class="flex-container hidden">
+        <div class="thumbnail nidurstGrof2">
+          <div>
+            <canvas id="canvas1"></canvas>
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+      </div><!--flex-container-->
+      <div class="main hidden" id="samanburdur2">
+        <h1 class="large">
+          Samanburður á sýnidæmum
+        </h1>
+        <h3 class="medium">
+          Veljið sýnidæmi og ýtið á takkann til þess að bera saman. Í gluggann hér fyrir neðan birtast gröf sem sýna vinnumat þessara sýnidæma á y-ási (óskert) en nemendafjölda á x-ási.
+        </h3>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <label class="medium einingar" for="fyrra">Sýnidæmi 1</label>
+          <select class="form-control vidd" id="fyrra">
+            <option>Almenn braut</option>
+            <option>Almennar raungreinar</option>
+            <option>Danska, efra þrep</option>
+            <option>Danska, hægferð</option>
+            <option>Danska, neðra þrep</option>
+            <option>Enska, efra þrep</option>
+            <option>Enska, hægferð</option>
+            <option>Enska, neðra þrep</option>
+            <option>Erlend mál, efra þrep</option>
+            <option>Erlend mál, neðra þrep</option>
+            <option>Fagbóklegt</option>
+            <option>Félagsgreinar, efra þrep</option>
+            <option>Félagsgreinar, neðra þrep</option>
+            <option>Íslenska, efra þrep</option>
+            <option>Íslenska, hægferð</option>
+            <option>Íslenska, neðra þrep</option>
+            <option>Íþróttafræði</option>
+            <option>Íþróttir</option>
+            <option>Jarðfræði</option>
+            <option>Listgreinar, efra þrep</option>
+            <option>Listgreinar, neðra þrep</option>
+            <option>Raungreinar, efra þrep</option>
+            <option>Raungreinar, neðra þrep</option>
+            <option>Sjúkraliðabraut</option>
+            <option>Starfsbraut (1/3)</option>
+            <option>Starfsbraut (4/6)</option>
+            <option>Starfsbraut (7/12)</option>
+            <option>Stærðfræði, efra þrep</option>
+            <option>Stærðfræði, hægferð</option>
+            <option>Stærðfræði, neðra þrep</option>
+            <option>Tölvuáfangar</option>
+            <option>Verklegt</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="medium einingar" for="es1">Einingar </label>
+          <input type="text" class="form-control einingarinput" id="es1" value="3">
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="medium einingar" for="seinna">Sýnidæmi 2</label>
+          <select class="form-control vidd" id="seinna">
+            <option>Almenn braut</option>
+            <option>Almennar raungreinar</option>
+            <option>Danska, efra þrep</option>
+            <option>Danska, hægferð</option>
+            <option>Danska, neðra þrep</option>
+            <option>Enska, efra þrep</option>
+            <option>Enska, hægferð</option>
+            <option>Enska, neðra þrep</option>
+            <option>Erlend mál, efra þrep</option>
+            <option>Erlend mál, neðra þrep</option>
+            <option>Fagbóklegt</option>
+            <option>Félagsgreinar, efra þrep</option>
+            <option>Félagsgreinar, neðra þrep</option>
+            <option>Íslenska, efra þrep</option>
+            <option>Íslenska, hægferð</option>
+            <option>Íslenska, neðra þrep</option>
+            <option>Íþróttafræði</option>
+            <option>Íþróttir</option>
+            <option>Jarðfræði</option>
+            <option>Listgreinar, efra þrep</option>
+            <option>Listgreinar, neðra þrep</option>
+            <option>Raungreinar, efra þrep</option>
+            <option>Raungreinar, neðra þrep</option>
+            <option>Sjúkraliðabraut</option>
+            <option>Starfsbraut (1/3)</option>
+            <option>Starfsbraut (4/6)</option>
+            <option>Starfsbraut (7/12)</option>
+            <option>Stærðfræði, efra þrep</option>
+            <option>Stærðfræði, hægferð</option>
+            <option>Stærðfræði, neðra þrep</option>
+            <option>Tölvuáfangar</option>
+            <option>Verklegt</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="medium einingar" for="es2">Einingar </label>
+          <input type="text" class="form-control einingarinput" id="es2" value="3">
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary large takkisla" id="berasaman">Bera saman</button>
+      </form>
+      </div>
+            <div class="flex-container hidden">
+        <div class="thumbnail nidurstGrof2">
+          <div>
+            <canvas id="canvas2"></canvas>
+          </div><!--Loka caption-->
+        </div><!-- Loka thumbnail-->
+      </div><!--flex-container-->
+    </div>
+
+  <script src="js/Chart.js" async></script>
+  <script src="js/vinnumatBuilder.js" async></script>
+  <script src="js/underscore-min.js" async></script>
+  <!--
+  <link rel="stylesheet" href="jasmine/lib/jasmine-2.1.2/jasmine.css">
+  <script src="jasmine/lib/jasmine-2.1.2/jasmine.js"></script>
+  <script src="jasmine/lib/jasmine-2.1.2/jasmine-html.js"></script>
+  <script src="jasmine/lib/jasmine-2.1.2/boot.js"></script>
+  <script src="jasmine/spec/vinnumat_prof.js"></script>
+  -->
+  </body>
+</html>
