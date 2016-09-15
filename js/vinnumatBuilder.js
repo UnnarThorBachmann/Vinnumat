@@ -1812,6 +1812,12 @@ var model = {
     kennari: null,
     kennarar: [],
     init: function (_afangar,hlutfoll) {
+    var _afangar2 = []; 
+
+    _afangar.forEach(function(afangi){
+        _afangar2.push(afangi);
+      },_afangar2);
+
     var kennararNofn = ['Félagsgreinar, efra þrep',
                          'Félagsgreinar, neðra þrep',
                          'Íslenska, efra þrep',
@@ -1837,16 +1843,17 @@ var model = {
                          'Raungreinar, neðra þrep',
     ];
     this.kennari = new Kennari("Þú",_afangar,hlutfoll);
+
     this.kennarar = [];
       
       for (var i = 0; i < kennararNofn.length; i++) {
         var nafn = kennararNofn[i];
 
         for (var j= 0; j < _afangar.length; j++) {
-          _afangar[j] = [nafn,_afangar[j][1],_afangar[j][2],nafn];
+          _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn];
         }
         
-        this.kennarar.push(new Kennari(nafn,_afangar,hlutfoll));
+        this.kennarar.push(new Kennari(nafn,_afangar2,hlutfoll));
       }
     }
 };
