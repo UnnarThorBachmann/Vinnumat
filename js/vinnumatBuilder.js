@@ -745,6 +745,7 @@ var afangar = {
       'Jarðfræði',
       'Listgreinar, efra þrep',
       'Listgreinar, neðra þrep',
+      'Mitt sýnidæmi',
       'Raungreinar, efra þrep',
       'Raungreinar, neðra þrep',
       'Sjúkraliðabraut',
@@ -1289,6 +1290,22 @@ var synidaemi = {
     'kostn_per_nem_yn': 0,
     'kostn_per_nem_ye': 0
   },
+  'mitt': {
+    'heiti': 'Mitt sýnidæmi',
+    'lagmark': 17,
+    'hamark_n': 28,
+    'hamark_e': 30,
+    'timar_namsAetlun': 6,
+    'undirb_kennslu': 20,
+    'verkefnisgerd': 8,
+    'lokaprof': 12,
+    'onnur_vinna': 4,
+    'vinna_per_nemanda': 0,
+    'fragangur_namsmats': 0,
+    'onnur_vinna_per_nemanda': 150,
+    'kostn_per_nem_yn': 3,
+    'kostn_per_nem_ye': 5.3
+  },
   'def': {
     'heiti:':"Default",
     'lagmark': 0,
@@ -1306,7 +1323,6 @@ var synidaemi = {
     'kostn_per_nem_ye': 0
   }
 };
-
 var addRow = function (afangiCol) {
     
     afangiCol.setAttribute('class', "thumbnail");
@@ -1381,11 +1397,7 @@ var addRow = function (afangiCol) {
       option.text = j;
       selectSynidaemi.appendChild(option);
     });
-    /*for (var j = 0; j < afangar.synidaemi.length; j++) {
-      var option = document.createElement('option');
-      option.text = afangar.synidaemi[j];
-      selectSynidaemi.appendChild(option);
-    }*/
+   
     divSynidaemi.appendChild(selectSynidaemi);
     form.appendChild(divSynidaemi);
 
@@ -1410,27 +1422,7 @@ var addRow = function (afangiCol) {
  
     collapseDiv.appendChild(form);
     caption.appendChild(collapseDiv);
-    /*
-    var form2 = document.createElement('form');
-    var divVinnumat = document.createElement('div');
-    divVinnumat.setAttribute('class','form-group hidden v');
-
-    var labelVinnumat = document.createElement('label');
-    labelVinnumat.setAttribute('for','v-' + afangar.fjoldi);
-    labelVinnumat.innerHTML = 'Vinnumat (klst)';
-    divVinnumat.appendChild(labelVinnumat);
     
-
-    var inputVinnumat = document.createElement('input');
-    inputVinnumat.setAttribute('type','text');
-    inputVinnumat.setAttribute('class','form-control');
-    inputVinnumat.setAttribute('id','v-'+ afangar.fjoldi);
-    inputVinnumat.setAttribute('placeholder','0');
-
-    divVinnumat.appendChild(inputVinnumat);
-    form2.appendChild(divVinnumat);
-    caption.appendChild(form2);
-     */
     afangiCol.appendChild(caption);
 
     document.getElementById('tafla').appendChild(afangiCol);
@@ -1520,6 +1512,9 @@ var Afangi = function(param) {
       break;
     case 'Listgreinar, neðra þrep':
       this.synid = synidaemi.list_n;
+      break;
+    case 'Mitt sýnidæmi':
+      this.synid = synidaemi.mitt;
       break;
     case 'Raungreinar, efra þrep':
       this.synid = synidaemi.raun_e;
@@ -1646,13 +1641,7 @@ Kennari.prototype.totalEiningar = function () {
   }
   return et;
 };
-/*
-Kennari.prototype.addAfangi = function(afangi,hlutfall) {
-  this.hlutfoll.push(hlutfall);
-  this.afangar.push(afangi);
-  this.originalAfangar.push(afangi);
-  this.fjoldi += 1;
-};*/
+
 Kennari.prototype.compare = function (a,b) {
   if (a.heiti == b.heiti) {
     return 0;
@@ -1724,11 +1713,7 @@ Kennari.prototype.toString = function() {
     s += afangi.toString();
     s += "\n";
   });
-  /*
-  for(var i = 0; i < this.originalAfangar.length; i++) {
-    s += this.originalAfangar[i].toString();
-    s += "\n";
-  }*/
+
   return s;
 };
 Kennari.prototype.ryra = function() {
@@ -1832,6 +1817,7 @@ var model = {
                          'Enska, neðra þrep',
                          'Erlend mál, efra þrep',
                          'Erlend mál, neðra þrep',
+                         'Mitt sýnidæmi',
                          'Tölvuáfangar',
                          'Verklegt',
                          'Fagbóklegt',
@@ -1903,9 +1889,7 @@ var octopus = {
       model.kennarar.forEach(function(kennari){
         this.adrir.push(kennari);
       },this);
-      //for (var i = 0; i < model.kennarar.length; i++) {
-      //  this.adrir.push(model.kennarar[i]);
-      //}
+     
       
       this.adrir.push(model.kennari);
       this.litir = this.lita();
@@ -1993,6 +1977,53 @@ var view = {
     return octopus.vinnuskylda(c,vinnuskyldaTexti);
   },
   init: function () {
+    var self = this;
+    var button4 = document.getElementById('skra');
+    button4.addEventListener('click',function(e) {
+        e.preventDefault();
+        var mitt_namsaetlun = octopus.parseNumberField(document.getElementById('mitt_namsaetlun').value);
+        var mitt_undirbuningur = octopus.parseNumberField(document.getElementById('mitt_undirbuningur').value);
+        var mitt_profagerd_kennslutima = octopus.parseNumberField(document.getElementById('mitt_profagerd_kennslutima').value);
+        var mitt_profagerd = octopus.parseNumberField(document.getElementById('mitt_profagerd').value);
+        var mitt_onnur_vinna = octopus.parseNumberField(document.getElementById('mitt_onnur_vinna').value);
+        var mitt_tryggingarakvaedi = octopus.parseNumberField(document.getElementById('mitt_tryggingarakvaedi').value);
+        var mitt_vinna_per_nemanda = octopus.parseNumberField(document.getElementById('mitt_vinna_per_nemanda').value);
+        var mitt_lagmark = octopus.parseNumberField(document.getElementById('mitt_lagmark').value);
+        var mitt_hamark_1 = octopus.parseNumberField(document.getElementById('mitt_hamark_1').value);
+        var mitt_kostn_per_nem_yn = octopus.parseNumberField(document.getElementById('mitt_kostn_per_nem_yn').value);
+        var mitt_hamark_2 = octopus.parseNumberField(document.getElementById('mitt_hamark_2').value);
+        var mitt_kostn_per_nem_ye = octopus.parseNumberField(document.getElementById('mitt_kostn_per_nem_ye').value);
+        
+        synidaemi.mitt.hamark_e = 0;
+        synidaemi.mitt.hamark_n = 0;
+        synidaemi.mitt.lagmark = 0;
+        synidaemi.mitt.kostn_per_nem_ye = 0;
+        synidaemi.mitt.kostn_per_nem_yn = 0;
+        synidaemi.mitt.lokaprof = 0;
+        synidaemi.mitt.onnur_vinna = 0;
+        synidaemi.mitt.timar_namsAetlun = 0;
+        synidaemi.mitt.verkefnisgerd = 0;
+        synidaemi.mitt_undirbuningur = 0;
+        synidaemi.mitt.fragangur_namsmats = 0;
+        synidaemi.mitt.onnur_vinna_per_nemanda = 0;
+        synidaemi.mitt.vinna_per_nemanda = 0;
+
+        synidaemi.mitt.hamark_e = mitt_hamark_2;
+        synidaemi.mitt.hamark_n = mitt_hamark_1;
+        synidaemi.mitt.lagmark = mitt_lagmark
+
+        synidaemi.mitt.kostn_per_nem_ye = mitt_kostn_per_nem_ye;
+        synidaemi.mitt.kostn_per_nem_yn = mitt_kostn_per_nem_yn;
+
+        synidaemi.mitt.lokaprof = mitt_profagerd;
+        synidaemi.mitt.onnur_vinna = mitt_onnur_vinna + mitt_tryggingarakvaedi;
+        synidaemi.mitt.timar_namsAetlun = mitt_namsaetlun;
+        synidaemi.mitt.verkefnisgerd = mitt_profagerd_kennslutima;
+        synidaemi.mitt.undirb_kennslu = mitt_undirbuningur;
+        synidaemi.mitt.vinna_per_nemanda = mitt_vinna_per_nemanda;
+
+
+    },synidaemi);
     var fyrirsagnir = document.getElementsByClassName('fyrirsagnir');
     for (var i = 0; i < fyrirsagnir.length; i++) {
       fyrirsagnir[i].addEventListener('click',function(){
@@ -2009,7 +2040,8 @@ var view = {
       addRow(afangiCol);
       
     });
-    var self = this;
+    
+    
     $('.nava').click(function() {
       ('.nava').parent().removeClass('active');
     });
@@ -2032,19 +2064,11 @@ var view = {
     button2.addEventListener('click',function() {
       self.calc();
       button2.innerHTML = "Endurreikna";
-      /*
-      if ($("#opna").hasClass('collapsed')) {
-        $("#opna").click();
-      }
-        $('.hopen').click();
-      */
-      /*var values = document.getElementsByClassName('v');
-      for (var i = 0; i < values.length; i++) {
-        values[i].classList.remove('hidden');
-      }*/
+     
     });
     var button3 = document.getElementById('berasaman');
     button3.addEventListener('click',function(e) {
+
     e.preventDefault();
     var e1 = octopus.parseNumberField(document.getElementById('es1').value);
     var e2 = octopus.parseNumberField(document.getElementById('es2').value);
@@ -2211,13 +2235,7 @@ var view = {
                 ken.push(kennari);
             }
         },ken);
-        /*
-        for (var i = 0; i < temp.length; i++) {
-            var j = sia.indexOf(temp[i].heiti);
-            if (j > 0) {
-                ken.push(temp[i]);
-            }
-        }*/
+        
      }
      var ls = [];
      var vs = [];
