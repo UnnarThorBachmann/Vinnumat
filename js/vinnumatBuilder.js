@@ -12,8 +12,8 @@ var templateAfangiNidurst =
 
 var templateLaunatexti = 'Áætluð mánaðarlaun miðað við fullt starf reiknast <%=item.laun%> krónur.\
 <ul class="list-group"> Þau eru summa eftirfarandi þátta:\
-<li class="list-group-item"> Orlofsuppbót: <%=item.orlof%>/12 krónur.</li>\
-<li class="list-group-item"> Desemberuppbót: <%=item.desember%>/12 krónur</li>\
+<li class="list-group-item"> Orlofsuppbót: <%=item.orlof%>/12 = <%=item.orlofmanudi%> krónur.</li>\
+<li class="list-group-item"> Desemberuppbót: <%=item.desember%>/12 = <%=item.desembermanudi%> krónur</li>\
 <li class="list-group-item"> Dagvinna (launaflokkur= <%=item.launaflokkur%>, þrep=<%=item.threp%>): \
 <%=item.dagvinna%> krónur</li>\
 <li class="list-group-item"> Yfirvinna: Fjöldi yfirvinnutíma\
@@ -26,13 +26,14 @@ var desemberuppbot = {
     '2013': 52100,
     '2014': 52100,
     '2015': 78000,
-    '2016': 78000
+    '2016': 82000
 };
 var orlofsuppbot = {
     '2013': 28700,
     '2014': 28700,
     '2015': 42000,
-    '2016': 42000
+    '2016': 42000,
+    '2017': 46500
 };
 
 
@@ -1657,7 +1658,7 @@ Kennari.prototype.compare = function (a,b) {
   }
 };
 Kennari.prototype.vinnuskylda = function(klstChluti,vinnuskyldaTexti) {
-  var vinnuskylda = 0;
+   var vinnuskylda = 0;
    if (vinnuskyldaTexti === '30 ára-' ) {
       vinnuskylda = 720;
    }
@@ -1669,6 +1670,9 @@ Kennari.prototype.vinnuskylda = function(klstChluti,vinnuskyldaTexti) {
    }
    else if (vinnuskyldaTexti === '55-59 ára') {
     vinnuskylda = 667;
+   }
+   else if (vinnuskyldaTexti === '60 ára+ (17 tímar)') {
+    vinnuskylda = 493;
    }
    else {
     vinnuskylda = 551;
@@ -1685,7 +1689,7 @@ Kennari.prototype.vinnuskylda = function(klstChluti,vinnuskyldaTexti) {
         return h*parseFloat(696) + (1-h)*parseFloat(667); 
     }
     else {
-       return h*parseFloat(696) + (1-h)*parseFloat(551);  
+       return h*parseFloat(696) + (1-h)*parseFloat(vinnuskylda);  
     }
   }
 };
@@ -2186,7 +2190,6 @@ var view = {
      summa += parseFloat(onnur.toString().replace(',','.'));
      var golf = 0;
      var vinnuskyldaTexti = document.getElementById('golf').value
-   
      var vinnuskylda = view.vinnuskylda(onnur,vinnuskyldaTexti);
      document.getElementById('vinnuskylda').value = octopus.parseOutput(vinnuskylda,10);
      document.getElementById('dagsskoli').value = octopus.parseOutput(summa,10);
@@ -2214,13 +2217,16 @@ var view = {
     template({
               laun: ls.toFixed(3),
               orlof: (octopus.orlof('2016')/1000).toFixed(3),
+              orlofmanudi: (octopus.orlof('2016')/12000).toFixed(3),
               desember: (octopus.desember('2016')/1000).toFixed(3),
+              desembermanudi: (octopus.desember('2016')/12000).toFixed(3),
               launaflokkur: launaflokkur,
               threp: threp,
               dagvinna: octopus.dagvinna(launaflokkur,threp)/1000,
               yfirvinnutimar: octopus.parseOutput(yfirvinnaBirta,10),
               launatafla: launatafla01092016[launaflokkur][threp]/1000,
               yfirvinna: octopus.parseOutput(yfirvinnaBirta*0.010385*launatafla01092016[launaflokkur][threp]/6,10)
+    		  
     }); 
      
     var comp = function (a,b) {
