@@ -5,9 +5,10 @@ vinnumat: Unnar Thor Bachmann.
 var templateAfangiNidurst = 
 '<ul class="list-group"><li class="list-group-item"><strong><%=item.heiti%></strong></li>\
 <li class="list-group-item">Vinnumat: <%=item.vinnumat%> klst. </li>\
-<li class="list-group-item"> Einingafjöldi: <%=item.einingafjoldi%></li>\
-<li class="list-group-item">Nemendafjöldi:<%=item.nemendafjoldi%> </li>\
-<li class="list-group-item"> Sýnidæmi: <%=item.synidaemi%> </li>\
+<li class="list-group-item">Einingafjöldi: <%=item.einingafjoldi%></li>\
+<li class="list-group-item">Nemendafjöldi: <%=item.nemendafjoldi%> </li>\
+<li class="list-group-item">Kennslustundir: <%=item.timafjoldi%></li>\
+<li class="list-group-item">Sýnidæmi: <%=item.synidaemi%> </li>\
 </ul>';
 
 var templateLaunatexti = 'Áætluð mánaðarlaun miðað við fullt starf reiknast <%=item.laun%> krónur.\
@@ -1338,7 +1339,7 @@ var addRow = function (afangiCol) {
     uppl.setAttribute('class','hopanafn large');
     uppl.setAttribute('id','hopanafn'+afangar.fjoldi)
     uppl.setAttribute('href','#hopur' + afangar.fjoldi);
-    uppl.innerHTML = 'Hópur ' + afangar.fjoldi + ' &nbsp;<span id="orvar'+ afangar.fjoldi +'" class="small glyphicon glyphicon-chevron-down"></span>';
+    uppl.innerHTML = 'Áfangi ' + afangar.fjoldi + ' &nbsp;<span id="orvar'+ afangar.fjoldi +'" class="small glyphicon glyphicon-chevron-down"></span>';
 
     caption.appendChild(uppl);
 
@@ -1404,6 +1405,24 @@ var addRow = function (afangiCol) {
    
     divSynidaemi.appendChild(selectSynidaemi);
     form.appendChild(divSynidaemi);
+
+    var divTimar = document.createElement('div');
+    divTimar.setAttribute('class','form-group');
+    var labelTimar = document.createElement('label');
+    labelTimar.setAttribute('for','t-' + afangar.fjoldi);
+    labelTimar.innerHTML = 'Tímar á viku';
+    divTimar.appendChild(labelTimar);
+
+    var inputTimar = document.createElement('input');
+    inputTimar.setAttribute('type','text');
+    inputTimar.setAttribute('class','form-control');
+    inputTimar.setAttribute('id','t-'+ afangar.fjoldi);
+    inputTimar.setAttribute('data-toggle','tooltip');
+    inputTimar.setAttribute('data-placement','bottom');
+    inputTimar.setAttribute('title','Tímar á viku');
+    inputTimar.setAttribute('value','6');
+    divTimar.appendChild(inputTimar);
+    form.appendChild(divTimar);
 
     var divProsenta = document.createElement('div');
     divProsenta.setAttribute('class','form-group');
@@ -2178,7 +2197,8 @@ var view = {
            var fjoldi = octopus.parseNumberField(document.getElementById('f-'+i).value);
            var synid = document.getElementById('s-'+i).value;
            var hlutf =  octopus.parseNumberField(document.getElementById('p-'+i).value);
-           var param = [heiti,einingar,fjoldi,synid,6];
+           var kennslust = octopus.parseNumberField(document.getElementById('t-' + i).value);
+           var param = [heiti,einingar,fjoldi,synid,kennslust];
            af.push(param);
            hlutfoll.push(hlutf);
         }
@@ -2190,21 +2210,25 @@ var view = {
      $('.visiblenon').removeClass('visiblenon');
      _.templateSettings.variable = "item";
      var vinnumat = octopus.vinnumat();
+     console.log(vinnumat);
      var summa = parseFloat(0);
+     var vinnumatindex = 0;
      for (var j = 1; j <= afangar.fjoldi; j++) {
         var heiti = document.getElementById('h-'+ j).value;
         if (heiti != '') {
-            summa += parseFloat(vinnumat[j-1]);
+            summa += parseFloat(vinnumat[vinnumatindex]);
             var template = _.template(
               templateAfangiNidurst
             );
             document.getElementById('v-'+j).innerHTML = template({
               heiti: heiti,
-              vinnumat: octopus.parseOutput(vinnumat[j-1],100),
+              vinnumat: octopus.parseOutput(vinnumat[vinnumatindex],100),
               einingafjoldi: document.getElementById('e-'+ j).value,
               nemendafjoldi: document.getElementById('f-'+ j).value,
+              timafjoldi: document.getElementById('t-'+ j).value,
               synidaemi: document.getElementById('s-'+ j).value
             }); 
+        	vinnumatindex += 1;
         }
         else {
           document.getElementById('v-'+j).innerHTML = "Ekkert vinnumat fyrir hóp " + j + '.';
