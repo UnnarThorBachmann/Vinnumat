@@ -1375,19 +1375,48 @@ var addRow = function (afangiCol) {
     form.appendChild(divEiningar);
 
     var divNemendafjoldi = document.createElement('div');
-    divNemendafjoldi.setAttribute('class','form-group');
+    divNemendafjoldi.setAttribute('class','form-group f-' + afangar.fjoldi + 's');
+    divNemendafjoldi.setAttribute('id','f-'+ afangar.fjoldi+'s');
+
     var labelNemendafjoldi = document.createElement('label');
-    labelNemendafjoldi.setAttribute('for','f-' + afangar.fjoldi);
-    labelNemendafjoldi.innerHTML = 'Nemendafjöldi';
+    labelNemendafjoldi.setAttribute('for','f-' + afangar.fjoldi + '-1');
+    labelNemendafjoldi.innerHTML = 'Nemendafjöldi (1)';
     divNemendafjoldi.appendChild(labelNemendafjoldi);
     var inputNemendafjoldi = document.createElement('input');
     inputNemendafjoldi.setAttribute('type','text');
-    inputNemendafjoldi.setAttribute('class','form-control');
-    inputNemendafjoldi.setAttribute('id','f-'+ afangar.fjoldi);
-    inputNemendafjoldi.setAttribute('placeholder','15');
+    inputNemendafjoldi.setAttribute('class','form-control f-'+ afangar.fjoldi +'s');
+    inputNemendafjoldi.setAttribute('value','15');
+    inputNemendafjoldi.setAttribute('id','f-' + afangar.fjoldi + '-1')
     divNemendafjoldi.appendChild(inputNemendafjoldi);
     form.appendChild(divNemendafjoldi);
-
+    var divTakkaGroup = document.createElement('div');
+    divTakkaGroup.setAttribute('class','btn-group');
+    var takki = document.createElement('button');
+    takki.setAttribute('type','button');
+    takki.setAttribute('class','btn btn-primary addgroup');
+    takki.innerHTML = '+';
+    var nth = afangar.fjoldi;
+    takki.addEventListener('click',function(nth) {
+		return function() {
+			var items = document.getElementsByClassName('f-'+ nth +'s');
+			var index = document.getElementsByClassName('f-' + nth + 's').length;
+			var label = document.createElement('label');
+            label.setAttribute('class','medium');
+            label.setAttribute('for','f-' + nth + '-' + index);
+            label.innerHTML = 'Nemendafjöldi ' + '('+  items.length + ')';
+            document.getElementById('f-'+ nth +'s').appendChild(label);
+            
+            var input = document.createElement('input');
+            input.setAttribute('type','text');
+            input.setAttribute('class','form-control f-'+ nth.toString()+ 's');
+            input.setAttribute('id', 'f-' + nth + '-' + index);
+            input.setAttribute('value','15');
+            document.getElementById('f-' + nth +'s').appendChild(input);
+		}
+	}(nth));
+    divTakkaGroup.appendChild(takki);
+    form.appendChild(divTakkaGroup);   
+	
     var divSynidaemi = document.createElement('div');
     divSynidaemi.setAttribute('class','form-group');
     var labelSynidaemi = document.createElement('label');
@@ -2062,17 +2091,11 @@ var view = {
 
 
     },synidaemi);
-    /*
-    var mittSynidaemi = document.getElementById('mittSynidaemi');
-    mittSynidaemi.addEventListener('click',function() {
-    	$('.main').addClass('hidden');
-    	$('.flex-container').addClass('hidden');
-    	$('#mitt').removeClass('hidden');
-    });*/
+    
     var fyrirsagnir = document.getElementsByClassName('fyrirsagnir');
     for (var i = 0; i < fyrirsagnir.length; i++) {
-      var f = fyrirsagnir[i];
-      	f.addEventListener('click',function(fyrirsogn){
+      var item = fyrirsagnir[i];
+      	item.addEventListener('click',function(fyrirsogn){
       	return function() {
       		if (fyrirsogn.id  && fyrirsogn.id == 'mittSynidaemi') {
       			$('.main').addClass('hidden');
@@ -2086,9 +2109,30 @@ var view = {
       		}
       	}
       	
-      }(f));
+      }(item));
     }
-	
+	var addgroup = document.getElementsByClassName('addgroup');
+	for (var i = 0; i < addgroup.length; i++) {
+		var item = addgroup[i];
+		item.addEventListener('click',function(i) {
+			return function() {
+			    var items = document.getElementsByClassName('f-'+ (i+1).toString() +'s')
+			    var index = document.getElementsByClassName('f-' + (i+1).toString() + 's').length + 1;
+				var label = document.createElement('label');
+            	label.setAttribute('class','medium');
+            	label.setAttribute('for','f-' + (i+1).toString() + '-' + index);
+            	label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length+1).toString() + ')';
+            	console.log('f-'+ (i+1).toString()+'s');
+            	document.getElementById('f-'+ (i+1).toString()+'s').appendChild(label);
+            	var input = document.createElement('input');
+            	input.setAttribute('type','text');
+            	input.setAttribute('class','form-control f-'+ (i+1).toString()+ 's');
+            	input.setAttribute('id', 'f-' + (i+1).toString() +  '-' + index);
+            	input.setAttribute('value','15');
+            	document.getElementById('f-' + (i+1).toString()+'s').appendChild(input);
+			}
+		}(i));
+	}
     if (screen.width <= 765 && $("#myNavbar").hasClass('in')) {
           $('#skuffa').click();
     }
