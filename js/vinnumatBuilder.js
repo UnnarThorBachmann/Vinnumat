@@ -1375,7 +1375,7 @@ var addRow = function (afangiCol) {
     form.appendChild(divEiningar);
 
     var divNemendafjoldi = document.createElement('div');
-    divNemendafjoldi.setAttribute('class','form-group f-' + afangar.fjoldi + 's');
+    divNemendafjoldi.setAttribute('class','form-group');
     divNemendafjoldi.setAttribute('id','f-'+ afangar.fjoldi+'s');
 
     var labelNemendafjoldi = document.createElement('label');
@@ -1403,7 +1403,7 @@ var addRow = function (afangiCol) {
 			var label = document.createElement('label');
             label.setAttribute('class','medium');
             label.setAttribute('for','f-' + nth + '-' + index);
-            label.innerHTML = 'Nemendafjöldi ' + '('+  items.length + ')';
+            label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length +1).toString() + ')';
             document.getElementById('f-'+ nth +'s').appendChild(label);
             
             var input = document.createElement('input');
@@ -1415,10 +1415,29 @@ var addRow = function (afangiCol) {
 		}
 	}(nth));
     divTakkaGroup.appendChild(takki);
+
     var takki2 = document.createElement('button');
     takki2.setAttribute('type','button');
     takki2.setAttribute('class','btn btn-primary delgroup');
     takki2.innerHTML = '-';
+    takki2.addEventListener('click',function(nth) {
+		return function() {
+			var items = $('#f-' + nth + 's').children();
+			var l = items.length;
+			if (l  ==  2) {
+
+			}
+			else {
+				var input = items[l-1];
+				var label = items[l-2];
+				input.remove();
+				label.remove();
+			}
+			
+
+			
+		}
+	}(nth));
     divTakkaGroup.appendChild(takki2);
     form.appendChild(divTakkaGroup);   
 	
@@ -2127,7 +2146,6 @@ var view = {
             	label.setAttribute('class','medium');
             	label.setAttribute('for','f-' + (i+1).toString() + '-' + index);
             	label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length+1).toString() + ')';
-            	console.log('f-'+ (i+1).toString()+'s');
             	document.getElementById('f-'+ (i+1).toString()+'s').appendChild(label);
             	var input = document.createElement('input');
             	input.setAttribute('type','text');
@@ -2135,6 +2153,25 @@ var view = {
             	input.setAttribute('id', 'f-' + (i+1).toString() +  '-' + index);
             	input.setAttribute('value','15');
             	document.getElementById('f-' + (i+1).toString()+'s').appendChild(input);
+			}
+		}(i));
+	}
+	var delgroup = document.getElementsByClassName('delgroup');
+	for (var i = 0; i < delgroup.length; i++) {
+		var item = delgroup[i];
+		item.addEventListener('click',function(i) {
+			return function() {
+				var items = $('#f-' + (i+1).toString() + 's').children();
+				var l = items.length;
+				if (l  ==  2) {
+
+				}
+				else {
+					var input = items[l-1];
+					var label = items[l-2];
+					input.remove();
+					label.remove();
+				}
 			}
 		}(i));
 	}
@@ -2259,7 +2296,6 @@ var view = {
      $('.visiblenon').removeClass('visiblenon');
      _.templateSettings.variable = "item";
      var vinnumat = octopus.vinnumat();
-     console.log(vinnumat);
      var summa = parseFloat(0);
      var vinnumatindex = 0;
      for (var j = 1; j <= afangar.fjoldi; j++) {
