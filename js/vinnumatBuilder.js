@@ -1415,6 +1415,11 @@ var addRow = function (afangiCol) {
 		}
 	}(nth));
     divTakkaGroup.appendChild(takki);
+    var takki2 = document.createElement('button');
+    takki2.setAttribute('type','button');
+    takki2.setAttribute('class','btn btn-primary delgroup');
+    takki2.innerHTML = '-';
+    divTakkaGroup.appendChild(takki2);
     form.appendChild(divTakkaGroup);   
 	
     var divSynidaemi = document.createElement('div');
