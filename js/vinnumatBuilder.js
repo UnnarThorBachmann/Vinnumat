@@ -1958,6 +1958,9 @@ var octopus = {
 
         model.init(afangar,hlutfoll);
     },
+    kennari: function() {
+    	return model.kennari;
+    },
     kennarar: function() {
         return this.adrir;
     },
@@ -2033,15 +2036,7 @@ var octopus = {
         d[kennari.heiti] = "#d3ac2b";
        }
       },d);
-      /*
-      for (var i = 0; i < model.kennarar.length; i++) {
-       if (model.kennarar[i].alag()) {
-        d[model.kennarar[i].heiti] = "red";
-       }
-       else{
-        d[model.kennarar[i].heiti] = "#d3ac2b";
-       }
-      }*/
+      
       return d
     }
 
@@ -2210,6 +2205,12 @@ var view = {
     });
     var button2 = document.getElementById('calculate');
     button2.addEventListener('click',function() {
+      var nidurstAfanga = $('#tafla2').children();
+      for (var i = 0; i < nidurstAfanga.length; i++) {
+      	if (i > 0) {
+      		nidurstAfanga[i].remove();
+      	}
+      }
       self.calc();
       button2.innerHTML = "Endurreikna";
       
@@ -2279,45 +2280,52 @@ var view = {
     for (var i=1; i <= afangar.fjoldi; i++) {
         var heiti = document.getElementById('h-'+i).value;
         if (heiti != '') {
-           var einingar = octopus.parseNumberField(document.getElementById('e-'+i).value);
-           var fjoldi = octopus.parseNumberField(document.getElementById('f-'+i).value);
-           var synid = document.getElementById('s-'+i).value;
-           var hlutf =  octopus.parseNumberField(document.getElementById('p-'+i).value);
-           var kennslust = octopus.parseNumberField(document.getElementById('t-' + i).value);
-           var param = [heiti,einingar,fjoldi,synid,kennslust];
-           af.push(param);
-           hlutfoll.push(hlutf);
+           var fjoldar = document.getElementsByClassName('f-' + i + 's');
+           for (var j = 0; j < fjoldar.length; j++) {
+           	if (!isNaN(fjoldar[j].value)) {
+           		var einingar = octopus.parseNumberField(document.getElementById('e-'+i).value);
+           		var fjoldi = octopus.parseNumberField(fjoldar[j].value);
+           		var synid = document.getElementById('s-'+i).value;
+           		var hlutf =  octopus.parseNumberField(document.getElementById('p-'+i).value);
+           		var kennslust = octopus.parseNumberField(document.getElementById('t-' + i).value);
+           		var param = [heiti,einingar,fjoldi,synid,kennslust];
+           		af.push(param);
+           		hlutfoll.push(hlutf);
+           	}
+       	   }
         }
     }
     octopus.createKennari(af,hlutfoll);
-    
+    var kennari = octopus.kennari();
      $('.hidden').removeClass('hidden');
      $('#mitt').addClass('hidden');
      $('.visiblenon').removeClass('visiblenon');
      _.templateSettings.variable = "item";
      var vinnumat = octopus.vinnumat();
      var summa = parseFloat(0);
-     var vinnumatindex = 0;
-     for (var j = 1; j <= afangar.fjoldi; j++) {
-        var heiti = document.getElementById('h-'+ j).value;
-        if (heiti != '') {
-            summa += parseFloat(vinnumat[vinnumatindex]);
-            var template = _.template(
-              templateAfangiNidurst
-            );
-            document.getElementById('v-'+j).innerHTML = template({
-              heiti: heiti,
-              vinnumat: octopus.parseOutput(vinnumat[vinnumatindex],100),
-              einingafjoldi: document.getElementById('e-'+ j).value,
-              nemendafjoldi: document.getElementById('f-'+ j).value,
-              timafjoldi: document.getElementById('t-'+ j).value,
-              synidaemi: document.getElementById('s-'+ j).value
-            }); 
-        	vinnumatindex += 1;
-        }
-        else {
-          document.getElementById('v-'+j).innerHTML = "Ekkert vinnumat fyrir hóp " + j + '.';
-        }
+     for (var j = 0; j < kennari.originalAfangar.length; j++) {
+     	var item = kennari.originalAfangar[j];
+        summa += parseFloat(item.vinnumat());
+        var template = _.template(
+            templateAfangiNidurst
+        );
+        var tafla2 = document.getElementById('tafla2');
+        var divThumbnail = document.createElement('div');
+        divThumbnail.setAttribute('class','thumbnail');
+        var divCaption = document.createElement('div');
+        divCaption.setAttribute('class','caption');
+        divCaption.setAttribute('id','v-' + j);
+        divCaption.innerHTML = template({
+            heiti: item.heiti,
+            vinnumat: octopus.parseOutput(item.vinnumat(),100),
+            einingafjoldi: item.einingar,
+            nemendafjoldi: item.fjoldi,
+            timafjoldi: item.h40perweek,
+            synidaemi: item.synid.heiti
+        }); 
+        divThumbnail.append(divCaption);
+        tafla2.append(divThumbnail);
+       
      }
      var onnur = document.getElementById('onnurVinna').value;
      summa += parseFloat(onnur.toString().replace(',','.'));
