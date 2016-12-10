@@ -763,7 +763,7 @@ var afangar = {
       'Tölvuáfangar',
       'Verklegt'
     ],
-    'fjoldi': 4
+    'fjoldi': 1
 };// End of JSON object.
 
 var synidaemi = {
@@ -1817,7 +1817,7 @@ Kennari.prototype.ryra = function() {
         nfj += parseInt(this.afangar[s].fjoldi);
       } // end of for.
       var neFjAv = nfj/(j-i);
-      var param = new Array(this.afangar[i].heiti,this.afangar[i].einingar,neFjAv,this.afangar[i].synid.heiti,6);
+      var param = new Array(this.afangar[i].heiti,this.afangar[i].einingar,neFjAv,this.afangar[i].synid.heiti,this.afangar[i].h40perweek);
       var shadow = new Afangi(param);
       for (var k = 0; k < this.originalAfangar.length; k++) {
         if ((j-i) == 2 && this.originalAfangar[k].heiti == this.afangar[i].heiti) {
@@ -1916,7 +1916,7 @@ var model = {
         var nafn = kennararNofn[i];
 
         for (var j= 0; j < _afangar.length; j++) {
-          _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn,6];
+          _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn,_afangar[j][4]];
         }
         
         this.kennarar.push(new Kennari(nafn,_afangar2,hlutfoll));
@@ -2137,16 +2137,23 @@ var view = {
 			return function() {
 			    var items = document.getElementsByClassName('f-'+ (i+1).toString() +'s')
 			    var index = document.getElementsByClassName('f-' + (i+1).toString() + 's').length + 1;
+				/*
 				var label = document.createElement('label');
             	label.setAttribute('class','medium');
             	label.setAttribute('for','f-' + (i+1).toString() + '-' + index);
             	label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length+1).toString() + ')';
             	document.getElementById('f-'+ (i+1).toString()+'s').appendChild(label);
+            	*/
+            	var prev = document.getElementById('f-'+ (i+1).toString() + '-'+ (index-1).toString());
+            	prev.setAttribute('float','left');
+            	prev.setAttribute('display','inline');
             	var input = document.createElement('input');
             	input.setAttribute('type','text');
-            	input.setAttribute('class','form-control f-'+ (i+1).toString()+ 's');
+            	input.setAttribute('class','form-control f-'+ (i+1).toString()+ 's einingarinput3');
             	input.setAttribute('id', 'f-' + (i+1).toString() +  '-' + index);
             	input.setAttribute('value','15');
+            	var width = $('#f-'+(i+1).toString()+'s').width();
+            	document.getElementById('f-' + (i+1).toString()+'s').setAttribute('width',5*width);
             	document.getElementById('f-' + (i+1).toString()+'s').appendChild(input);
 			}
 		}(i));
@@ -2163,9 +2170,7 @@ var view = {
 				}
 				else {
 					var input = items[l-1];
-					var label = items[l-2];
 					input.remove();
-					label.remove();
 				}
 			}
 		}(i));
@@ -2332,6 +2337,8 @@ var view = {
      var golf = 0;
      var vinnuskyldaTexti = document.getElementById('golf').value
      var vinnuskylda = view.vinnuskylda(onnur,vinnuskyldaTexti);
+     console.log(document.getElementById('vinnuskylda'));
+
      document.getElementById('vinnuskylda').value = octopus.parseOutput(vinnuskylda,10);
      document.getElementById('dagsskoli').value = octopus.parseOutput(summa,10);
      document.getElementById('A-hluti').value = octopus.parseOutput(summa - vinnuskylda,10);
