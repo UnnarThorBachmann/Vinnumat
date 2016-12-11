@@ -1950,15 +1950,16 @@ var octopus = {
      laun2016 += this.orlof('2016')/12;
      return laun2016/1000;
     },
-    teiknaSynidaemi: function(nafn1,e1,nafn2,e2,fjoldatolur,h40perweek) {
+    teiknaSynidaemi: function(nafn1,e1,nafn2,e2,fjoldatolur,ts1,ts2) {
       var gildi1 = [];
       var gildi2 = [];
+
       fjoldatolur.forEach(function(tala){
         var af1 = new Afangi(
-                  new Array('a',e1,tala,nafn1,h40perweek));
+                  new Array('a',e1,tala,nafn1,ts1));
         gildi1.push(af1.vinnumat().toFixed(1));
         var af2 = new Afangi(
-                  new Array('b',e2,tala,nafn2,h40perweek));
+                  new Array('b',e2,tala,nafn2,ts2));
         gildi2.push(af2.vinnumat().toFixed(1));
       });
       
@@ -2057,9 +2058,14 @@ var view = {
       			$('.container').addClass('hidden'); 
             	$('#mitt').removeClass('hidden');
       		}
+      		else if (fyrirsogn.id  && fyrirsogn.id == 'yta2') {
+      			$('.container').addClass('hidden'); 
+            	$('#samanburdur2').removeClass('hidden');
+      		}
       		else {
       			$('.container').removeClass('hidden'); 
             	$('#mitt').addClass('hidden');
+            	$('#samanburdur2').addClass('hidden');
       		}
       	}
       	
@@ -2171,6 +2177,9 @@ var view = {
     e.preventDefault();
     var e1 = octopus.parseNumberField(document.getElementById('es1').value);
     var e2 = octopus.parseNumberField(document.getElementById('es2').value);
+    var t1 = octopus.parseNumberField(document.getElementById('ts1').value);
+    var t2 = octopus.parseNumberField(document.getElementById('ts2').value);
+
     if (screen.width > 500) {
       var nemfj = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
     }
@@ -2180,7 +2189,8 @@ var view = {
 
     var nidurst = octopus.teiknaSynidaemi(document.getElementById('fyrra').value, e1, 
                                 document.getElementById('seinna').value, e2,
-    nemfj,6);
+    nemfj,t1,t2);
+    console.log(nidurst);
     var lineChartData = {
         labels :nemfj, 
         datasets : [
@@ -2248,6 +2258,7 @@ var view = {
     var kennari = octopus.kennari();
      $('.hidden').removeClass('hidden');
      $('#mitt').addClass('hidden');
+     $('#samanburdur2').addClass('hidden');
      $('.visiblenon').removeClass('visiblenon');
      _.templateSettings.variable = "item";
      var vinnumat = octopus.vinnumat();
@@ -2292,7 +2303,6 @@ var view = {
  
     var yfirvinnaNyja = summa-vinnuskylda;
     var ls = octopus.launKennari(launaflokkur,threp,yfirvinnaNyja);
-    console.log(ls);
     document.getElementById("manadarlaun").value = ls.toFixed(3);
     _.templateSettings.variable = "item";
     var yfirvinnaBirta;
