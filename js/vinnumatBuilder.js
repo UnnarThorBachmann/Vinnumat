@@ -2046,10 +2046,6 @@ var view = {
         }
         
         $("#success").show().delay(5000).fadeOut();
-
-        
-
-
     },synidaemi);
     
     var fyrirsagnir = document.getElementsByClassName('fyrirsagnir');
@@ -2058,13 +2054,11 @@ var view = {
       	item.addEventListener('click',function(fyrirsogn){
       	return function() {
       		if (fyrirsogn.id  && fyrirsogn.id == 'mittSynidaemi') {
-      			$('.main').addClass('hidden');
-      			$('.flex-container').addClass('hidden'); 
+      			$('.container').addClass('hidden'); 
             	$('#mitt').removeClass('hidden');
       		}
       		else {
-      			$('.main').removeClass('hidden');
-      			$('.flex-container').removeClass('hidden'); 
+      			$('.container').removeClass('hidden'); 
             	$('#mitt').addClass('hidden');
       		}
       	}
@@ -2262,17 +2256,17 @@ var view = {
      	var item2 = kennari.originalAfangar[j];
         summa += parseFloat(item2.vinnumat());
          
-        var tafla2 = document.getElementById('tafla2');
-        var divThumbnail = document.createElement('div');
-        divThumbnail.setAttribute('class','thumbnail');
-        var divCaption = document.createElement('div');
-        divCaption.setAttribute('class','caption');
-        divCaption.setAttribute('id','v-' + j);
+        var t2 = document.getElementById('tafla2');
+        var divRow = document.createElement('div');
+        divRow.setAttribute('class','row blue');
+        //var divCaption = document.createElement('div');
+        //divCaption.setAttribute('class','caption');
+        divRow.setAttribute('id','v-' + j);
         
         var template = _.template(
             templateAfangiNidurst
         );
-        divCaption.innerHTML = template({
+        divRow.innerHTML = template({
             heiti: item2.heiti,
             vinnumat: octopus.parseOutput(item2.vinnumat(),100),
             einingafjoldi: item2.einingar,
@@ -2280,20 +2274,17 @@ var view = {
             timafjoldi: item2.h40perweek,
             synidaemi: item2.synid.heiti
         });
-         
-        console.log(divCaption);
-        divThumbnail.append(divCaption);
-        tafla2.append(divThumbnail);
-        
+        t2.appendChild(divRow);   
      }
      var onnur = document.getElementById('onnurVinna').value;
      summa += parseFloat(onnur.toString().replace(',','.'));
      var golf = 0;
      var vinnuskyldaTexti = document.getElementById('golf').value
      var vinnuskylda = view.vinnuskylda(onnur,vinnuskyldaTexti);
+     
 
      document.getElementById('vinnuskylda').value = octopus.parseOutput(vinnuskylda,10);
-     document.getElementById('dagsskoli').value = octopus.parseOutput(summa,10);
+     document.getElementById('dagskoli').value = octopus.parseOutput(summa,10);
      document.getElementById('A-hluti').value = octopus.parseOutput(summa - vinnuskylda,10);
      document.getElementById('skerding').value = octopus.parseOutput(octopus.skerding,10);
     var launaflokkur = document.getElementById("launaflokkur").value;
@@ -2301,6 +2292,7 @@ var view = {
  
     var yfirvinnaNyja = summa-vinnuskylda;
     var ls = octopus.launKennari(launaflokkur,threp,yfirvinnaNyja);
+    console.log(ls);
     document.getElementById("manadarlaun").value = ls.toFixed(3);
     _.templateSettings.variable = "item";
     var yfirvinnaBirta;

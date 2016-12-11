@@ -596,16 +596,15 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a class = "fyrirsagnir" href="#vinnumat">Slá inn vinnumat</a></li>
-          <li><a class = "fyrirsagnir" href="#nidurstodur" id="yta">Niðurstöður</a></li>
-          <li><a class = "fyrirsagnir" href = "#samanburdur" tabindex = "-1">Röð</a></li>
-          <li><a class = "fyrirsagnir" href = "#samanburdur2" tabindex = "-1" id="yta2">Bera saman</a></li>
+          <li><a class = "fyrirsagnir" href="#tafla2" id="yta">Niðurstöður</a></li>
+          <li><a class = "fyrirsagnir" href = "#samanburdur2" tabindex = "-1" id="yta2">Gröf sýnidæma</a></li>
           <li><a class = "fyrirsagnir" href = "#mitt" tabindex = "-1" id="mittSynidaemi">Sýnidæmið mitt</a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav> 
-    <div class="container" id="tafla">
+    <div class="container fyrirsogn" id="tafla">
       <div class="row" id="vinnumat">
         <h1 class="large">
           Vinnumat
@@ -751,229 +750,219 @@
           </div>
       </div>   
     </div><!--container-->
-
-      <div class="main hidden" id="nidurstodur">
+    <div class="container fyrirsogn hidden" id="tafla2">
+      <div class="row">
         <h1 class="large">
-          Niðurstöður
+        Niðurstöður
         </h1>
-      </div>
-      <div class="flex-container hidden" id="tafla2">
-        <div class="thumbnail">
-          <div class="caption">
-            <h4 class="medium">
-              Niðurstöður kennara
-            </h4>
-            <form>
-              <div class="form-group">
-                <label class="medium" for="dagsskoli">Vinnumat (klst) </label>
-                <input type="text" class="form-control" id="dagsskoli" value="0">
-              </div>
-              <div class="form-group">
-                <label class="medium" for="A-hluti">Yfirvinna (klst) </label>
-                <input type="text" class="form-control" id="A-hluti" value="0">
-              </div>
-              <div class="form-group">
-                <label class="medium" for="vinnuskylda">Vinnuskylda (klst) </label>
-                <input type="text" class="form-control" id="vinnuskylda" value="0">
-              </div>
-              <div class="form-group">
-                <label class="medium" for="skerding">Skerðing (klst) </label>
-                <input type="text" class="form-control" id="skerding" value="0">
-              </div>
-              <div class="form-group">
-                <label class="medium" for="manadarlaun">Mánaðarlaun í fullu starfi  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#manadarlaunGluggi"></span></label>
-               <input type="text" class="form-control" id="manadarlaun" value="0">
-              </div>
-            </form>
-          </div><!--Loka caption-->
-        </div><!-- Loka thumbnail-->
-      </div><!--flex-container-->
-       <div class="main hidden" id="samanburdur">
+        <form>
+          <div class="form-group col-md-2">
+            <label class="medium" for="dagskoli">Vinnumat (klst) </label>
+            <input type="text" class="form-control" id="dagskoli" value="0">
+          </div>
+          <div class="form-group col-md-2">
+            <label class="medium" for="A-hluti">Yfirvinna (klst) </label>
+            <input type="text" class="form-control" id="A-hluti" value="0">
+          </div>
+          <div class="form-group col-md-2">
+            <label class="medium" for="vinnuskylda">Vinnuskylda (klst) </label>
+            <input type="text" class="form-control" id="vinnuskylda" value="0">
+          </div>
+          <div class="form-group col-md-2">
+            <label class="medium" for="skerding">Skerðing (klst) </label>
+            <input type="text" class="form-control" id="skerding" value="0">
+          </div>
+          <div class="form-group col-md-3">
+            <label class="medium" for="manadarlaun">Mánaðarlaun í fullu starfi  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#manadarlaunGluggi"></span></label>
+            <input type="text" class="form-control" id="manadarlaun" value="0">
+          </div>
+        </form>
+      </div><!--row-->
+    </div>
+    <div class="container fyrirsogn hidden" id="tafla3">
+      <div class="row">
         <h1 class="large">
           Samanburður við kennara á öðrum sýnidæmum
         </h1>
         <h3 class="medium">
           Samanburðurinn miðast við sömu forsendur og slegnar voru inn en önnur sýnidæmi. Rauðu súlurnar merkja það að meðalfjöldi í hópum er kominn upp fyrir álagsmörk viðkomandi sýnidæma.
         </h3>
-      </div>
-      <div class="flex-container hidden">
-        <div class="thumbnail nidurstGrof2">
+      </div><!--row-->
+      <div class="row" id="samanburdur">
           <div>
             <canvas id="canvas1"></canvas>
-          </div><!--Loka caption-->
-        </div><!-- Loka thumbnail-->
-      </div><!--flex-container-->
-      <div class="main hidden" id="samanburdur2">
+          </div>
+      </div><!--row -->
+      <div class="row">
         <h1 class="large">
           Samanburður á sýnidæmum
         </h1>
         <h3 class="medium">
           Veljið sýnidæmi og ýtið á takkann til þess að bera saman. Í gluggann hér fyrir neðan birtast gröf sem sýna vinnumat þessara sýnidæma á y-ási (óskert) en nemendafjölda á x-ási.
         </h3>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <label class="medium einingar" for="fyrra">Sýnidæmi 1</label>
-          <select class="form-control vidd" id="fyrra">
-            <option>Almenn braut</option>
-            <option>Almennar raungreinar</option>
-            <option>Danska, efra þrep</option>
-            <option>Danska, hægferð</option>
-            <option>Danska, neðra þrep</option>
-            <option>Enska, efra þrep</option>
-            <option>Enska, hægferð</option>
-            <option>Enska, neðra þrep</option>
-            <option>Erlend mál, efra þrep</option>
-            <option>Erlend mál, neðra þrep</option>
-            <option>Fagbóklegt</option>
-            <option>Félagsgreinar, efra þrep</option>
-            <option>Félagsgreinar, neðra þrep</option>
-            <option>Íslenska, efra þrep</option>
-            <option>Íslenska, hægferð</option>
-            <option>Íslenska, neðra þrep</option>
-            <option>Íþróttafræði</option>
-            <option>Íþróttir</option>
-            <option>Jarðfræði</option>
-            <option>Listgreinar, efra þrep</option>
-            <option>Listgreinar, neðra þrep</option>
-            <option>Raungreinar, efra þrep</option>
-            <option>Raungreinar, neðra þrep</option>
-            <option>Sjúkraliðabraut</option>
-            <option>Starfsbraut (1/3)</option>
-            <option>Starfsbraut (4/6)</option>
-            <option>Starfsbraut (7/12)</option>
-            <option>Stærðfræði, efra þrep</option>
-            <option>Stærðfræði, hægferð</option>
-            <option>Stærðfræði, neðra þrep</option>
-            <option>Sýnidæmið mitt</option>
-            <option>Tölvuáfangar</option>
-            <option>Verklegt</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="medium einingar" for="es1">Einingar </label>
-          <input type="text" class="form-control einingarinput" id="es1" value="3">
-        </div>
-        <br>
-        <div class="form-group">
-          <label class="medium einingar" for="seinna">Sýnidæmi 2</label>
-          <select class="form-control vidd" id="seinna">
-            <option>Almenn braut</option>
-            <option>Almennar raungreinar</option>
-            <option>Danska, efra þrep</option>
-            <option>Danska, hægferð</option>
-            <option>Danska, neðra þrep</option>
-            <option>Enska, efra þrep</option>
-            <option>Enska, hægferð</option>
-            <option>Enska, neðra þrep</option>
-            <option>Erlend mál, efra þrep</option>
-            <option>Erlend mál, neðra þrep</option>
-            <option>Fagbóklegt</option>
-            <option>Félagsgreinar, efra þrep</option>
-            <option>Félagsgreinar, neðra þrep</option>
-            <option>Íslenska, efra þrep</option>
-            <option>Íslenska, hægferð</option>
-            <option>Íslenska, neðra þrep</option>
-            <option>Íþróttafræði</option>
-            <option>Íþróttir</option>
-            <option>Jarðfræði</option>
-            <option>Listgreinar, efra þrep</option>
-            <option>Listgreinar, neðra þrep</option>
-            <option>Raungreinar, efra þrep</option>
-            <option>Raungreinar, neðra þrep</option>
-            <option>Sjúkraliðabraut</option>
-            <option>Starfsbraut (1/3)</option>
-            <option>Starfsbraut (4/6)</option>
-            <option>Starfsbraut (7/12)</option>
-            <option>Stærðfræði, efra þrep</option>
-            <option>Stærðfræði, hægferð</option>
-            <option>Stærðfræði, neðra þrep</option>
-            <option>Sýnidæmið mitt</option>
-            <option>Tölvuáfangar</option>
-            <option>Verklegt</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="medium einingar" for="es2">Einingar </label>
-          <input type="text" class="form-control" id="es2" value="3">
-        </div>
-        <br>
-        <br>
-        <button type="submit" class="btn btn-primary large takkisla" id="berasaman">Bera saman</button>
-      </form>
       </div>
-            <div class="flex-container hidden">
-        <div class="thumbnail nidurstGrof2">
-          <div>
-            <canvas id="canvas2"></canvas>
-          </div><!--Loka caption-->
-        </div><!-- Loka thumbnail-->
-      </div><!--flex-container-->
-    </div>
-        <div class="main hidden" id="mitt">
-        	<h1 class="large">
-          		Sýnidæmið mitt
-        	</h1>
-        	<h3 class="medium">
-          		Hér gefst fólki kostur á að skilreina sitt eigið sýnidæmi
-        	</h3>
-  			<div class="panel panel-default">
-        	<form>
-    			<div class="form-group">
-    				<label for="mitt_namsaetlun">Námsáætlun/skipulag/vinnumat (klst)</label>
-    				<input class="form-control" id="mitt_namsaetlun" value="6">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_undirbuningur">Undirbúningur fyrir hverja 40 mínútna kennslustund (mín)</label>
-    				<input class="form-control" id="mitt_undirbuningur" value="20">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_profagerd_kennslutima">Verkefnis og prófagerð á kennslutíma (klst)</label>
-    				<input class="form-control" id="mitt_profagerd_kennslutima" value="8">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_profagerd">Prófagerð/framkvæmd lokaprófs (klst)</label>
-    				<input class="form-control" id="mitt_profagerd" value="12">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_onnur_vinna">Önnur vinna óháð nemendafjölda (klst)</label>
-    				<input class="form-control" id="mitt_onnur_vinna" value="4">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_tryggingarakvaedi">Tryggingarákvæði (klst)</label>
-    				<input class="form-control" id="mitt_tryggingarakvaedi" value="0">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_vinna_per_nemanda">Vinna á hvern nemanda (námsmat, frágangur námsmats og önnur vinna) (mín)</label>
-    				<input class="form-control" id="mitt_vinna_per_nemanda" value="150">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_lagmark">Lágmarks nemendafjöldi</label>
-    				<input class="form-control" id="mitt_lagmark" value="17">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_hamark_1">Hámark 1</label>
-    				<input class="form-control" id="mitt_hamark_1" value="28">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_kostn_per_nem_yn">Vinnumat fyrir hvern nemanda umfram hámarki 1 (klst)</label>
-    				<input class="form-control" id="mitt_kostn_per_nem_yn" value="3">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_hamark_2">Hámark 2</label>
-    				<input class="form-control" id="mitt_hamark_2" value="30">
-  				</div>
-  				<div class="form-group">
-    				<label for="mitt_kostn_per_nem_ye">Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</label>
-    				<input class="form-control" id="mitt_kostn_per_nem_ye" value="5">
-  				</div>
-  				<div class="form-group" id='last'>
-  					<button type="submit" class="btn btn-primary large" id="skra">Skrá sýnidæmi</button>
+      <div class="row"> 
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <label class="medium einingar" for="fyrra">Sýnidæmi 1</label>
+            <select class="form-control vidd" id="fyrra">
+              <option>Almenn braut</option>
+              <option>Almennar raungreinar</option>
+              <option>Danska, efra þrep</option>
+              <option>Danska, hægferð</option>
+              <option>Danska, neðra þrep</option>
+              <option>Enska, efra þrep</option>
+              <option>Enska, hægferð</option>
+              <option>Enska, neðra þrep</option>
+              <option>Erlend mál, efra þrep</option>
+              <option>Erlend mál, neðra þrep</option>
+              <option>Fagbóklegt</option>
+              <option>Félagsgreinar, efra þrep</option>
+              <option>Félagsgreinar, neðra þrep</option>
+              <option>Íslenska, efra þrep</option>
+              <option>Íslenska, hægferð</option>
+              <option>Íslenska, neðra þrep</option>
+              <option>Íþróttafræði</option>
+              <option>Íþróttir</option>
+              <option>Jarðfræði</option>
+              <option>Listgreinar, efra þrep</option>
+              <option>Listgreinar, neðra þrep</option>
+              <option>Raungreinar, efra þrep</option>
+              <option>Raungreinar, neðra þrep</option>
+              <option>Sjúkraliðabraut</option>
+              <option>Starfsbraut (1/3)</option>
+              <option>Starfsbraut (4/6)</option>
+              <option>Starfsbraut (7/12)</option>
+              <option>Stærðfræði, efra þrep</option>
+              <option>Stærðfræði, hægferð</option>
+              <option>Stærðfræði, neðra þrep</option>
+              <option>Sýnidæmið mitt</option>
+              <option>Tölvuáfangar</option>
+              <option>Verklegt</option>
+            </select>
           </div>
-			</form>
-			</div>
+          <div class="form-group">
+            <label class="medium einingar" for="es1">Einingar </label>
+            <input type="text" class="form-control einingarinput" id="es1" value="3">
+          </div>
+          
+          <div class="form-group">
+            <label class="medium einingar" for="seinna">Sýnidæmi 2</label>
+            <select class="form-control vidd" id="seinna">
+              <option>Almenn braut</option>
+              <option>Almennar raungreinar</option>
+              <option>Danska, efra þrep</option>
+              <option>Danska, hægferð</option>
+              <option>Danska, neðra þrep</option>
+              <option>Enska, efra þrep</option>
+              <option>Enska, hægferð</option>
+              <option>Enska, neðra þrep</option>
+              <option>Erlend mál, efra þrep</option>
+              <option>Erlend mál, neðra þrep</option>
+              <option>Fagbóklegt</option>
+              <option>Félagsgreinar, efra þrep</option>
+              <option>Félagsgreinar, neðra þrep</option>
+              <option>Íslenska, efra þrep</option>
+              <option>Íslenska, hægferð</option>
+              <option>Íslenska, neðra þrep</option>
+              <option>Íþróttafræði</option>
+              <option>Íþróttir</option>
+              <option>Jarðfræði</option>
+              <option>Listgreinar, efra þrep</option>
+              <option>Listgreinar, neðra þrep</option>
+              <option>Raungreinar, efra þrep</option>
+              <option>Raungreinar, neðra þrep</option>
+              <option>Sjúkraliðabraut</option>
+              <option>Starfsbraut (1/3)</option>
+              <option>Starfsbraut (4/6)</option>
+              <option>Starfsbraut (7/12)</option>
+              <option>Stærðfræði, efra þrep</option>
+              <option>Stærðfræði, hægferð</option>
+              <option>Stærðfræði, neðra þrep</option>
+              <option>Sýnidæmið mitt</option>
+              <option>Tölvuáfangar</option>
+              <option>Verklegt</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="medium einingar" for="es2">Einingar </label>
+            <input type="text" class="form-control" id="es2" value="3">
+          </div>
+          
+          <button type="submit" class="btn btn-primary large takkisla" id="berasaman">Bera saman</button>
+       </form>
+      </div>
+      <div class="row hidden" id="samanburdur2">
+        <div>
+            <canvas id="canvas2"></canvas>
         </div>
-      
-
+      </div><!--row-->
+    </div><!--container-->
+      <div class="container fyrirsogn hidden" id="mitt">
+        <div class="row">
+          <h1 class="large">
+          	Sýnidæmið mitt
+          </h1>
+          <h3 class="medium">
+          	Hér gefst fólki kostur á að skilreina sitt eigið sýnidæmi
+          </h3>
+        </div>
+        <div class="panel panel-default hidden">
+         <form>
+          <div class="form-group">
+            <label for="mitt_namsaetlun">Námsáætlun/skipulag/vinnumat (klst)</label>
+            <input class="form-control" id="mitt_namsaetlun" value="6">
+          </div>
+          <div class="form-group">
+            <label for="mitt_undirbuningur">Undirbúningur fyrir hverja 40 mínútna kennslustund (mín)</label>
+            <input class="form-control" id="mitt_undirbuningur" value="20">
+          </div>
+          <div class="form-group">
+            <label for="mitt_profagerd_kennslutima">Verkefnis og prófagerð á kennslutíma (klst)</label>
+            <input class="form-control" id="mitt_profagerd_kennslutima" value="8">
+          </div>
+          <div class="form-group">
+            <label for="mitt_profagerd">Prófagerð/framkvæmd lokaprófs (klst)</label>
+            <input class="form-control" id="mitt_profagerd" value="12">
+          </div>
+          <div class="form-group">
+           <label for="mitt_onnur_vinna">Önnur vinna óháð nemendafjölda (klst)</label>
+            <input class="form-control" id="mitt_onnur_vinna" value="4">
+          </div>
+          <div class="form-group">
+            <label for="mitt_tryggingarakvaedi">Tryggingarákvæði (klst)</label>
+            <input class="form-control" id="mitt_tryggingarakvaedi" value="0">
+          </div>
+          <div class="form-group">
+            <label for="mitt_vinna_per_nemanda">Vinna á hvern nemanda (námsmat, frágangur námsmats og önnur vinna) (mín)</label>
+            <input class="form-control" id="mitt_vinna_per_nemanda" value="150">
+          </div>
+          <div class="form-group">
+            <label for="mitt_lagmark">Lágmarks nemendafjöldi</label>
+            <input class="form-control" id="mitt_lagmark" value="17">
+          </div>
+          <div class="form-group">
+           <label for="mitt_hamark_1">Hámark 1</label>
+           <input class="form-control" id="mitt_hamark_1" value="28">
+          </div>
+          <div class="form-group">
+            <label for="mitt_kostn_per_nem_yn">Vinnumat fyrir hvern nemanda umfram hámarki 1 (klst)</label>
+            <input class="form-control" id="mitt_kostn_per_nem_yn" value="3">
+          </div>
+          <div class="form-group">
+            <label for="mitt_hamark_2">Hámark 2</label>
+            <input class="form-control" id="mitt_hamark_2" value="30">
+          </div>
+          <div class="form-group">
+            <label for="mitt_kostn_per_nem_ye">Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</label>
+            <input class="form-control" id="mitt_kostn_per_nem_ye" value="5">
+          </div>
+          <div class="form-group" id='last'>
+            <button type="submit" class="btn btn-primary large" id="skra">Skrá sýnidæmi</button>
+          </div>
+         </form>
+        </div>
+      </div>
   <script src="js/Chart.js" async></script>
   <script src="js/vinnumatBuilder.js" async></script>
   <script src="js/underscore-min.js" async></script>
