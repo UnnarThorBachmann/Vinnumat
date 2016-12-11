@@ -166,7 +166,9 @@
         margin-bottom: 30px;
         white-space: normal;
        }
-
+       .btn-group-justified {
+        margin-top: 10px;
+       }
        .btn-primary {
         background-color: #333d51;
         background-image:none;
@@ -228,7 +230,7 @@
         background-color:#000000;
        }
        a:hover {
-        color: #D3AC2B ;
+        color: #d3ac2b;
        }
  
        div .page-header {
@@ -301,9 +303,12 @@
         width: 22%;
         margin: 0px;
        }
+       .buffer {
+        width: 100%;
+       }
        .thumbnail {
         margin-right: 10px;
-        width: 100%;
+        width: 95%;
         padding: 1%;
         background-color: #cbd0d8;
        }
@@ -354,9 +359,7 @@
         height: 300px;
         width: 400px;
        }
-       div .form-group {
-        margin-bottom: 2%;
-       }
+       
        .texta{
         margin-top: 1%;
        }
@@ -401,6 +404,7 @@
       }
       .einingarinput4 {
         display: inline-block;
+        float: left;
         max-width: 50px;
         margin: 0px;
         border: 0px;
@@ -419,13 +423,15 @@
       .vidd {
         max-width: 150px;
       }
+      .container {
+        width: 90%;
+      }
       .navbar-form .form-group {
         display: inline-block;
         margin-bottom: 0;
         vertical-align: middle;
       }
       #aftastur {
-        width: 100%;
         order: 1000;
       }
       .btn-group {
@@ -443,6 +449,14 @@
       }
       .list-group {
         margin: 0%;
+      }
+      .row {
+        background-color: #f4f3ea;
+        padding: 0.5%;
+        margin: 0.5%;
+      }
+      .blue {
+        background-color: #cbd0d8
       }
       .thumbnail .caption {
         padding: 3px;
@@ -591,19 +605,17 @@
     </div>
   </div>
 </nav> 
-    <div class="mainContainer">
-      <div class="main" id="vinnumat">
+    <div class="container" id="tafla">
+      <div class="row" id="vinnumat">
         <h1 class="large">
           Vinnumat
         </h1>
         <h3 class="medium">
          <!--Þið getið slegið inn upplýsingar fyrir einn hóp eða alla þá sem þið kennið. Allt eftir því hvernig þið viljið nota síðuna. Breytið forsendum og endurreiknið eins og ykkur listir. Vinnumat hvers áfanga ræðst af einingafjölda, nemendafjölda, tegund kennslu og hvort þið kennið sama áfangann mörgum hópum.--> Fyllið inn upplýsingar fyrir einn hóp eða fleiri. Vinnumat hópa ræðst af einingafjölda, nemendafjölda, tegund kennslu og endurtekningum. Gengið er út frá 15 vikna kennslu og að hver kennslustund sé 40 mínútur. Athugið að skerðingar vegna kennslu fleiri en eins námshóps í sama áfanga aukast hjá kennurum skólaárið 2016-2017.  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
       </div>
-      <div class="flex-container" id='tafla'>
-      <div class="thumbnail">
-      <div class="caption">
+      <div class="row">
         <form>
-          <div class="form-group teacher">
+          <div class="form-group col-md-3">
             <label class="medium" for="golf">Aldur</label>
               <select class="form-control" id="golf">
                 <option>30 ára-</option>
@@ -614,11 +626,11 @@
                 <option>60 ára+ (17 tímar)</option>
               </select>
           </div>
-          <div class="form-group teacher">
+          <div class="form-group col-md-3">
             <label class="medium" for="onnurVinna">C-hluti <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#chluti"></span></label>
             <input type="text" class="form-control" id="onnurVinna" value="0">
           </div>
-          <div class="form-group teacher">
+          <div class="form-group col-md-3">
             <label class="medium" for="launaflokkur">Launaflokkur</label>
               <select class="form-control" id="launaflokkur">
                 <option>1</option>
@@ -641,7 +653,7 @@
                 <option>18</option>
               </select>
           </div>
-          <div class="form-group teacher">
+          <div class="form-group col-md-3">
             <label class="medium" for="threp">Þrep </label>
               <select class="form-control" id="threp">
                 <option>0</option>
@@ -657,24 +669,17 @@
           </div>
         </form>
       </div>
-      </div>
-      <div class="thumbnail">
-      <div class="caption">  
-        <a class="hopanafn large" href="#hopur1">
-          Áfangi 1 &nbsp;<span id="orvar1" class="small glyphicon glyphicon-chevron-down"></span>
-        </a>
-        <div id="hopur1">
-        
+      <div class="row blue"> 
         <form>
-        <div class="form-group  einingarinput">
+        <div class="form-group  col-md-2">
           <label class="medium" for="h-1">Heiti</label>
           <input type="text" class="form-control" id="h-1" value="STÆ 193">
         </div>
-        <div class="form-group einingarinput">
+        <div class="form-group col-md-1">
           <label class="medium" for="e-1">Einingar</label>
           <input type="text" class="form-control" id="e-1" value="3">
         </div>
-        <div class="form-group einingarinput2">
+        <div class="form-group col-md-2">
           <label class="medium" for="s-1">Sýnidæmi</label>
           <select class="form-control" id="s-1">
             <option>Almenn braut</option>
@@ -712,42 +717,41 @@
             <option>Verklegt</option>
           </select>
         </div>
-        <div class="form-group einingarinput">
+        <div class="form-group col-md-2">
           <label class="medium" for="t-1">Tímar á viku</label>
           <input type="text" class="form-control" id="t-1" value="6">
         </div>
-        <div class="form-group einingarinput" data-toggle="tooltip" data-placement="bottom" title="Prósentuhlutfall af kennslu">
+        <div class="form-group col-md-2" data-toggle="tooltip" data-placement="bottom">
           <label  class="medium" for="p-1">Hlutfall (%)</label>
           <input type="text" class="form-control" id="p-1" value="100" >
         </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary delgroup">-</button>
-          <button type="button" class="btn btn-primary addgroup">+</button>
-        </div>
-        <div class="form-group2" id="f-1s">
-          <label  class="medium fjoldatolur">Fjöldatölur</label>
+        <div class="form-group col-md-2" id="f-1s">
+          <label  class="medium">Hópastærð(ir)</label>
+          <div class="buffer">
           <input type="text" class="form-control f-1s einingarinput4" id="f-1-1" value="15">
+          </div>
         </div>
+        <div class="btn-group col-md-1">
+        <button type="button" class="btn btn-primary delgroup">-</button>
+        <button type="button" class="btn btn-primary addgroup">+</button>
+      </div>
         </form>
-        </div>
-      </div> <!-- end of caption -->
-      </div><!-- end of thumbnail-->
-      <div class="thumbnail" id="aftastur">
-          <div class="caption">
-            <div class="btn-group btn-group-justified" role="group">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary btn-block" id="calculate">Reikna</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary btn-block" id="add">Bæta við áfanga</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary btn-block" id="delete">Eyða áfanga</button>
-              </div>
+      </div><!-- row-->
+      <div class="row" id="aftastur">
+          <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary btn-block" id="calculate">Reikna</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary btn-block" id="add">Bæta við áfanga</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary btn-block" id="delete">Eyða áfanga</button>
             </div>
           </div>
-        </div>   
-      </div><!--flex-container-->
+      </div>   
+    </div><!--container-->
+
       <div class="main hidden" id="nidurstodur">
         <h1 class="large">
           Niðurstöður
@@ -890,7 +894,7 @@
         </div>
         <div class="form-group">
           <label class="medium einingar" for="es2">Einingar </label>
-          <input type="text" class="form-control einingarinput" id="es2" value="3">
+          <input type="text" class="form-control" id="es2" value="3">
         </div>
         <br>
         <br>
@@ -964,6 +968,7 @@
   				</div>
   				<div class="form-group" id='last'>
   					<button type="submit" class="btn btn-primary large" id="skra">Skrá sýnidæmi</button>
+          </div>
 			</form>
 			</div>
         </div>

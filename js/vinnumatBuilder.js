@@ -1,28 +1,10 @@
-'use strict';
+"use strict";
 /*
 vinnumat: Unnar Thor Bachmann.
 */
-var templateAfangiNidurst = 
-'<ul class="list-group"><li class="list-group-item"><strong><%=item.heiti%></strong></li>\
-<li class="list-group-item">Vinnumat: <%=item.vinnumat%> klst. </li>\
-<li class="list-group-item">Einingafjöldi: <%=item.einingafjoldi%></li>\
-<li class="list-group-item">Nemendafjöldi: <%=item.nemendafjoldi%> </li>\
-<li class="list-group-item">Kennslustundir: <%=item.timafjoldi%></li>\
-<li class="list-group-item">Sýnidæmi: <%=item.synidaemi%> </li>\
-</ul>';
+var templateAfangiNidurst = '<ul class="list-group"><li class="list-group-item"><strong><%=item.heiti%></strong></li><li class="list-group-item">Vinnumat: <%=item.vinnumat%> klst. </li><li class="list-group-item">Einingafjöldi: <%=item.einingafjoldi%></li><li class="list-group-item">Nemendafjöldi: <%=item.nemendafjoldi%> </li><li class="list-group-item">Kennslustundir: <%=item.timafjoldi%></li><li class="list-group-item">Sýnidæmi: <%=item.synidaemi%> </li></ul>';
 
-var templateLaunatexti = 'Áætluð mánaðarlaun miðað við fullt starf reiknast <%=item.laun%> krónur.\
-<ul class="list-group"> Þau eru summa eftirfarandi þátta:\
-<li class="list-group-item"> Orlofsuppbót: <%=item.orlof%>/12 = <%=item.orlofmanudi%> krónur.</li>\
-<li class="list-group-item"> Desemberuppbót: <%=item.desember%>/12 = <%=item.desembermanudi%> krónur</li>\
-<li class="list-group-item"> Dagvinna (launaflokkur= <%=item.launaflokkur%>, þrep=<%=item.threp%>): \
-<%=item.dagvinna%> krónur</li>\
-<li class="list-group-item"> Yfirvinna: Fjöldi yfirvinnutíma\
-sinnum 1,0385% af dagvinnu (dreift á 6 mánuði)\
-<br><%=item.yfirvinnutimar%>\
-&middot 0,010385 &middot <%=item.launatafla%>\
-/6 = <%=item.yfirvinna%> krónur</li>\
-</ul>';
+var templateLaunatexti = 'Áætluð mánaðarlaun miðað við fullt starf reiknast <%=item.laun%> krónur.<ul class="list-group"> Þau eru summa eftirfarandi þátta:<li class="list-group-item"> Orlofsuppbót: <%=item.orlof%>/12 = <%=item.orlofmanudi%> krónur.</li><li class="list-group-item"> Desemberuppbót: <%=item.desember%>/12 = <%=item.desembermanudi%> krónur</li><li class="list-group-item"> Dagvinna (launaflokkur= <%=item.launaflokkur%>, þrep=<%=item.threp%>):<%=item.dagvinna%> krónur</li><li class="list-group-item"> Yfirvinna: Fjöldi yfirvinnutímasinnum 1,0385% af dagvinnu (dreift á 6 mánuði)<br><%=item.yfirvinnutimar%>&middot 0,010385 &middot <%=item.launatafla%>6 = <%=item.yfirvinna%> krónur</li></ul>';
 var desemberuppbot = {
     '2013': 52100,
     '2014': 52100,
@@ -1328,43 +1310,32 @@ var synidaemi = {
     'kostn_per_nem_ye': 0
   }
 };
-var addRow = function (afangiCol) {
+var addRow = function (afangiRow) {
     
-    afangiCol.setAttribute('class', "thumbnail");
+    afangiRow.setAttribute('class', "row blue");
 
-    var caption = document.createElement('div');
-    caption.setAttribute('class','caption');
-    
-    var uppl = document.createElement('a');
-    uppl.setAttribute('class','hopanafn large');
-    uppl.setAttribute('id','hopanafn'+afangar.fjoldi)
-    uppl.setAttribute('href','#hopur' + afangar.fjoldi);
-    uppl.innerHTML = 'Áfangi ' + afangar.fjoldi + ' &nbsp;<span id="orvar'+ afangar.fjoldi +'" class="small glyphicon glyphicon-chevron-down"></span>';
-
-    caption.appendChild(uppl);
-
-    var collapseDiv = document.createElement('div');
-    collapseDiv.setAttribute('id','hopur' + afangar.fjoldi);
     var form = document.createElement('form');
     var divHeiti = document.createElement('div');
-    divHeiti.setAttribute('class','form-group');
+    divHeiti.setAttribute('class','form-group col-md-2');
     var labelHeiti = document.createElement('label');
+    labelHeiti.setAttribute('class','medium');
     labelHeiti.setAttribute('for','h-' + afangar.fjoldi);
-    labelHeiti.innerHTML = 'Heiti áfanga';
+    labelHeiti.innerHTML = 'Heiti';
     divHeiti.appendChild(labelHeiti);
     var inputHeiti = document.createElement('input');
     inputHeiti.setAttribute('type','text');
     inputHeiti.setAttribute('class','form-control');
     inputHeiti.setAttribute('id','h-'+ afangar.fjoldi);
-    inputHeiti.setAttribute('placeholder','STÆ 193');
+    inputHeiti.setAttribute('value','STÆ 193');
     divHeiti.appendChild(inputHeiti);
     form.appendChild(divHeiti);
 
     var divEiningar = document.createElement('div');
-    divEiningar.setAttribute('class','form-group');
+    divEiningar.setAttribute('class','form-group col-md-1');
     var labelEiningar = document.createElement('label');
     labelEiningar.setAttribute('for','e-' + afangar.fjoldi);
-    labelEiningar.innerHTML = 'Einingafjöldi';
+    labelEiningar.setAttribute('class','medium');
+    labelEiningar.innerHTML = 'Einingar';
     divEiningar.appendChild(labelEiningar);
     var inputEiningar = document.createElement('input');
     inputEiningar.setAttribute('type','text');
@@ -1374,77 +1345,11 @@ var addRow = function (afangiCol) {
     divEiningar.appendChild(inputEiningar);
     form.appendChild(divEiningar);
 
-    var divNemendafjoldi = document.createElement('div');
-    divNemendafjoldi.setAttribute('class','form-group');
-    divNemendafjoldi.setAttribute('id','f-'+ afangar.fjoldi+'s');
-
-    var labelNemendafjoldi = document.createElement('label');
-    labelNemendafjoldi.setAttribute('for','f-' + afangar.fjoldi + '-1');
-    labelNemendafjoldi.innerHTML = 'Nemendafjöldi (1)';
-    divNemendafjoldi.appendChild(labelNemendafjoldi);
-    var inputNemendafjoldi = document.createElement('input');
-    inputNemendafjoldi.setAttribute('type','text');
-    inputNemendafjoldi.setAttribute('class','form-control f-'+ afangar.fjoldi +'s');
-    inputNemendafjoldi.setAttribute('value','15');
-    inputNemendafjoldi.setAttribute('id','f-' + afangar.fjoldi + '-1')
-    divNemendafjoldi.appendChild(inputNemendafjoldi);
-    form.appendChild(divNemendafjoldi);
-    var divTakkaGroup = document.createElement('div');
-    divTakkaGroup.setAttribute('class','btn-group');
-    var takki = document.createElement('button');
-    takki.setAttribute('type','button');
-    takki.setAttribute('class','btn btn-primary addgroup');
-    takki.innerHTML = '+';
-    var nth = afangar.fjoldi;
-    takki.addEventListener('click',function(nth) {
-		return function() {
-			var items = document.getElementsByClassName('f-'+ nth +'s');
-			var index = document.getElementsByClassName('f-' + nth + 's').length;
-			var label = document.createElement('label');
-            label.setAttribute('class','medium');
-            label.setAttribute('for','f-' + nth + '-' + index);
-            label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length +1).toString() + ')';
-            document.getElementById('f-'+ nth +'s').appendChild(label);
-            
-            var input = document.createElement('input');
-            input.setAttribute('type','text');
-            input.setAttribute('class','form-control f-'+ nth.toString()+ 's');
-            input.setAttribute('id', 'f-' + nth + '-' + index);
-            input.setAttribute('value','15');
-            document.getElementById('f-' + nth +'s').appendChild(input);
-		}
-	}(nth));
-    divTakkaGroup.appendChild(takki);
-
-    var takki2 = document.createElement('button');
-    takki2.setAttribute('type','button');
-    takki2.setAttribute('class','btn btn-primary delgroup');
-    takki2.innerHTML = '-';
-    takki2.addEventListener('click',function(nth) {
-		return function() {
-			var items = $('#f-' + nth + 's').children();
-			var l = items.length;
-			if (l  ==  2) {
-
-			}
-			else {
-				var input = items[l-1];
-				var label = items[l-2];
-				input.remove();
-				label.remove();
-			}
-			
-
-			
-		}
-	}(nth));
-    divTakkaGroup.appendChild(takki2);
-    form.appendChild(divTakkaGroup);   
-	
     var divSynidaemi = document.createElement('div');
-    divSynidaemi.setAttribute('class','form-group');
+    divSynidaemi.setAttribute('class','form-group col-md-2');
     var labelSynidaemi = document.createElement('label');
     labelSynidaemi.setAttribute('for','s-' + afangar.fjoldi);
+    labelSynidaemi.setAttribute('class','medium');
     labelSynidaemi.innerHTML = 'Sýnidæmi';
     divSynidaemi.appendChild(labelSynidaemi);
     var selectSynidaemi = document.createElement('select');
@@ -1460,9 +1365,10 @@ var addRow = function (afangiCol) {
     form.appendChild(divSynidaemi);
 
     var divTimar = document.createElement('div');
-    divTimar.setAttribute('class','form-group');
+    divTimar.setAttribute('class','form-group col-md-2');
     var labelTimar = document.createElement('label');
     labelTimar.setAttribute('for','t-' + afangar.fjoldi);
+    labelTimar.setAttribute('class','medium');
     labelTimar.innerHTML = 'Tímar á viku';
     divTimar.appendChild(labelTimar);
 
@@ -1478,9 +1384,10 @@ var addRow = function (afangiCol) {
     form.appendChild(divTimar);
 
     var divProsenta = document.createElement('div');
-    divProsenta.setAttribute('class','form-group');
+    divProsenta.setAttribute('class','form-group col-md-2');
     var labelProsenta = document.createElement('label');
     labelProsenta.setAttribute('for','p-' + afangar.fjoldi);
+    labelProsenta.setAttribute('class','medium');
     labelProsenta.innerHTML = 'Hlutfall (%)';
     divProsenta.appendChild(labelProsenta);
 
@@ -1490,39 +1397,76 @@ var addRow = function (afangiCol) {
     inputProsenta.setAttribute('id','p-'+ afangar.fjoldi);
     inputProsenta.setAttribute('data-toggle','tooltip');
     inputProsenta.setAttribute('data-placement','bottom');
-    inputProsenta.setAttribute('title','Prósentuhlutfall af kennslu');
-    inputProsenta.setAttribute('placeholder','100%');
     inputProsenta.setAttribute('value','100');
     divProsenta.appendChild(inputProsenta);
     form.appendChild(divProsenta);
  
-    collapseDiv.appendChild(form);
-    caption.appendChild(collapseDiv);
-    
-    afangiCol.appendChild(caption);
+ 	
 
-    document.getElementById('tafla').appendChild(afangiCol);
-    var thumb = document.createElement('div');
-    thumb.setAttribute('class','thumbnail');
-    var cap = document.createElement('div');
-    cap.setAttribute('class','caption');
-    cap.setAttribute('id','v-' + afangar.fjoldi);
-    thumb.appendChild(cap);
+    var divNemendafjoldi = document.createElement('div');
+    divNemendafjoldi.setAttribute('class','form-group col-md-2');
+    divNemendafjoldi.setAttribute('id','f-'+ afangar.fjoldi+'s');
 
-    document.getElementById('tafla2').appendChild(thumb);
-    uppl.onclick = function() {
-        var delement = document.getElementById('orvar' + afangar.fjoldi);
-        document.getElementById("hopur" + afangar.fjoldi).classList.toggle('feluleikur');
-        if (delement.classList.contains('glyphicon-chevron-up')) {
-          delement.classList.remove('glyphicon-chevron-up');
-          delement.classList.add('glyphicon-chevron-down');
-        }
-        else {
-          delement.classList.remove('glyphicon-chevron-down');
-          delement.classList.add('glyphicon-chevron-up');
-        } 
-      };
-    
+    var labelNemendafjoldi = document.createElement('label');
+    labelNemendafjoldi.setAttribute('for','f-' + afangar.fjoldi + '-1');
+    labelNemendafjoldi.setAttribute('class','medium');
+    labelNemendafjoldi.innerHTML = 'Hópastærð(ir)';
+    divNemendafjoldi.appendChild(labelNemendafjoldi);
+    var divBuffer = document.createElement('div');
+    divBuffer.setAttribute('class','buffer');
+    var inputNemendafjoldi = document.createElement('input');
+    inputNemendafjoldi.setAttribute('type','text');
+    inputNemendafjoldi.setAttribute('class','form-control f-'+ afangar.fjoldi +'s einingarinput4');
+    inputNemendafjoldi.setAttribute('value','15');
+    inputNemendafjoldi.setAttribute('id','f-' + afangar.fjoldi + '-1');
+    divBuffer.appendChild(inputNemendafjoldi);
+    divNemendafjoldi.appendChild(divBuffer);
+    form.appendChild(divNemendafjoldi);
+           
+    var divTakkaGroup = document.createElement('div');
+    divTakkaGroup.setAttribute('class','btn-group');
+    var takki = document.createElement('button');
+    takki.setAttribute('type','button');
+    takki.setAttribute('class','btn btn-primary addgroup');
+    takki.innerHTML = '+';
+    var nth = afangar.fjoldi;
+
+
+    var takki2 = document.createElement('button');
+    takki2.setAttribute('type','button');
+    takki2.setAttribute('class','btn btn-primary delgroup');
+    takki2.innerHTML = '-';
+    takki2.addEventListener('click',function(nth) {
+		return function() {
+			var items = document.getElementById('f-' + nth + 's').children;
+			var l = items.length;
+			if (l  ==  3) {
+			}
+			else {
+				var input = items[l-1];
+				input.parentNode.removeChild(input);
+			}
+		};
+	}(nth));
+    divTakkaGroup.appendChild(takki2);
+        takki.addEventListener('click',function(nth) {
+		return function() {
+			var items = document.getElementsByClassName('f-'+ nth +'s');
+			var index = document.getElementsByClassName('f-' + nth + 's').length;
+            var input = document.createElement('input');
+            input.setAttribute('type','text');
+            input.setAttribute('class','form-control f-'+ nth.toString()+ 's einingarinput3');
+            input.setAttribute('id', 'f-' + nth + '-' + index);
+            input.setAttribute('value','15');
+            document.getElementById('f-' + nth +'s').appendChild(input);
+		};
+	}(nth));
+    divTakkaGroup.appendChild(takki);
+    form.appendChild(divTakkaGroup);   
+    afangiRow.appendChild(form);
+    //document.getElementById('tafla').appendChild(afangiRow);
+    var listi = document.getElementById('tafla');
+    listi.insertBefore(afangiRow, document.getElementById('aftastur'));
 };
 var Afangi = function(param) {
   this.heiti = param[0];
@@ -1646,10 +1590,10 @@ var Afangi = function(param) {
 };
 Afangi.prototype.Fjoldi = function() {
     return this.actualFjoldi;
-}
+};
 Afangi.prototype.hamark = function() {
     return this.synid.hamark_n;
-}
+};
 Afangi.prototype.vinnumat = function() {
   if (this.vm != -1) {
     return this.vm;
@@ -1673,14 +1617,11 @@ Afangi.prototype.vinnumat = function() {
   }
   else if (this.synid.hamark_n < this.fjoldi && this.fjoldi <= this.synid.hamark_e) {
     nemendur = this.synid.hamark_n*per_nemandi;
-    total = fast + kennslustundir + nemendur 
-            + (this.fjoldi-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3;
+    total = fast + kennslustundir + nemendur + (this.fjoldi-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3;
   }
   else {
     nemendur = this.synid.hamark_n*per_nemandi;
-    total = fast + kennslustundir + nemendur
-           + (this.synid.hamark_e-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3
-           + (this.fjoldi-this.synid.hamark_e)*this.synid.kostn_per_nem_ye*ein/3;
+    total = fast + kennslustundir + nemendur+ (this.synid.hamark_e-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3+ (this.fjoldi-this.synid.hamark_e)*this.synid.kostn_per_nem_ye*ein/3;
   }
   return total;
 };
@@ -2027,7 +1968,7 @@ var octopus = {
       }
     },
     lita: function() {
-      var d = {}
+      var d = {};
       model.kennarar.forEach(function(kennari){
         if (kennari.alag()) {
         d[kennari.heiti] = "red";
@@ -2129,7 +2070,7 @@ var view = {
       	}
       	
       }(item));
-    }
+    };
 	var addgroup = document.getElementsByClassName('addgroup');
 	for (var i = 0; i < addgroup.length; i++) {
 		var item = addgroup[i];
@@ -2144,16 +2085,12 @@ var view = {
             	label.innerHTML = 'Nemendafjöldi ' + '('+  (items.length+1).toString() + ')';
             	document.getElementById('f-'+ (i+1).toString()+'s').appendChild(label);
             	*/
-            	var prev = document.getElementById('f-'+ (i+1).toString() + '-'+ (index-1).toString());
-            	prev.setAttribute('float','left');
-            	prev.setAttribute('display','inline');
+            	
             	var input = document.createElement('input');
             	input.setAttribute('type','text');
             	input.setAttribute('class','form-control f-'+ (i+1).toString()+ 's einingarinput3');
             	input.setAttribute('id', 'f-' + (i+1).toString() +  '-' + index);
             	input.setAttribute('value','15');
-            	var width = $('#f-'+(i+1).toString()+'s').width();
-            	document.getElementById('f-' + (i+1).toString()+'s').setAttribute('width',5*width);
             	document.getElementById('f-' + (i+1).toString()+'s').appendChild(input);
 			}
 		}(i));
@@ -2163,14 +2100,14 @@ var view = {
 		var item = delgroup[i];
 		item.addEventListener('click',function(i) {
 			return function() {
-				var items = $('#f-' + (i+1).toString() + 's').children();
+				var items = document.getElementById('f-' + (i+1).toString() + 's').children;
 				var l = items.length;
 				if (l  ==  2) {
 
 				}
 				else {
 					var input = items[l-1];
-					input.remove();
+					input.parentNode.removeChild(input);
 				}
 			}
 		}(i));
@@ -2182,11 +2119,24 @@ var view = {
     
 
     var button1 = document.getElementById('add');
-      button1.addEventListener('click',function() {
+     button1.addEventListener('click',function() {
       afangar.fjoldi += 1;
       var afangiCol = document.createElement('div');
       addRow(afangiCol);
       
+    });
+    var button5 = document.getElementById('delete');
+    button5.addEventListener('click',function () {
+    	var items = document.getElementById('tafla').children;
+    	var l = items.length;
+    	if (l == 4) {
+
+    	}
+    	else {
+    		afangar.fjoldi -= 1;
+    		var af = items[l-2];
+    		af.parentNode.removeChild(af);
+    	}
     });
     
     
@@ -2210,16 +2160,16 @@ var view = {
     });
     var button2 = document.getElementById('calculate');
     button2.addEventListener('click',function() {
-      var nidurstAfanga = $('#tafla2').children();
+      var nidurstAfanga = document.getElementById('tafla2').children;
       for (var i = 0; i < nidurstAfanga.length; i++) {
       	if (i > 0) {
-      		nidurstAfanga[i].remove();
+      		var naf = nidurstAfanga[i]
+      		naf.parentNode.removeChild(naf);
       	}
       }
       self.calc();
       button2.innerHTML = "Endurreikna";
       
-     
     });
     var button3 = document.getElementById('berasaman');
     button3.addEventListener('click',function(e) {
@@ -2309,35 +2259,38 @@ var view = {
      var vinnumat = octopus.vinnumat();
      var summa = parseFloat(0);
      for (var j = 0; j < kennari.originalAfangar.length; j++) {
-     	var item = kennari.originalAfangar[j];
-        summa += parseFloat(item.vinnumat());
-        var template = _.template(
-            templateAfangiNidurst
-        );
+     	var item2 = kennari.originalAfangar[j];
+        summa += parseFloat(item2.vinnumat());
+         
         var tafla2 = document.getElementById('tafla2');
         var divThumbnail = document.createElement('div');
         divThumbnail.setAttribute('class','thumbnail');
         var divCaption = document.createElement('div');
         divCaption.setAttribute('class','caption');
         divCaption.setAttribute('id','v-' + j);
+        
+        var template = _.template(
+            templateAfangiNidurst
+        );
         divCaption.innerHTML = template({
-            heiti: item.heiti,
-            vinnumat: octopus.parseOutput(item.vinnumat(),100),
-            einingafjoldi: item.einingar,
-            nemendafjoldi: item.fjoldi,
-            timafjoldi: item.h40perweek,
-            synidaemi: item.synid.heiti
-        }); 
+            heiti: item2.heiti,
+            vinnumat: octopus.parseOutput(item2.vinnumat(),100),
+            einingafjoldi: item2.einingar,
+            nemendafjoldi: item2.fjoldi,
+            timafjoldi: item2.h40perweek,
+            synidaemi: item2.synid.heiti
+        });
+         
+        console.log(divCaption);
         divThumbnail.append(divCaption);
         tafla2.append(divThumbnail);
-       
+        
      }
      var onnur = document.getElementById('onnurVinna').value;
      summa += parseFloat(onnur.toString().replace(',','.'));
      var golf = 0;
      var vinnuskyldaTexti = document.getElementById('golf').value
      var vinnuskylda = view.vinnuskylda(onnur,vinnuskyldaTexti);
-     console.log(document.getElementById('vinnuskylda'));
 
      document.getElementById('vinnuskylda').value = octopus.parseOutput(vinnuskylda,10);
      document.getElementById('dagsskoli').value = octopus.parseOutput(summa,10);
