@@ -223,59 +223,135 @@ var view = {
 
     var button4 = document.getElementById('skra');
     button4.addEventListener('click',function(e) {
-        e.preventDefault();
-        var mitt_namsaetlun = octopus.parseNumberField(document.getElementById('mitt_namsaetlun').value);
-        var mitt_undirbuningur = octopus.parseNumberField(document.getElementById('mitt_undirbuningur').value);
-        var mitt_profagerd_kennslutima = octopus.parseNumberField(document.getElementById('mitt_profagerd_kennslutima').value);
-        var mitt_profagerd = octopus.parseNumberField(document.getElementById('mitt_profagerd').value);
-        var mitt_onnur_vinna = octopus.parseNumberField(document.getElementById('mitt_onnur_vinna').value);
-        var mitt_tryggingarakvaedi = octopus.parseNumberField(document.getElementById('mitt_tryggingarakvaedi').value);
-        var mitt_vinna_per_nemanda = octopus.parseNumberField(document.getElementById('mitt_vinna_per_nemanda').value);
-        var mitt_lagmark = octopus.parseNumberField(document.getElementById('mitt_lagmark').value);
-        var mitt_hamark_1 = octopus.parseNumberField(document.getElementById('mitt_hamark_1').value);
-        var mitt_kostn_per_nem_yn = octopus.parseNumberField(document.getElementById('mitt_kostn_per_nem_yn').value);
-        var mitt_hamark_2 = octopus.parseNumberField(document.getElementById('mitt_hamark_2').value);
-        var mitt_kostn_per_nem_ye = octopus.parseNumberField(document.getElementById('mitt_kostn_per_nem_ye').value);
+    	e.preventDefault();
+        var validSynidaemi = document.getElementById('valid').value;
+        var namsaetlun = document.getElementById('mitt_namsaetlun').value;
+        var undirbuningur = document.getElementById('mitt_undirbuningur').value;
+        var profagerd_kennslutima = document.getElementById('mitt_profagerd_kennslutima').value;
+        var profagerd = document.getElementById('mitt_profagerd').value;
+        var onnur_vinna = document.getElementById('mitt_onnur_vinna').value;
+        var tryggingarakvaedi = document.getElementById('mitt_tryggingarakvaedi').value;
+        var vinna_per_nemanda = document.getElementById('mitt_vinna_per_nemanda').value;
+        var lagmark = document.getElementById('mitt_lagmark').value;
+        var hamark_1 = document.getElementById('mitt_hamark_1').value;
+        var kostn_per_nem_yn = document.getElementById('mitt_kostn_per_nem_yn').value;
+        var hamark_2 = document.getElementById('mitt_hamark_2').value;
+        var kostn_per_nem_ye = document.getElementById('mitt_kostn_per_nem_ye').value;
+        	
+        if (isNaN(namsaetlun) || namsaetlun ==='' 
+        		|| isNaN(undirbuningur) || undirbuningur ==='' 
+        		|| isNaN(profagerd_kennslutima) || profagerd_kennslutima===''
+        		|| isNaN(profagerd) ||profagerd ===''
+        		|| isNaN(onnur_vinna) || onnur_vinna ===''
+        		|| isNaN(tryggingarakvaedi) || tryggingarakvaedi ===''
+        		|| isNaN(vinna_per_nemanda) || vinna_per_nemanda ==='' 
+        		|| isNaN(lagmark) || lagmark ===''
+        		|| isNaN(hamark_1) || hamark_1 ===''
+        		|| isNaN(kostn_per_nem_yn) || kostn_per_nem_yn ===''
+        		|| isNaN(hamark_2) || hamark_2 ===''
+        		|| isNaN(kostn_per_nem_ye)|| kostn_per_nem_ye ==='' ){
+
+        		if (!document.getElementById('success')) { 
         
-        synidaemi['Sýnidæmið mitt'].hamark_e = 0;
-        synidaemi['Sýnidæmið mitt'].hamark_n = 0;
-        synidaemi['Sýnidæmið mitt'].lagmark = 0;
-        synidaemi['Sýnidæmið mitt'].kostn_per_nem_ye = 0;
-        synidaemi['Sýnidæmið mitt'].kostn_per_nem_yn = 0;
-        synidaemi['Sýnidæmið mitt'].lokaprof = 0;
-        synidaemi['Sýnidæmið mitt'].onnur_vinna = 0;
-        synidaemi['Sýnidæmið mitt'].timar_namsAetlun = 0;
-        synidaemi['Sýnidæmið mitt'].verkefnisgerd = 0;
-        synidaemi['Sýnidæmið mitt'].undirb_kennslu = 0;
-        synidaemi['Sýnidæmið mitt'].fragangur_namsmats = 0;
-        synidaemi['Sýnidæmið mitt'].onnur_vinna_per_nemanda = 0;
-        synidaemi['Sýnidæmið mitt'].vinna_per_nemanda = 0;
+ 		            var success = document.createElement('div');
+        		    success.setAttribute('class','alert alert-danger');
+            		success.setAttribute('id','success');
+           			success.innerHTML = '<strong>Verður að slá tölur í alla reiti</strong>';
+            		document.getElementById('last').appendChild(success);
+        		}
+        		else {
+        			var success = document.getElementById('success');
+        			success.setAttribute('class','alert alert-danger');
+            		success.setAttribute('id','success');
+           			success.innerHTML = '<strong>Verður að slá tölur í alla reiti</strong>';
 
-        synidaemi['Sýnidæmið mitt'].hamark_e = mitt_hamark_2;
-        synidaemi['Sýnidæmið mitt'].hamark_n = mitt_hamark_1;
-        synidaemi['Sýnidæmið mitt'].lagmark = mitt_lagmark
+        		}
+        		$("#success").show().delay(5000).fadeOut();
+        		return
+    		}	
 
-        synidaemi['Sýnidæmið mitt'].kostn_per_nem_ye = mitt_kostn_per_nem_ye;
-        synidaemi['Sýnidæmið mitt'].kostn_per_nem_yn = mitt_kostn_per_nem_yn;
+        	synidaemi[validSynidaemi].hamark_e = 0;
+        	synidaemi[validSynidaemi].hamark_n = 0;
+        	synidaemi[validSynidaemi].lagmark = 0;
+        	synidaemi[validSynidaemi].kostn_per_nem_ye = 0;
+        	synidaemi[validSynidaemi].kostn_per_nem_yn = 0;
+        	synidaemi[validSynidaemi].lokaprof = 0;
+        	synidaemi[validSynidaemi].onnur_vinna = 0;
+        	synidaemi[validSynidaemi].timar_namsAetlun = 0;
+        	synidaemi[validSynidaemi].verkefnisgerd = 0;
+        	synidaemi[validSynidaemi].undirb_kennslu = 0;
+        	synidaemi[validSynidaemi].fragangur_namsmats = 0;
+        	synidaemi[validSynidaemi].onnur_vinna_per_nemanda = 0;
+        	synidaemi[validSynidaemi].vinna_per_nemanda = 0;
 
-        synidaemi['Sýnidæmið mitt'].lokaprof = mitt_profagerd;
-        synidaemi['Sýnidæmið mitt'].onnur_vinna = mitt_onnur_vinna + mitt_tryggingarakvaedi;
-        synidaemi['Sýnidæmið mitt'].timar_namsAetlun = mitt_namsaetlun;
-        synidaemi['Sýnidæmið mitt'].verkefnisgerd = mitt_profagerd_kennslutima;
-        synidaemi['Sýnidæmið mitt'].undirb_kennslu = mitt_undirbuningur;
-        synidaemi['Sýnidæmið mitt'].vinna_per_nemanda = mitt_vinna_per_nemanda;
+        	synidaemi[validSynidaemi].hamark_e = parseFloat(hamark_2);
+        	synidaemi[validSynidaemi].hamark_n = parseFloat(hamark_1);
+        	synidaemi[validSynidaemi].lagmark = parseFloat(lagmark);
 
-        
-        if (!document.getElementById('success')) { 
-            var success = document.createElement('div');
-            success.setAttribute('class','alert alert-success');
+        	synidaemi[validSynidaemi].kostn_per_nem_ye = parseFloat(kostn_per_nem_ye);
+        	synidaemi[validSynidaemi].kostn_per_nem_yn = parseFloat(kostn_per_nem_yn);
+
+        	synidaemi[validSynidaemi].lokaprof = parseFloat(profagerd);
+        	synidaemi[validSynidaemi].onnur_vinna = parseFloat(onnur_vinna) + parseFloat(tryggingarakvaedi);
+        	synidaemi[validSynidaemi].timar_namsAetlun = parseFloat(namsaetlun);
+        	synidaemi[validSynidaemi].verkefnisgerd = parseFloat(profagerd_kennslutima);
+        	synidaemi[validSynidaemi].undirb_kennslu = parseFloat(undirbuningur);
+        	synidaemi[validSynidaemi].vinna_per_nemanda = parseFloat(vinna_per_nemanda);
+            if (!document.getElementById('success')) {
+	        
+	        
+    	    var success = document.createElement('div');
+       		success.setAttribute('class','alert alert-success');
             success.setAttribute('id','success');
-            success.innerHTML = 'Sýnidæmið mitt hefur verið uppfært.';
+            success.innerHTML = 'Sýnidæmið '+ validSynidaemi +' hefur verið uppfært.';
             document.getElementById('last').appendChild(success);
-        }
+            
         
-        $("#success").show().delay(5000).fadeOut();
-    },synidaemi);
+        	}
+        	else {
+        		var success = document.getElementById('success');
+        		success.setAttribute('class','alert alert-success');
+            	success.setAttribute('id','success');
+            	document.getElementById('success').innerHTML = 'Sýnidæmið '+ validSynidaemi +' hefur verið uppfært.';
+        	}
+			$("#success").show().delay(5000).fadeOut();        	
+    });
+	var button6 = document.getElementById('na');
+    button6.addEventListener('click',function(e) {
+        e.preventDefault();
+        var validSynidaemi = document.getElementById('valid').value;
+
+        document.getElementById('mitt_namsaetlun').value = synidaemi[validSynidaemi].timar_namsAetlun;
+        document.getElementById('mitt_undirbuningur').value = synidaemi[validSynidaemi].undirb_kennslu;
+        document.getElementById('mitt_profagerd_kennslutima').value = synidaemi[validSynidaemi].verkefnisgerd;
+        document.getElementById('mitt_profagerd').value = synidaemi[validSynidaemi].lokaprof;
+        document.getElementById('mitt_onnur_vinna').value = synidaemi[validSynidaemi].onnur_vinna;
+        document.getElementById('mitt_tryggingarakvaedi').value = 0;
+        document.getElementById('mitt_vinna_per_nemanda').value = (synidaemi[validSynidaemi].vinna_per_nemanda + synidaemi[validSynidaemi].onnur_vinna_per_nemanda + synidaemi[validSynidaemi].fragangur_namsmats).toString();
+        document.getElementById('mitt_lagmark').value = synidaemi[validSynidaemi].lagmark;
+        document.getElementById('mitt_hamark_1').value = synidaemi[validSynidaemi].hamark_n;
+        document.getElementById('mitt_kostn_per_nem_yn').value = synidaemi[validSynidaemi].kostn_per_nem_yn;
+        document.getElementById('mitt_hamark_2').value = synidaemi[validSynidaemi].hamark_e;
+        document.getElementById('mitt_kostn_per_nem_ye').value = synidaemi[validSynidaemi].kostn_per_nem_ye;
+        if (!document.getElementById('success')) {
+	           
+    	    var success = document.createElement('div');
+       		success.setAttribute('class','alert alert-success');
+            success.setAttribute('id','success');
+            success.innerHTML = 'Sýnidæmið '+ validSynidaemi +' hefur verið sótt.';
+            document.getElementById('last').appendChild(success);
+            
+        
+        	}
+        	else {
+        		var success = document.getElementById('success');
+        		success.setAttribute('class','alert alert-success');
+            	success.setAttribute('id','success');
+            	document.getElementById('success').innerHTML = 'Sýnidæmið '+ validSynidaemi +' hefur verið sótt.';
+        	}
+			$("#success").show().delay(5000).fadeOut();        	
+               
+    });
     
     var fyrirsagnir = document.getElementsByClassName('fyrirsagnir');
     for (var i = 0; i < fyrirsagnir.length; i++) {
@@ -384,7 +460,6 @@ var view = {
       var nidurstAfanga = document.getElementById('tafla2');
       $(nidurstAfanga.children).not(':first').remove();
       
-
       self.calc();
       button2.innerHTML = "Endurreikna";
       

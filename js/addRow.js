@@ -149,8 +149,8 @@ var addRow = function (afangiRow) {
 			if (l  ==  2) {
 			}
 			else {
-				var input = items[l-1];
-				input.parentNode.removeChild(input);
+				
+				
 			}
 		};
 	}(nth));
