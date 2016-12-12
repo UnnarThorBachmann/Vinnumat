@@ -1355,6 +1355,7 @@ var addRow = function (afangiRow) {
     var selectSynidaemi = document.createElement('select');
     selectSynidaemi.setAttribute('class','form-control');
     selectSynidaemi.setAttribute('id','s-'+ afangar.fjoldi);
+
     afangar.synidaemi.forEach(function(j){
       var option = document.createElement('option');
       option.text = j;
@@ -1365,11 +1366,11 @@ var addRow = function (afangiRow) {
     form.appendChild(divSynidaemi);
 
     var divTimar = document.createElement('div');
-    divTimar.setAttribute('class','form-group col-md-2');
+    divTimar.setAttribute('class','form-group col-md-1');
     var labelTimar = document.createElement('label');
     labelTimar.setAttribute('for','t-' + afangar.fjoldi);
     labelTimar.setAttribute('class','medium');
-    labelTimar.innerHTML = 'Tímar á viku';
+    labelTimar.innerHTML = 'kest/vika';
     divTimar.appendChild(labelTimar);
 
     var inputTimar = document.createElement('input');
@@ -1378,17 +1379,34 @@ var addRow = function (afangiRow) {
     inputTimar.setAttribute('id','t-'+ afangar.fjoldi);
     inputTimar.setAttribute('data-toggle','tooltip');
     inputTimar.setAttribute('data-placement','bottom');
-    inputTimar.setAttribute('title','Tímar á viku');
     inputTimar.setAttribute('value','6');
     divTimar.appendChild(inputTimar);
     form.appendChild(divTimar);
 
+    var divMin = document.createElement('div');
+    divMin.setAttribute('class','form-group col-md-2');
+    var labelMin = document.createElement('label');
+    labelMin.setAttribute('for','m-' + afangar.fjoldi);
+    labelMin.setAttribute('class','medium');
+    labelMin.innerHTML = 'Lengd kest';
+    divMin.appendChild(labelMin);
+
+    var inputMin = document.createElement('input');
+    inputMin.setAttribute('type','text');
+    inputMin.setAttribute('class','form-control col-md-2');
+    inputMin.setAttribute('id','m-'+ afangar.fjoldi);
+    inputMin.setAttribute('data-toggle','tooltip');
+    inputMin.setAttribute('data-placement','bottom');
+    inputMin.setAttribute('value','40');
+    divMin.appendChild(inputMin);
+    form.appendChild(divMin);
+
     var divProsenta = document.createElement('div');
-    divProsenta.setAttribute('class','form-group col-md-2');
+    divProsenta.setAttribute('class','form-group col-md-1');
     var labelProsenta = document.createElement('label');
     labelProsenta.setAttribute('for','p-' + afangar.fjoldi);
     labelProsenta.setAttribute('class','medium');
-    labelProsenta.innerHTML = 'Hlutfall (%)';
+    labelProsenta.innerHTML = 'Hlutf.';
     divProsenta.appendChild(labelProsenta);
 
     var inputProsenta = document.createElement('input');
@@ -1472,7 +1490,8 @@ var Afangi = function(param) {
   this.heiti = param[0];
   this.einingar = param[1];
   this.vm = -1;
-  this.h40perweek = param[4];
+  this.hperweek = param[4];
+  this.lengdKest = param[5];
   switch(param[3]) {
     case 'Stærðfræði, neðra þrep':
       this.synid = synidaemi.stae_n;
@@ -1606,7 +1625,7 @@ Afangi.prototype.vinnumat = function() {
     ein +=1;
   }
   var fast = (this.synid.timar_namsAetlun + this.synid.verkefnisgerd + this.synid.lokaprof + this.synid.onnur_vinna)*ein/3;
-  var kennslustundir = (40 + this.synid.undirb_kennslu)/60*this.h40perweek*15;
+  var kennslustundir = (this.lengdKest + this.synid.undirb_kennslu)/60*this.hperweek*15;
   var per_nemandi = (this.synid.vinna_per_nemanda + this.synid.fragangur_namsmats + this.synid.onnur_vinna_per_nemanda)/60;
   per_nemandi = per_nemandi*ein/3;
   var nemendur = 0; 
@@ -1758,7 +1777,7 @@ Kennari.prototype.ryra = function() {
         nfj += parseInt(this.afangar[s].fjoldi);
       } // end of for.
       var neFjAv = nfj/(j-i);
-      var param = new Array(this.afangar[i].heiti,this.afangar[i].einingar,neFjAv,this.afangar[i].synid.heiti,this.afangar[i].h40perweek);
+      var param = new Array(this.afangar[i].heiti,this.afangar[i].einingar,neFjAv,this.afangar[i].synid.heiti,this.afangar[i].hperweek,this.afangar[i].lengdKest);
       var shadow = new Afangi(param);
       for (var k = 0; k < this.originalAfangar.length; k++) {
         if ((j-i) == 2 && this.originalAfangar[k].heiti == this.afangar[i].heiti) {
@@ -1838,7 +1857,6 @@ var model = {
                          'Enska, neðra þrep',
                          'Erlend mál, efra þrep',
                          'Erlend mál, neðra þrep',
-                         'Sýnidæmið mitt',
                          'Tölvuáfangar',
                          'Verklegt',
                          'Fagbóklegt',
@@ -1857,7 +1875,7 @@ var model = {
         var nafn = kennararNofn[i];
 
         for (var j= 0; j < _afangar.length; j++) {
-          _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn,_afangar[j][4]];
+          _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn,_afangar[j][4],_afangar[j][5]];
         }
         
         this.kennarar.push(new Kennari(nafn,_afangar2,hlutfoll));
@@ -1950,16 +1968,19 @@ var octopus = {
      laun2016 += this.orlof('2016')/12;
      return laun2016/1000;
     },
-    teiknaSynidaemi: function(nafn1,e1,nafn2,e2,fjoldatolur,ts1,ts2) {
+    teiknaSynidaemi: function(nafn1, e1, ts1, ms1, nafn2, e2 ,ts2, ms2, fjoldatolur) {
       var gildi1 = [];
       var gildi2 = [];
+      console.log([nafn1,e1,ts1,ms1]);
+      console.log([nafn2,e2,ts2,ms2]);
 
+      //sd1, e1, t1, m1, sd2, e2, m2, t2,nemfj
       fjoldatolur.forEach(function(tala){
         var af1 = new Afangi(
-                  new Array('a',e1,tala,nafn1,ts1));
+                  new Array('a',e1,tala,nafn1,ts1,ms1));
         gildi1.push(af1.vinnumat().toFixed(1));
         var af2 = new Afangi(
-                  new Array('b',e2,tala,nafn2,ts2));
+                  new Array('b',e2,tala,nafn2,ts2,ms2));
         gildi2.push(af2.vinnumat().toFixed(1));
       });
       
@@ -2035,9 +2056,7 @@ var view = {
         synidaemi.mitt.undirb_kennslu = mitt_undirbuningur;
         synidaemi.mitt.vinna_per_nemanda = mitt_vinna_per_nemanda;
 
-        //<div class="alert alert-success">
-       // <strong>Success!</strong> Indicates a successful or positive action.
-       // </div>
+        
         if (!document.getElementById('success')) { 
             var success = document.createElement('div');
             success.setAttribute('class','alert alert-success');
@@ -2160,13 +2179,10 @@ var view = {
     });
     var button2 = document.getElementById('calculate');
     button2.addEventListener('click',function() {
-      var nidurstAfanga = document.getElementById('tafla2').children;
-      for (var i = 0; i < nidurstAfanga.length; i++) {
-      	if (i > 0) {
-      		var naf = nidurstAfanga[i]
-      		naf.parentNode.removeChild(naf);
-      	}
-      }
+      var nidurstAfanga = document.getElementById('tafla2');
+      $(nidurstAfanga.children).not(':first').remove();
+      
+
       self.calc();
       button2.innerHTML = "Endurreikna";
       
@@ -2179,18 +2195,22 @@ var view = {
     var e2 = octopus.parseNumberField(document.getElementById('es2').value);
     var t1 = octopus.parseNumberField(document.getElementById('ts1').value);
     var t2 = octopus.parseNumberField(document.getElementById('ts2').value);
+    var m1 = octopus.parseNumberField(document.getElementById('ms1').value);
+    var m2 = octopus.parseNumberField(document.getElementById('ms2').value);
+	var sd1 = document.getElementById('fyrra').value;
+    var sd2 = document.getElementById('seinna').value;
+    
+    
 
     if (screen.width > 500) {
+
       var nemfj = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
     }
     else {
       var nemfj = [5,8,10,13, 15,17,20,23,25,26,28,29,30,31,32];
     }
-
-    var nidurst = octopus.teiknaSynidaemi(document.getElementById('fyrra').value, e1, 
-                                document.getElementById('seinna').value, e2,
-    nemfj,t1,t2);
-    console.log(nidurst);
+    
+    var nidurst = octopus.teiknaSynidaemi(sd1, e1, t1, m1, sd2, e2, t2, m2,nemfj);
     var lineChartData = {
         labels :nemfj, 
         datasets : [
@@ -2247,7 +2267,8 @@ var view = {
            		var synid = document.getElementById('s-'+i).value;
            		var hlutf =  octopus.parseNumberField(document.getElementById('p-'+i).value);
            		var kennslust = octopus.parseNumberField(document.getElementById('t-' + i).value);
-           		var param = [heiti,einingar,fjoldi,synid,kennslust];
+           		var timalengd = octopus.parseNumberField(document.getElementById('m-' + i).value);
+           		var param = [heiti,einingar,fjoldi,synid,kennslust,timalengd];
            		af.push(param);
            		hlutfoll.push(hlutf);
            	}
@@ -2265,21 +2286,21 @@ var view = {
      var summa = parseFloat(0);
      for (var j = 0; j < kennari.originalAfangar.length; j++) {
      	var item2 = kennari.originalAfangar[j];
-        summa += parseFloat(item2.vinnumat());
+        summa += parseFloat(kennari.originalAfangarVinnumat[j]);
          
         var t2 = document.getElementById('tafla2');
         var divRow = document.createElement('div');
         divRow.setAttribute('class','row blue');
         //var divCaption = document.createElement('div');
         //divCaption.setAttribute('class','caption');
-        divRow.setAttribute('id','v-' + j);
+        divRow.setAttribute('id','v-' + (j+1).toString());
         
         var template = _.template(
             templateAfangiNidurst
         );
         divRow.innerHTML = template({
             heiti: item2.heiti,
-            vinnumat: octopus.parseOutput(item2.vinnumat(),100),
+            vinnumat: octopus.parseOutput(kennari.originalAfangarVinnumat[j],100),
             einingafjoldi: item2.einingar,
             nemendafjoldi: item2.fjoldi,
             timafjoldi: item2.h40perweek,
@@ -2287,7 +2308,7 @@ var view = {
         });
         t2.appendChild(divRow);   
      }
-     var onnur = document.getElementById('onnurVinna').value;
+     var onnur = octopus.parseNumberField(document.getElementById('onnurVinna').value);
      summa += parseFloat(onnur.toString().replace(',','.'));
      var golf = 0;
      var vinnuskyldaTexti = document.getElementById('golf').value

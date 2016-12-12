@@ -610,7 +610,7 @@
           Vinnumat
         </h1>
         <h3 class="medium">
-         Fyllið inn upplýsingar fyrir einn hóp eða fleiri. Vinnumat hópa ræðst af einingafjölda, nemendafjölda, tegund kennslu og endurtekningum. Gengið er út frá 15 vikna kennslu og að hver kennslustund sé 40 mínútur. Athugið að skerðingar vegna kennslu fleiri en eins námshóps í sama áfanga aukast hjá kennurum skólaárið 2016-2017.  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
+         Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Vinnumat hvers hóps miðast við 15 vikur. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
       </div>
       <div class="row">
         <form>
@@ -716,12 +716,16 @@
             <option>Verklegt</option>
           </select>
         </div>
-        <div class="form-group col-md-2">
-          <label class="medium" for="t-1">Tímar á viku</label>
+        <div class="form-group col-md-1">
+          <label class="medium" for="t-1">kest/vika</label>
           <input type="text" class="form-control" id="t-1" value="6">
         </div>
-        <div class="form-group col-md-2" data-toggle="tooltip" data-placement="bottom">
-          <label  class="medium" for="p-1">Hlutfall (%)</label>
+        <div class="form-group col-md-2">
+          <label class="medium" for="m-1">Kennslustund (mín)</label>
+          <input type="text" class="form-control" id="m-1" value="40">
+        </div>
+        <div class="form-group col-md-1" data-toggle="tooltip" data-placement="bottom">
+          <label  class="medium" for="p-1">Hlutf.</label>
           <input type="text" class="form-control" id="p-1" value="100" >
         </div>
         <div class="form-group col-md-2" id="f-1s">
@@ -778,7 +782,7 @@
           </div>
         </form>
       </div><!--row-->
-    </div>
+    </div><!--tafla2-->
     <div class="container hidden" id="samanburdur">
       <div class="row">
         <h1 class="large">
@@ -803,11 +807,11 @@
           Veljið sýnidæmi og ýtið á takkann til þess að bera saman. Í gluggann hér fyrir neðan birtast gröf sem sýna vinnumat þessara sýnidæma á y-ási (óskert) en nemendafjölda á x-ási.
         </h3>
       </div>
-      <div class="row"> 
+      <div class="row" > 
         <form>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3" id="fsd">
             <label class="medium" for="fyrra">Sýnidæmi 1</label>
-            <select class="form-control" id="fyrra">
+            <select  class="form-control" id="fyrra">
               <option>Almenn braut</option>
               <option>Almennar raungreinar</option>
               <option>Danska, efra þrep</option>
@@ -843,20 +847,24 @@
               <option>Verklegt</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label class="medium" for="es1">Einingar </label>
             <input type="text" class="form-control" id="es1" value="3">
           </div>
-          <div class="form-group col-md-4">
-            <label class="medium einingar" for="ts1">Tímafjöldi á viku (40 mínútur) </label>
+          <div class="form-group col-md-3">
+            <label class="medium" for="ts1">Kennslustundir á viku </label>
             <input type="text" class="form-control" id="ts1" value="6">
+          </div>
+          <div class="form-group col-md-3">
+            <label class="medium" for="ms1">Kennslustund (mín) </label>
+            <input type="text" class="form-control" id="ms1" value="40">
           </div>
         </form>
       </div>  
       <div class="row"> 
         <form> 
-          <div class="form-group col-md-4">
-            <label class="medium einingar" for="seinna">Sýnidæmi 2</label>
+          <div class="form-group col-md-3" id="ssd">
+            <label class="medium" for="seinna">Sýnidæmi 2</label>
             <select class="form-control" id="seinna">
               <option>Almenn braut</option>
               <option>Almennar raungreinar</option>
@@ -893,13 +901,17 @@
               <option>Verklegt</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label class="medium einingar" for="es2">Einingar </label>
             <input type="text" class="form-control" id="es2" value="3">
           </div>
-          <div class="form-group col-md-4">
-            <label class="medium einingar" for="ts2">Tímafjöldi á viku (40 mínútur) </label>
+          <div class="form-group col-md-3">
+            <label class="medium einingar" for="ts2">Kennslustundir á viku </label>
             <input type="text" class="form-control" id="ts2" value="6">
+          </div>
+          <div class="form-group col-md-3">
+            <label class="medium einingar" for="ms2">Kennslustund (mín) </label>
+            <input type="text" class="form-control" id="ms2" value="40">
           </div>
         </form>
       </div>
