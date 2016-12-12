@@ -144,13 +144,14 @@ var addRow = function (afangiRow) {
     takki2.innerHTML = '-';
     takki2.addEventListener('click',function(nth) {
 		return function() {
-			var items = document.getElementById('f-' + nth + 's').children;
+            var parent = document.getElementById('f-' + nth + 's');
+			var items = parent.children;
+            console.log(items.length);
 			var l = items.length;
-			if (l  ==  2) {
+			if (l  <=  2) {
 			}
 			else {
-				
-				
+				parent.removeChild(parent.lastChild);
 			}
 		};
 	}(nth));
