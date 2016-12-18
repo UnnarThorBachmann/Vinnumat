@@ -29,7 +29,7 @@ Afangi.prototype.reikna_vinnumat = function() {
     return 0;
   }
   var ein =parseFloat(this.einingar);
-  if (ein == 2 && (this.synid.heiti === 'Hægferð')) {
+  if (ein == 2 && (this.synid.heiti === 'Hægferð') ||ein == 2 && (this.synid.heiti === 'Hægferð') || ein == 2 && (this.synid.heiti === 'Íslenska, hægferð (gamalt)') || ein == 2 && (this.synid.heiti === 'Enska, hægferð (gamalt)')|| ein == 2 && (this.synid.heiti === 'Danska, hægferð (gamalt)')) {
     ein +=1;
   }
   this.thaettir['Kennsluáætlun'] = parseFloat(this.synid.timar_namsAetlun*ein/3);
