@@ -342,10 +342,15 @@ var view = {
       			$('.container').addClass('hidden'); 
             	$('#samanburdur2').removeClass('hidden');
       		}
+          else if (fyrirsogn.id  && fyrirsogn.id == 'yta3') {
+            $('.container').addClass('hidden'); 
+              $('#samanburdur3').removeClass('hidden');
+          }
       		else {
       			$('.container').removeClass('hidden'); 
             	$('#mitt').addClass('hidden');
             	$('#samanburdur2').addClass('hidden');
+              $('#samanburdur3').addClass('hidden')
       		}
       	}
       	
@@ -557,7 +562,7 @@ var view = {
             vinnumat: octopus.parseOutput(kennari.originalAfangarVinnumat[j],100),
             einingafjoldi: item2.einingar,
             nemendafjoldi: item2.fjoldi,
-            timafjoldi: item2.h40perweek,
+            timafjoldi: item2.hperweek,
             synidaemi: item2.synid.heiti
         });
         t2.appendChild(divRow);   
