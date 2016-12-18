@@ -6,36 +6,20 @@ vinnumat: Unnar Thor Bachmann.
 var afangar = {
     'synidaemi': [
       'Almenn braut',
-      'Almennar raungreinar',
-      'Danska, efra þrep',
-      'Danska, hægferð',
-      'Danska, neðra þrep',
-      'Enska, efra þrep',
-      'Enska, hægferð',
-      'Enska, neðra þrep',
-      'Erlend mál, efra þrep',
-      'Erlend mál, neðra þrep',
       'Fagbóklegt',
-      'Félagsgreinar, efra þrep',
-      'Félagsgreinar, neðra þrep',
-      'Íslenska, efra þrep',
-      'Íslenska, hægferð',
-      'Íslenska, neðra þrep',
+      'Félagsgreinar',
+      'Hægferð',
+      'Íslenska',
       'Íþróttafræði',
       'Íþróttir',
-      'Jarðfræði',
-      'Listgreinar, efra þrep',
-      'Listgreinar, neðra þrep',
-      'Raungreinar, efra þrep',
-      'Raungreinar, neðra þrep',
-      'Sjúkraliðabraut',
+      'Listgreinar',
+      'Raungreinar',
       'Starfsbraut (1/3)',
       'Starfsbraut (4/6)',
       'Starfsbraut (7/12)',
-      'Stærðfræði, efra þrep',
-      'Stærðfræði, hægferð',
-      'Stærðfræði, neðra þrep',
+      'Stærðfræði',
       'Sýnidæmið mitt',
+      'Tungumál',
       'Tölvuáfangar',
       'Verklegt'
     ],
@@ -46,38 +30,28 @@ var afangar = {
 var model = {
     kennari: null,
     kennarar: [],
-    init: function (_afangar,hlutfoll) {
+    init: function (_afangar,hlutfoll,c) {
     var _afangar2 = []; 
 
     _afangar.forEach(function(afangi){
         _afangar2.push(afangi);
       },_afangar2);
 
-    var kennararNofn = ['Félagsgreinar, efra þrep',
-                         'Félagsgreinar, neðra þrep',
-                         'Íslenska, efra þrep',
-                         'Íslenska, neðra þrep',
-                         'Stærðfræði, efra þrep',
-                         'Stærðfræði, neðra þrep',
-                         'Danska, neðra þrep',
-                         'Danska, efra þrep',
-                         'Listgreinar, efra þrep',
-                         'Listgreinar, neðra þrep',
-                         'Enska, efra þrep',
-                         'Enska, neðra þrep',
-                         'Erlend mál, efra þrep',
-                         'Erlend mál, neðra þrep',
-                         'Tölvuáfangar',
-                         'Verklegt',
-                         'Fagbóklegt',
-                         'Jarðfræði',
-                         'Íþróttafræði',
-                         'Almennar raungreinar',
-                         'Almenn braut',
-                         'Raungreinar, efra þrep',
-                         'Raungreinar, neðra þrep',
+    var kennararNofn = [
+      'Almenn braut',
+      'Fagbóklegt',
+      'Félagsgreinar',
+      'Hægferð',
+      'Íslenska',
+      'Íþróttafræði',
+      'Listgreinar',
+      'Raungreinar',
+      'Stærðfræði',
+      'Tungumál',
+      'Tölvuáfangar',
+      'Verklegt'
     ];
-    this.kennari = new Kennari("Þú",_afangar,hlutfoll);
+    this.kennari = new Kennari("Þú",_afangar,hlutfoll,c);
 
     this.kennarar = [];
       
@@ -88,7 +62,7 @@ var model = {
           _afangar2[j] = [_afangar[j][0],_afangar[j][1],_afangar[j][2],nafn,_afangar[j][4],_afangar[j][5]];
         }
         
-        this.kennarar.push(new Kennari(nafn,_afangar2,hlutfoll));
+        this.kennarar.push(new Kennari(nafn,_afangar2,hlutfoll,c));
       }
     }
 };
@@ -123,9 +97,9 @@ var octopus = {
       n = n.replace(',','.');
       return (isNaN(n) || n.length === 0 || !n)? 0:parseFloat(n);
     },
-    createKennari: function(afangar,hlutfoll) {
+    createKennari: function(afangar,hlutfoll,c) {
 
-        model.init(afangar,hlutfoll);
+        model.init(afangar,hlutfoll,c);
     },
     kennari: function() {
     	return model.kennari;
@@ -187,9 +161,11 @@ var octopus = {
       fjoldatolur.forEach(function(tala){
         var af1 = new Afangi(
                   new Array('a',e1,tala,nafn1,ts1,ms1));
+        af1.reikna_vinnumat();
         gildi1.push(af1.vinnumat().toFixed(1));
         var af2 = new Afangi(
                   new Array('b',e2,tala,nafn2,ts2,ms2));
+        af2.reikna_vinnumat();
         gildi2.push(af2.vinnumat().toFixed(1));
       });
       
@@ -552,7 +528,8 @@ var view = {
        	   }
         }
     }
-    octopus.createKennari(af,hlutfoll);
+    var onnur = octopus.parseNumberField(document.getElementById('onnurVinna').value);
+    octopus.createKennari(af,hlutfoll,onnur);
     var kennari = octopus.kennari();
      $('.hidden').removeClass('hidden');
      $('#mitt').addClass('hidden');
@@ -643,30 +620,15 @@ var view = {
      };
      var kennararSorted = octopus.kennarar().sort(comp);
       
-     var ken; 
-     if (screen.width > 500) {
-       ken = kennararSorted;
-     }
-     else {
-        ken = [];
-        var sia = ['Almenn braut','Danska, efra þrep','Enska, efra þrep','Erlend mál, efra þrep',
-                   'Fagbóklegt','Félagsgreinar, efra þrep','Íslenska, efra þrep','Jarðfræði',
-                   'Listgreinar, efra þrep','Raungreinar, efra þrep','Sjúkraliðabraut',
-                   'Stærðfræði, efra þrep','Tölvuáfangar','Verklegt','Þú'];
-        kennararSorted.forEach(function(kennari){
-          var j = sia.indexOf(kennari.heiti);
-            if (j > 0) {
-                ken.push(kennari);
-            }
-        },ken);
-        
-     }
+     var ken = kennararSorted; 
+     
      var ls = [];
      var vs = [];
      for (var i = 0; i < ken.length; i++) {
         ls.push(ken[i].getName());
         vs.push(ken[i].heildarvinnumat().toFixed(1));
      }
+     
     var barChartData = {
     labels : ls,
     datasets : [
@@ -708,6 +670,49 @@ var view = {
 
       }
       window.adrir.update();
+
+      var values = [];
+      var a_names = Object.getOwnPropertyNames(kennari.a);
+      for (var key in kennari.a){
+        values.push(kennari.a[key]);
+      }
+      var b_names = Object.getOwnPropertyNames(kennari.b);
+      for (var key in kennari.b){
+        values.push(kennari.b[key]);
+      }
+      var names = a_names.concat(b_names);
+      names.push("C-hluti");
+      values.push(kennari.c);
+      var barChartData3 = {
+        labels : names,
+        datasets : [{
+          fillColor : "#d3ac2b",
+          strokeColor : "rgba(0,0,0,0)",
+          highlightFill: "rgba(0,0,0,0)",
+          highlightStroke: "rgba(0,0,0,1)",
+          data : values}]
+      };
+
+      if (typeof window.vinnusulur != "undefined") {
+       window.vinnusulur.destroy();
+     }
+     var ctx3 = document.getElementById("canvas3").getContext("2d");
+     window.vinnusulur = new Chart(ctx3).Bar(barChartData3, opt);
+     for (var i = 0; i < window.vinnusulur.datasets[0].bars.length; i++) {
+         var vinnuthattur = window.vinnusulur.datasets[0].bars[i].label;
+         if (a_names.indexOf(vinnuthattur) >= 0) {
+           window.vinnusulur.datasets[0].bars[i].fillColor = "#f2583e";
+         }
+         else if (b_names.indexOf(vinnuthattur) >= 0){
+            window.vinnusulur.datasets[0].bars[i].fillColor = "#77bed2";
+         }
+         else {
+          window.vinnusulur.datasets[0].bars[i].fillColor = "#747e80";
+         }
+
+      }
+      
+      window.vinnusulur.update();
     document.getElementById('yta').click();
    
   }

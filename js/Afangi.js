@@ -5,6 +5,7 @@ var Afangi = function(param) {
   this.hperweek = param[4];
   this.lengdKest = param[5];
   this.synid = synidaemi[param[3]];
+  this.thaettir = {};
   
   this.actualFjoldi = param[2];
   this.fjoldi = Math.max(param[2],this.synid.lagmark);
@@ -20,37 +21,52 @@ Afangi.prototype.Fjoldi = function() {
 Afangi.prototype.hamark = function() {
     return this.synid.hamark_n;
 };
-Afangi.prototype.vinnumat = function() {
-  if (this.vm != -1) {
-    return this.vm;
-  } 
-  if (this.synid === 'def' || this.heiti ==='' || this.einingar === '' || this.fjoldi === '') {
+Afangi.prototype.vinnumat = function () {
+  return this.vm;
+};
+Afangi.prototype.reikna_vinnumat = function() {
+  if (this.heiti ==='' || this.einingar === '' || this.fjoldi === '') {
     return 0;
   }
   var ein =parseFloat(this.einingar);
-  if (ein == 2 && (this.synid.heiti === 'Stærðfræði, hægferð' ||this.synid.heiti === 'Íslenska, hægferð' || this.synid.heiti === 'Enska, hægferð' || this.synid.heiti === 'Danska, hægferð')) {
+  if (ein == 2 && (this.synid.heiti === 'Hægferð')) {
     ein +=1;
   }
-  var fast = (this.synid.timar_namsAetlun + this.synid.verkefnisgerd + this.synid.lokaprof + this.synid.onnur_vinna)*ein/3;
+  this.thaettir['Kennsluáætlun'] = parseFloat(this.synid.timar_namsAetlun*ein/3);
+  this.thaettir['Verkefnis og prófagerð'] = parseFloat(this.synid.verkefnisgerd*ein/3);
+  this.thaettir['Önnur vinna óháð nemendafjölda'] = parseFloat(this.synid.onnur_vinna*ein/3);
+  this.thaettir['Staðin kennsla'] = parseFloat(this.lengdKest*this.hperweek*15/60);
+  this.thaettir['Undirbúningur kennslu'] = parseFloat(this.synid.undirb_kennslu*this.hperweek*15/60);
+  var fast = (this.synid.timar_namsAetlun + this.synid.verkefnisgerd + this.synid.onnur_vinna)*ein/3;
   var kennslustundir = (this.lengdKest + this.synid.undirb_kennslu)/60*this.hperweek*15;
-  var per_nemandi = (this.synid.vinna_per_nemanda + this.synid.fragangur_namsmats + this.synid.onnur_vinna_per_nemanda)/60;
-  per_nemandi = per_nemandi*ein/3;
+  var per_nemandi = (this.synid.vinna_per_nemanda)*ein/(3*60);
   var nemendur = 0; 
   var total;
-  
+ 
   if (this.fjoldi <= this.synid.hamark_n) {
     nemendur = Math.max(this.fjoldi,this.synid.lagmark)*per_nemandi;
-    total = fast + kennslustundir + nemendur;
   }
   else if (this.synid.hamark_n < this.fjoldi && this.fjoldi <= this.synid.hamark_e) {
     nemendur = this.synid.hamark_n*per_nemandi;
-    total = fast + kennslustundir + nemendur + (this.fjoldi-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3;
+    nemendur = nemendur + (this.fjoldi-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3;
   }
   else {
     nemendur = this.synid.hamark_n*per_nemandi;
-    total = fast + kennslustundir + nemendur+ (this.synid.hamark_e-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3+ (this.fjoldi-this.synid.hamark_e)*this.synid.kostn_per_nem_ye*ein/3;
+    nemendur = nemendur + (this.synid.hamark_e-this.synid.hamark_n)*this.synid.kostn_per_nem_yn*ein/3+ (this.fjoldi-this.synid.hamark_e)*this.synid.kostn_per_nem_ye*ein/3;
   }
-  return total;
+  total = fast + kennslustundir + nemendur
+  this.thaettir['Vinna vegna nemenda'] = nemendur;
+
+  this.vm = total;
+};
+Afangi.prototype.skerda = function (p) {
+  this.vm = this.vm*(1-p);
+  this.thaettir['Kennsluáætlun'] = this.thaettir['Kennsluáætlun']*(1-p);
+  this.thaettir['Verkefnis og prófagerð'] =  this.thaettir['Verkefnis og prófagerð']*(1-p);
+  this.thaettir['Önnur vinna óháð nemendafjölda'] =   this.thaettir['Önnur vinna óháð nemendafjölda']*(1-p);
+  this.thaettir['Staðin kennsla'] = this.thaettir['Staðin kennsla']*(1-p);
+  this.thaettir['Undirbúningur kennslu'] = this.thaettir['Undirbúningur kennslu']*(1-p);
+  this.thaettir['Vinna vegna nemenda'] = this.thaettir['Vinna vegna nemenda']*(1-p);
 };
 Afangi.prototype.setVinnumat = function (vinnumat) {
   this.vm = vinnumat;

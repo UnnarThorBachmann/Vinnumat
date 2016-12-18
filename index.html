@@ -610,7 +610,7 @@
           Vinnumat
         </h1>
         <h3 class="medium">
-         Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Vinnumat hvers hóps miðast við 15 vikur. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
+         Vinnumat kennara skiptist í A-, B- og C-hluta. Vinnumat A-hluta ræðst af vinnumati hópa sem kennari kennir. Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Útreikningar á vinnumati hvers hóps miðast við 15 vikur. Vinnumat B-hluta er 360 tímar á ári fyrir kennara í fullu starfi og tekur C-hlutinn til allra annarra starfa sem kennari tekur að sér. Hægt er að nota síðuna til þess að reikna vinnumat stakra áfanga eða fleiri. Samtölur fyrir kennara miðast við kennara í fullu starfi. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
       </div>
       <div class="row">
         <form>
@@ -682,37 +682,21 @@
           <label class="medium" for="s-1">Sýnidæmi</label>
           <select class="form-control" id="s-1">
             <option>Almenn braut</option>
-            <option>Almennar raungreinar</option>
-            <option>Danska, efra þrep</option>
-            <option>Danska, hægferð</option>
-            <option>Danska, neðra þrep</option>
-            <option>Enska, efra þrep</option>
-            <option>Enska, hægferð</option>
-            <option>Enska, neðra þrep</option>
-            <option>Erlend mál, efra þrep</option>
-            <option>Erlend mál, neðra þrep</option>
             <option>Fagbóklegt</option>
-            <option>Félagsgreinar, efra þrep</option>
-            <option>Félagsgreinar, neðra þrep</option>
-            <option>Íslenska, efra þrep</option>
-            <option>Íslenska, hægferð</option>
-            <option>Íslenska, neðra þrep</option>
+            <option>Félagsgreinar</option>
+            <option>Hægferð</option>
+            <option>Íslenska</option>
             <option>Íþróttafræði</option>
             <option>Íþróttir</option>
-            <option>Jarðfræði</option>
-            <option>Listgreinar, efra þrep</option>
-            <option>Listgreinar, neðra þrep</option>
-            <option>Raungreinar, efra þrep</option>
-            <option>Raungreinar, neðra þrep</option>
-            <option>Sjúkraliðabraut</option>
+            <option>Listgreinar</option>
+            <option>Raungreinar</option>
             <option>Starfsbraut (1/3)</option>
             <option>Starfsbraut (4/6)</option>
             <option>Starfsbraut (7/12)</option>
-            <option>Stærðfræði, efra þrep</option>
-            <option>Stærðfræði, hægferð</option>
-            <option>Stærðfræði, neðra þrep</option>
+            <option>Stærðfræði</option>
             <option>Sýnidæmið mitt</option>
             <option>Tölvuáfangar</option>
+            <option>Tungumál</option>
             <option>Verklegt</option>
           </select>
         </div>
@@ -786,7 +770,7 @@
     <div class="container hidden" id="samanburdur">
       <div class="row">
         <h1 class="large">
-          Samanburður við kennara á öðrum sýnidæmum
+          Samanburður við kennara á öðrum sýnidæmum (A-hluti)
         </h1>
         <h3 class="medium">
           Samanburðurinn miðast við sömu forsendur og slegnar voru inn en önnur sýnidæmi. Rauðu súlurnar merkja það að meðalfjöldi í hópum er kominn upp fyrir álagsmörk viðkomandi sýnidæma.
@@ -795,6 +779,21 @@
       <div class="row">
           <div>
             <canvas id="canvas1"></canvas>
+          </div>
+      </div><!--row -->
+    </div>
+     <div class="container hidden" id="samanburdur3">
+      <div class="row">
+        <h1 class="large">
+          Skipting vinnustunda
+        </h1>
+        <h3 class="medium">
+          Súlurnar sýna skiptingu vinnustunda á misseri fyrir fyrir kennara í fullu starfi. Þær rauðleitu eru skipting A-hluta, þær bláleitu skipting B-hluta og súlan lengst til hægri C-hluti.
+       </h3>
+      </div><!--row-->
+      <div class="row">
+          <div>
+            <canvas id="canvas3"></canvas>
           </div>
       </div><!--row -->
     </div>
@@ -813,37 +812,21 @@
             <label class="medium" for="fyrra">Sýnidæmi 1</label>
             <select  class="form-control" id="fyrra">
               <option>Almenn braut</option>
-              <option>Almennar raungreinar</option>
-              <option>Danska, efra þrep</option>
-              <option>Danska, hægferð</option>
-              <option>Danska, neðra þrep</option>
-              <option>Enska, efra þrep</option>
-              <option>Enska, hægferð</option>
-              <option>Enska, neðra þrep</option>
-              <option>Erlend mál, efra þrep</option>
-              <option>Erlend mál, neðra þrep</option>
               <option>Fagbóklegt</option>
-              <option>Félagsgreinar, efra þrep</option>
-              <option>Félagsgreinar, neðra þrep</option>
-              <option>Íslenska, efra þrep</option>
-              <option>Íslenska, hægferð</option>
-              <option>Íslenska, neðra þrep</option>
+              <option>Félagsgreinar</option>
+              <option>Hægferð</option>
+              <option>Íslenska</option>
               <option>Íþróttafræði</option>
               <option>Íþróttir</option>
-              <option>Jarðfræði</option>
-              <option>Listgreinar, efra þrep</option>
-              <option>Listgreinar, neðra þrep</option>
-              <option>Raungreinar, efra þrep</option>
-              <option>Raungreinar, neðra þrep</option>
-              <option>Sjúkraliðabraut</option>
+              <option>Listgreinar</option>
+              <option>Raungreinar</option>
               <option>Starfsbraut (1/3)</option>
               <option>Starfsbraut (4/6)</option>
               <option>Starfsbraut (7/12)</option>
-              <option>Stærðfræði, efra þrep</option>
-              <option>Stærðfræði, hægferð</option>
-              <option>Stærðfræði, neðra þrep</option>
+              <option>Stærðfræði</option>
               <option>Sýnidæmið mitt</option>
               <option>Tölvuáfangar</option>
+              <option>Tungumál</option>
               <option>Verklegt</option>
             </select>
           </div>
@@ -867,37 +850,21 @@
             <label class="medium" for="seinna">Sýnidæmi 2</label>
             <select class="form-control" id="seinna">
               <option>Almenn braut</option>
-              <option>Almennar raungreinar</option>
-              <option>Danska, efra þrep</option>
-              <option>Danska, hægferð</option>
-              <option>Danska, neðra þrep</option>
-              <option>Enska, efra þrep</option>
-              <option>Enska, hægferð</option>
-              <option>Enska, neðra þrep</option>
-              <option>Erlend mál, efra þrep</option>
-              <option>Erlend mál, neðra þrep</option>
               <option>Fagbóklegt</option>
-              <option>Félagsgreinar, efra þrep</option>
-              <option>Félagsgreinar, neðra þrep</option>
-              <option>Íslenska, efra þrep</option>
-              <option>Íslenska, hægferð</option>
-              <option>Íslenska, neðra þrep</option>
+              <option>Félagsgreinar</option>
+              <option>Hægferð</option>
+              <option>Íslenska</option>
               <option>Íþróttafræði</option>
               <option>Íþróttir</option>
-              <option>Jarðfræði</option>
-              <option>Listgreinar, efra þrep</option>
-              <option>Listgreinar, neðra þrep</option>
-              <option>Raungreinar, efra þrep</option>
-              <option>Raungreinar, neðra þrep</option>
-              <option>Sjúkraliðabraut</option>
+              <option>Listgreinar</option>
+              <option>Raungreinar</option>
               <option>Starfsbraut (1/3)</option>
               <option>Starfsbraut (4/6)</option>
               <option>Starfsbraut (7/12)</option>
-              <option>Stærðfræði, efra þrep</option>
-              <option>Stærðfræði, hægferð</option>
-              <option>Stærðfræði, neðra þrep</option>
+              <option>Stærðfræði</option>
               <option>Sýnidæmið mitt</option>
               <option>Tölvuáfangar</option>
+              <option>Tungumál</option>
               <option>Verklegt</option>
             </select>
           </div>
@@ -940,37 +907,21 @@
           <label class="medium" for="valid">Sýnidæmi</label>
             <select class="form-control" id="valid">
               <option>Almenn braut</option>
-              <option>Almennar raungreinar</option>
-              <option>Danska, efra þrep</option>
-              <option>Danska, hægferð</option>
-              <option>Danska, neðra þrep</option>
-              <option>Enska, efra þrep</option>
-              <option>Enska, hægferð</option>
-              <option>Enska, neðra þrep</option>
-              <option>Erlend mál, efra þrep</option>
-              <option>Erlend mál, neðra þrep</option>
               <option>Fagbóklegt</option>
-              <option>Félagsgreinar, efra þrep</option>
-              <option>Félagsgreinar, neðra þrep</option>
-              <option>Íslenska, efra þrep</option>
-              <option>Íslenska, hægferð</option>
-              <option>Íslenska, neðra þrep</option>
+              <option>Félagsgreinar</option>
+              <option>Hægferð</option>
+              <option>Íslenska</option>
               <option>Íþróttafræði</option>
               <option>Íþróttir</option>
-              <option>Jarðfræði</option>
-              <option>Listgreinar, efra þrep</option>
-              <option>Listgreinar, neðra þrep</option>
-              <option>Raungreinar, efra þrep</option>
-              <option>Raungreinar, neðra þrep</option>
-              <option>Sjúkraliðabraut</option>
+              <option>Listgreinar</option>
+              <option>Raungreinar</option>
               <option>Starfsbraut (1/3)</option>
               <option>Starfsbraut (4/6)</option>
               <option>Starfsbraut (7/12)</option>
-              <option>Stærðfræði, efra þrep</option>
-              <option>Stærðfræði, hægferð</option>
-              <option>Stærðfræði, neðra þrep</option>
+              <option>Stærðfræði</option>
               <option>Sýnidæmið mitt</option>
               <option>Tölvuáfangar</option>
+              <option>Tungumál</option>
               <option>Verklegt</option>
             </select>
           </div>

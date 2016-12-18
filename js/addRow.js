@@ -146,7 +146,6 @@ var addRow = function (afangiRow) {
 		return function() {
             var parent = document.getElementById('f-' + nth + 's');
 			var items = parent.children;
-            console.log(items.length);
 			var l = items.length;
 			if (l  <=  2) {
 			}
