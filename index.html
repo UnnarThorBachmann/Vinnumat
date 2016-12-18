@@ -356,10 +356,10 @@
        }
        canvas {
         width: 80%;
-        height: 300px;
         width: 400px;
+        height: 300px;
        }
-       
+
        .texta{
         margin-top: 1%;
        }
@@ -597,8 +597,10 @@
         <ul class="nav navbar-nav">
           <li><a class = "fyrirsagnir" href="#vinnumat">Slá inn vinnumat</a></li>
           <li><a class = "fyrirsagnir" href="#tafla2" id="yta">Niðurstöður</a></li>
+          <li><a class = "fyrirsagnir" href = "#samanburdur" tabindex = "-1" id="yta1">Samanburður við önnur</a></li>
           <li><a class = "fyrirsagnir" href = "#samanburdur2" tabindex = "-1" id="yta2">Gröf sýnidæma</a></li>
           <li><a class = "fyrirsagnir" href = "#samanburdur3" tabindex = "-1" id="yta3">Skipting vinnutíma</a></li>
+          <li><a class = "fyrirsagnir" href = "#samanburdur4" tabindex = "-1" id="yta4">Skipting vinnutíma (kökurit)</a></li>
           <li><a class = "fyrirsagnir" href = "#mitt" tabindex = "-1" id="mittSynidaemi">Breyta og skoða sýnidæmi</a></li>
         </ul>
       </div>
@@ -611,7 +613,7 @@
           Vinnumat
         </h1>
         <h3 class="medium">
-         Vinnumat kennara skiptist í A-, B- og C-hluta. Vinnumat A-hluta ræðst af vinnumati hópa sem kennari kennir. Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Útreikningar á vinnumati hvers hóps miðast við 15 vikur. Vinnumat B-hluta er 360 tímar á ári fyrir kennara í fullu starfi og tekur C-hlutinn til allra annarra starfa sem kennari tekur að sér. Hægt er að nota síðuna til þess að reikna vinnumat stakra áfanga eða fleiri. Samtölur fyrir kennara miðast við kennara í fullu starfi. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
+         Vinnumat kennara skiptist í A-, B- og C-hluta. Vinnumat A-hluta ræðst af vinnumati hópa sem kennari kennir. Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Útreikningar á vinnumati hvers hóps miðast við 15 vikur. Vinnumat B-hluta er 360 tímar á ári fyrir kennara í fullu starfi eða 180 tíma á misseri. C-hlutinn tekur svo til til allra annarra starfa sem kennari tekur að sér. Hægt er að nota síðuna til þess að reikna vinnumat stakra áfanga eða fleiri. Flestar samtölur fyrir kennara miðast við kennara í fullu starfi. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
       </div>
       <div class="row">
         <form>
@@ -778,23 +780,38 @@
        </h3>
       </div><!--row-->
       <div class="row">
-          <div>
+          <div id="cv1">
             <canvas id="canvas1"></canvas>
           </div>
       </div><!--row -->
     </div>
-     <div class="container hidden" id="samanburdur3">
+    <div class="container hidden" id="samanburdur3">
       <div class="row">
         <h1 class="large">
-          Skipting vinnustunda
+          Skipting vinnustunda miðað við fullt starf
         </h1>
         <h3 class="medium">
-          Súlurnar sýna skiptingu vinnustunda á misseri fyrir fyrir kennara í fullu starfi. Þær rauðleitu eru skipting A-hluta, þær bláleitu skipting B-hluta og súlan lengst til hægri C-hluti.
+          Súlurnar sýna skiptingu vinnustunda á misseri fyrir fyrir kennara í fullu starfi. Þær rauðleitu tilheyra A-hluta, þær bláleitu B-hluta og súlan lengst til hægri C-hluta. B-hlutinn er fastur 180 stundir á misseri en A- og C-hlutar háðir innslætti.
        </h3>
       </div><!--row-->
       <div class="row">
           <div>
             <canvas id="canvas3"></canvas>
+          </div>
+      </div><!--row -->
+    </div>
+    <div class="container hidden" id="samanburdur4">
+      <div class="row">
+        <h1 class="large">
+          Skipting vinnustunda miðað við fullt starf (kökurit)
+        </h1>
+        <h3 class="medium">
+          Á kökuritinu er þættir úr A-, B- og C-hluta. Rauðu sneiðarnar eru þættir úr sem tilheyra A-hluta en bláleitar sneiðar tilheyra C-hluta.
+       </h3>
+      </div><!--row-->
+      <div class="row">
+          <div>
+            <canvas id="canvas4"></canvas>
           </div>
       </div><!--row -->
     </div>
@@ -892,20 +909,19 @@
         </div>
       </div><!--row-->
     </div><!--container-->
-      <div class="container hidden" id="mitt">
-        <div class="row">
+    <div class="container hidden" id="mitt">
+      <div class="row">
           <h1 class="large">
           	Breyta og skoða sýnidæmi
           </h1>
           <h3 class="medium">
           	Hér má breyta sýnidæmum í safni
           </h3>
-        </div>
-        <div class="panel panel-default hidden">
-          
-         <form>
+      </div>
+      <div class="panel panel-default hidden">       
+        <form>
           <div class="form-group">
-          <label class="medium" for="valid">Sýnidæmi</label>
+            <label class="medium" for="valid">Sýnidæmi</label>
             <select class="form-control" id="valid">
               <option>Almenn braut</option>
               <option>Fagbóklegt</option>
@@ -977,11 +993,11 @@
           <div class="form-group">
             <label for="mitt_kostn_per_nem_ye">Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</label>
             <input class="form-control" id="mitt_kostn_per_nem_ye">
-          </div>
-          
-         </form>
+          </div>  
+        </form>
         </div>
       </div>
+    </div>
   <script src="js/Kennari.js" async></script>
   <script src="js/Afangi.js" async></script>
   <script src="js/addRow.js" async></script>

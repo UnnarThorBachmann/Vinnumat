@@ -345,12 +345,22 @@ var view = {
           else if (fyrirsogn.id  && fyrirsogn.id == 'yta3') {
             $('.container').addClass('hidden'); 
               $('#samanburdur3').removeClass('hidden');
+              
+              
+          }
+          else if (fyrirsogn.id  && fyrirsogn.id == 'yta4') {
+            $('.container').addClass('hidden'); 
+              $('#samanburdur4').removeClass('hidden');
+                 
           }
       		else {
       			$('.container').removeClass('hidden'); 
             	$('#mitt').addClass('hidden');
+              //$('#samanburdur').addClass('hidden');
             	$('#samanburdur2').addClass('hidden');
-              $('#samanburdur3').addClass('hidden')
+              $('#samanburdur3').addClass('hidden');
+              $('#samanburdur4').addClass('hidden');
+
       		}
       	}
       	
@@ -539,6 +549,7 @@ var view = {
      $('.hidden').removeClass('hidden');
      $('#mitt').addClass('hidden');
      $('#samanburdur2').addClass('hidden');
+     $('#samanburdur3').addClass('hidden');
      $('.visiblenon').removeClass('visiblenon');
      _.templateSettings.variable = "item";
      var vinnumat = octopus.vinnumat();
@@ -675,49 +686,68 @@ var view = {
 
       }
       window.adrir.update();
+      var values = kennari.oll_gildi();
+      var a_nofn = kennari.a_nofn();
+      var b_nofn = kennari.b_nofn();
+      var oll_nofn = kennari.oll_nofn();
+      
+      var href = document.getElementById('yta3');
+      href.addEventListener('click',function(e) {
+        e.preventDefault();
+        
+      
+        var barChartData3 = {
+          labels : oll_nofn,
+          datasets : [{
+            fillColor : "#d3ac2b",
+            strokeColor : "rgba(0,0,0,0)",
+            highlightFill: "rgba(0,0,0,0)",
+            highlightStroke: "rgba(0,0,0,1)",
+            data : values}]
+        };
 
-      var values = [];
-      var a_names = Object.getOwnPropertyNames(kennari.a);
-      for (var key in kennari.a){
-        values.push(kennari.a[key]);
-      }
-      var b_names = Object.getOwnPropertyNames(kennari.b);
-      for (var key in kennari.b){
-        values.push(kennari.b[key]);
-      }
-      var names = a_names.concat(b_names);
-      names.push("C-hluti");
-      values.push(kennari.c);
-      var barChartData3 = {
-        labels : names,
-        datasets : [{
-          fillColor : "#d3ac2b",
-          strokeColor : "rgba(0,0,0,0)",
-          highlightFill: "rgba(0,0,0,0)",
-          highlightStroke: "rgba(0,0,0,1)",
-          data : values}]
-      };
-
-      if (typeof window.vinnusulur != "undefined") {
-       window.vinnusulur.destroy();
-     }
-     var ctx3 = document.getElementById("canvas3").getContext("2d");
-     window.vinnusulur = new Chart(ctx3).Bar(barChartData3, opt);
-     for (var i = 0; i < window.vinnusulur.datasets[0].bars.length; i++) {
-         var vinnuthattur = window.vinnusulur.datasets[0].bars[i].label;
-         if (a_names.indexOf(vinnuthattur) >= 0) {
-           window.vinnusulur.datasets[0].bars[i].fillColor = "#f2583e";
-         }
-         else if (b_names.indexOf(vinnuthattur) >= 0){
-            window.vinnusulur.datasets[0].bars[i].fillColor = "#77bed2";
-         }
-         else {
-          window.vinnusulur.datasets[0].bars[i].fillColor = "#747e80";
-         }
-
+        if (typeof window.vinnusulur != "undefined") {
+          window.vinnusulur.destroy();
+        }
+        var ctx3 = document.getElementById("canvas3").getContext("2d");
+        window.vinnusulur = new Chart(ctx3).Bar(barChartData3, opt);
+        for (var i = 0; i < window.vinnusulur.datasets[0].bars.length; i++) {
+           var vinnuthattur = window.vinnusulur.datasets[0].bars[i].label;
+          if (a_nofn.indexOf(vinnuthattur) >= 0) {
+            window.vinnusulur.datasets[0].bars[i].fillColor = "#f2583e";
+          }
+          else if (b_nofn.indexOf(vinnuthattur) >= 0){
+              window.vinnusulur.datasets[0].bars[i].fillColor = "#77bed2";
+          }
+          else {
+            window.vinnusulur.datasets[0].bars[i].fillColor = "#747e80";
+          }
       }
       
       window.vinnusulur.update();
+     });
+     //var cols = ["Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray" ];
+     var cols = ["#FF0000", "#FF6347","#FF7F50","#CD5C5C","#F08080","#E9967A","#4682B4","#6495ED","#00BFFF","#1E90FF","#ADD8E6","#87CEEB","#87CEFA","#191970","#000080","#747e80"];
+     
+     var href = document.getElementById('yta4');
+      href.addEventListener('click',function(e) {
+        e.preventDefault();
+        var data = [];
+        for (var i=0; i <cols.length; i++) {
+          var point = {};
+          point['value'] = values[i];
+          point['label'] = oll_nofn[i];
+          point['color'] = cols[i];
+          data.push(point);
+        }
+
+        if (typeof window.vinnuchart != "undefined") {
+          window.vinnuchart.destroy();
+        }
+        var ctx4 = document.getElementById("canvas4").getContext("2d");
+        window.vinnuchart = new Chart(ctx4).Pie(data,opt);
+     });  
+      
     document.getElementById('yta').click();
    
   }

@@ -5,12 +5,13 @@ var Kennari = function (nafn,afangar,hlutfoll,c) {
   this.b = {}
   this.b['Kaffitímar'] = 52.5;
   this.b['Símenntun/Starfsþróun'] = 40;
-  this.b['Frágangur og undirbúningur'] = 16;
+  this.b['Frágangur og undirbúningur anna'] = 16;
   this.b['Kennarafundir'] = 13.5;
   this.b['Yfirseta í prófum annarra'] = 10;
   this.b['Faglegt samstarf'] = 18;
   this.b['Viðtalstímar'] = 12;
   this.b['Almenn upplýsingagjöf'] = 9;
+  this.b['Almenn umsjónarstörf'] = 9
   this.c = c
   this.a = {}
   this.a['Kennsluáætlun'] = 0;
@@ -35,6 +36,42 @@ var Kennari = function (nafn,afangar,hlutfoll,c) {
   this.ryrnun = [];
   this.fjoldi = this.originalAfangar.length;
   this.ryra();
+};
+Kennari.prototype.vinnu_tolfraedi = function () {
+  v = {};
+
+  
+  for (var key in this.a){
+        v[key] = parseFloat(this.a[key]).toFixed(1);
+  }
+  //var b_names = Object.getOwnPropertyNames(this.b);
+  for (var key in this.b) {
+      v[key] = parseFloat(this.b[key]).toFixed(1);
+  }
+  v['c-hluti'] = parseFloat(this.c).toFixed(1);
+  return v; 
+};
+Kennari.prototype.a_nofn = function () {
+  return Object.getOwnPropertyNames(this.a);
+};
+Kennari.prototype.b_nofn = function () {
+  return Object.getOwnPropertyNames(this.b);
+};
+Kennari.prototype.oll_nofn = function () {
+  var a_names = this.a_nofn();
+  var b_names = this.b_nofn();
+  var oll = a_names.concat(b_names);
+  oll.push("C-hluti");
+  return oll;
+};
+Kennari.prototype.oll_gildi = function () {
+  var nofn = this.oll_nofn();
+  var tolfr = this.vinnu_tolfraedi();
+  var oll = [];
+  for (key in tolfr) {
+    oll.push(parseFloat(tolfr[key]));
+  }
+  return oll;
 };
 Kennari.prototype.totalEiningar = function () {
   var et = 0;
