@@ -204,9 +204,7 @@ var view = {
         var namsaetlun = document.getElementById('mitt_namsaetlun').value;
         var undirbuningur = document.getElementById('mitt_undirbuningur').value;
         var profagerd_kennslutima = document.getElementById('mitt_profagerd_kennslutima').value;
-        var profagerd = document.getElementById('mitt_profagerd').value;
         var onnur_vinna = document.getElementById('mitt_onnur_vinna').value;
-        var tryggingarakvaedi = document.getElementById('mitt_tryggingarakvaedi').value;
         var vinna_per_nemanda = document.getElementById('mitt_vinna_per_nemanda').value;
         var lagmark = document.getElementById('mitt_lagmark').value;
         var hamark_1 = document.getElementById('mitt_hamark_1').value;
@@ -217,9 +215,7 @@ var view = {
         if (isNaN(namsaetlun) || namsaetlun ==='' 
         		|| isNaN(undirbuningur) || undirbuningur ==='' 
         		|| isNaN(profagerd_kennslutima) || profagerd_kennslutima===''
-        		|| isNaN(profagerd) ||profagerd ===''
         		|| isNaN(onnur_vinna) || onnur_vinna ===''
-        		|| isNaN(tryggingarakvaedi) || tryggingarakvaedi ===''
         		|| isNaN(vinna_per_nemanda) || vinna_per_nemanda ==='' 
         		|| isNaN(lagmark) || lagmark ===''
         		|| isNaN(hamark_1) || hamark_1 ===''
@@ -267,8 +263,7 @@ var view = {
         	synidaemi[validSynidaemi].kostn_per_nem_ye = parseFloat(kostn_per_nem_ye);
         	synidaemi[validSynidaemi].kostn_per_nem_yn = parseFloat(kostn_per_nem_yn);
 
-        	synidaemi[validSynidaemi].lokaprof = parseFloat(profagerd);
-        	synidaemi[validSynidaemi].onnur_vinna = parseFloat(onnur_vinna) + parseFloat(tryggingarakvaedi);
+        	synidaemi[validSynidaemi].onnur_vinna = parseFloat(onnur_vinna);
         	synidaemi[validSynidaemi].timar_namsAetlun = parseFloat(namsaetlun);
         	synidaemi[validSynidaemi].verkefnisgerd = parseFloat(profagerd_kennslutima);
         	synidaemi[validSynidaemi].undirb_kennslu = parseFloat(undirbuningur);
@@ -300,10 +295,8 @@ var view = {
         document.getElementById('mitt_namsaetlun').value = synidaemi[validSynidaemi].timar_namsAetlun;
         document.getElementById('mitt_undirbuningur').value = synidaemi[validSynidaemi].undirb_kennslu;
         document.getElementById('mitt_profagerd_kennslutima').value = synidaemi[validSynidaemi].verkefnisgerd;
-        document.getElementById('mitt_profagerd').value = synidaemi[validSynidaemi].lokaprof;
         document.getElementById('mitt_onnur_vinna').value = synidaemi[validSynidaemi].onnur_vinna;
-        document.getElementById('mitt_tryggingarakvaedi').value = 0;
-        document.getElementById('mitt_vinna_per_nemanda').value = (synidaemi[validSynidaemi].vinna_per_nemanda + synidaemi[validSynidaemi].onnur_vinna_per_nemanda + synidaemi[validSynidaemi].fragangur_namsmats).toString();
+        document.getElementById('mitt_vinna_per_nemanda').value = (synidaemi[validSynidaemi].vinna_per_nemanda).toString();
         document.getElementById('mitt_lagmark').value = synidaemi[validSynidaemi].lagmark;
         document.getElementById('mitt_hamark_1').value = synidaemi[validSynidaemi].hamark_n;
         document.getElementById('mitt_kostn_per_nem_yn').value = synidaemi[validSynidaemi].kostn_per_nem_yn;
