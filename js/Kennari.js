@@ -73,6 +73,49 @@ Kennari.prototype.oll_gildi = function () {
   }
   return oll;
 };
+Kennari.prototype.comp_vinnuthaettir = function (a,b) {
+        if (a['klukkustundir'] === b['klukkustundir']) {
+          return 0;
+        }
+        else if (a['klukkustundir'] < b['klukkustundir']) {
+          return 1;
+        }
+        else {
+          return -1
+        }
+};
+Kennari.prototype.radadirVinnuthaettir = function () {
+   var aNofn = this.a_nofn();
+   var bNofn = this.b_nofn();
+   var ollNofn = this.oll_nofn();
+   var ollGildi = this.oll_gildi();
+   var vinnuthattastundir = [];
+   for (var i=0; i < ollNofn.length; i++) {
+      if (aNofn.indexOf(ollNofn[i]) >= 0) {
+        vinnuthattastundir.push({
+          'nafn': ollNofn[i],
+          'flokkur': 'a',
+          'klukkustundir': ollGildi[i]
+        });
+      }
+      else if (bNofn.indexOf(ollNofn[i]) >=  0) {
+        vinnuthattastundir.push({
+          'nafn': ollNofn[i],
+          'flokkur': 'b',
+          'klukkustundir': ollGildi[i]
+        });
+      }
+      else {
+        vinnuthattastundir.push({
+          'nafn': ollNofn[i],
+          'flokkur': 'c',
+          'klukkustundir': ollGildi[i]
+        });
+      }
+   }
+   vinnuthattastundir.sort(this.comp_vinnuthaettir);
+   return vinnuthattastundir;
+};
 Kennari.prototype.totalEiningar = function () {
   var et = 0;
   for (var i= 0; i < this.fjoldi; i++) {

@@ -679,16 +679,24 @@ var view = {
 
       }
       window.adrir.update();
-      var values = kennari.oll_gildi();
+      //var values = kennari.oll_gildi();
       var a_nofn = kennari.a_nofn();
       var b_nofn = kennari.b_nofn();
-      var oll_nofn = kennari.oll_nofn();
-      
+      //var oll_nofn = kennari.oll_nofn();
+      var vinnuthaettir = kennari.radadirVinnuthaettir();
+      console.log(kennari.radadirVinnuthaettir());
+      var oll_nofn = [];
+      var oll_gildi = [];
+      for (var i = 0; i < vinnuthaettir.length; i++) {
+      	oll_nofn.push(vinnuthaettir[i]['nafn']);
+      	oll_gildi.push(vinnuthaettir[i]['klukkustundir']);
+      }
+      console.log(oll_gildi);
+
       var href = document.getElementById('yta3');
       href.addEventListener('click',function(e) {
         e.preventDefault();
-        
-      
+           
         var barChartData3 = {
           labels : oll_nofn,
           datasets : [{
@@ -696,7 +704,7 @@ var view = {
             strokeColor : "rgba(0,0,0,0)",
             highlightFill: "rgba(0,0,0,0)",
             highlightStroke: "rgba(0,0,0,1)",
-            data : values}]
+            data : oll_gildi}]
         };
 
         if (typeof window.vinnusulur != "undefined") {
@@ -719,6 +727,7 @@ var view = {
       
       window.vinnusulur.update();
      });
+     /*
      //var cols = ["Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray" ];
      var cols = ["#FF0000", "#FF6347","#FF7F50","#CD5C5C","#F08080","#E9967A","#4682B4","#6495ED","#00BFFF","#1E90FF","#ADD8E6","#87CEEB","#87CEFA","#191970","#000080","#747e80"];
      
@@ -728,7 +737,7 @@ var view = {
         var data = [];
         for (var i=0; i <cols.length; i++) {
           var point = {};
-          point['value'] = values[i];
+          point['value'] = oll_gildi[i];
           point['label'] = oll_nofn[i];
           point['color'] = cols[i];
           data.push(point);
@@ -739,7 +748,7 @@ var view = {
         }
         var ctx4 = document.getElementById("canvas4").getContext("2d");
         window.vinnuchart = new Chart(ctx4).Pie(data,opt);
-     });  
+     });*/  
       
     document.getElementById('yta').click();
    
