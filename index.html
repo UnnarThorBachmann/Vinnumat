@@ -355,8 +355,8 @@
 
        }
        canvas {
-         /*max-height: 20%;
-         max-width: 80%;*/
+         max-height: 20%;
+         /*max-width: 60%;*/
        }
 
        .texta{
@@ -826,7 +826,7 @@
       </div>
       <div class="row" > 
         <form>
-          <div class="form-group col-md-3" id="fsd">
+          <div class="form-group form-group-sm col-md-3" id="fsd">
             <label class="medium" for="fyrra">Sýnidæmi 1</label>
             <select  class="form-control" id="fyrra">
               <option>Almenn braut</option>
@@ -875,15 +875,15 @@
               <option>Verklegt (gamalt)</option>
             </select>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium" for="es1">Einingar </label>
             <input type="text" class="form-control" id="es1" value="3">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium" for="ts1">Kennslustundir á viku </label>
             <input type="text" class="form-control" id="ts1" value="6">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium" for="ms1">Kennslustund (mín) </label>
             <input type="text" class="form-control" id="ms1" value="40">
           </div>
@@ -891,7 +891,7 @@
       </div>  
       <div class="row"> 
         <form> 
-          <div class="form-group col-md-3" id="ssd">
+          <div class="form-group form-group-sm col-md-3" id="ssd">
             <label class="medium" for="seinna">Sýnidæmi 2</label>
             <select class="form-control" id="seinna">
               <option>Almenn braut</option>
@@ -940,15 +940,15 @@
               <option>Verklegt (gamalt)</option>
             </select>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium einingar" for="es2">Einingar </label>
             <input type="text" class="form-control" id="es2" value="3">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium einingar" for="ts2">Kennslustundir á viku </label>
             <input type="text" class="form-control" id="ts2" value="6">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group form-group-sm col-md-3">
             <label class="medium einingar" for="ms2">Kennslustund (mín) </label>
             <input type="text" class="form-control" id="ms2" value="40">
           </div>
@@ -964,17 +964,9 @@
       </div><!--row-->
     </div><!--container-->
     <div class="container hidden" id="mitt">
-      <div class="row">
-          <h1 class="large">
-          	Breyta og skoða sýnidæmi
-          </h1>
-          <h3 class="medium">
-          	Hér má breyta sýnidæmum í safni
-          </h3>
-      </div>
       <div class="panel panel-default hidden">       
         <form>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label class="medium" for="valid">Sýnidæmi</label>
             <select class="form-control" id="valid">
               <option>Almenn braut</option>
@@ -996,52 +988,102 @@
               <option>Verklegt</option>
             </select>
           </div>
-          <div class="btn-group" role="group" id="last">
-            <button type="button" class="btn btn-primary large" id="na">Sækja</button>
-            <button type="submit" class="btn btn-primary large" id="skra">Breyta</button>
+          <!--<div class="btn-group" role="group" id="last">-->
+          <div id="last">
+            <button type="submit" class="btn btn-primary btn-lg" id="na">Sækja</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="skra">Breyta</button>
           </div>
-          <div class="form-group">
+          <!--</div>-->
+          <table class="table table-condensed">
+            <tr>
+              <th>Einingar</th>
+              <th><input class="form-control" type="text" value="3" readonly></th>
+            </tr>
+            <tr>
+              <th>Námsáætlun/skipulag/vinnumat (klst)</th>
+              <th><input class="form-control" id="mitt_namsaetlun"></th>
+            </tr>
+            <tr>
+              <th>Undirbúningur fyrir hverja kennslustund (mín)</th>
+              <th><input class="form-control" id="mitt_undirbuningur"></th>
+            </tr>
+            <tr>
+              <th>Verkefnis og prófagerð á kennslutíma (klst)</th>
+              <th><input class="form-control" id="mitt_profagerd_kennslutima"></th>
+            </tr>
+            <tr>
+              <th>Önnur vinna óháð nemendafjölda (klst)</th>
+              <th><input class="form-control" id="mitt_onnur_vinna"></th>
+            </tr>
+            <tr>
+              <th>Vinna á hvern nemanda (námsmat, frágangur námsmats og önnur vinna) (mín)</th>
+              <th><input class="form-control" id="mitt_vinna_per_nemanda"></th>
+            </tr>
+            <tr>
+              <th>Lágmarks nemendafjöldi</th>
+              <th><input class="form-control" id="mitt_lagmark"></th>
+            </tr>
+            <tr>
+              <th>Hámark 1</th>
+              <th><input class="form-control" id="mitt_hamark_1"></th>
+            </tr>
+            <tr>
+              <th>Vinnumat fyrir hvern nemanda umfram hámarki 1 (klst)</th>
+              <th><input class="form-control" id="mitt_kostn_per_nem_yn"></th>
+            </tr>
+            <tr>
+              <th>Hámark 2</th>
+              <th><input class="form-control" id="mitt_hamark_2"></th>
+            </tr>
+            <tr>
+              <th>Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</th>
+              <th><input class="form-control" id="mitt_kostn_per_nem_ye"></th>
+            </tr>
+          </table>
+          <!--
+          <div class="form-group form-group-sm">
             <label for="mitt_namsaetlun">Námsáætlun/skipulag/vinnumat (klst)</label>
             <input class="form-control" id="mitt_namsaetlun">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_undirbuningur">Undirbúningur fyrir hverja kennslustund (mín)</label>
             <input class="form-control" id="mitt_undirbuningur">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_profagerd_kennslutima">Verkefnis og prófagerð á kennslutíma (klst)</label>
             <input class="form-control" id="mitt_profagerd_kennslutima">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
            <label for="mitt_onnur_vinna">Önnur vinna óháð nemendafjölda (klst)</label>
             <input class="form-control" id="mitt_onnur_vinna">
           </div>
           
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_vinna_per_nemanda">Vinna á hvern nemanda (námsmat, frágangur námsmats og önnur vinna) (mín)</label>
             <input class="form-control" id="mitt_vinna_per_nemanda">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_lagmark">Lágmarks nemendafjöldi</label>
             <input class="form-control" id="mitt_lagmark">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
            <label for="mitt_hamark_1">Hámark 1</label>
            <input class="form-control" id="mitt_hamark_1">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_kostn_per_nem_yn">Vinnumat fyrir hvern nemanda umfram hámarki 1 (klst)</label>
             <input class="form-control" id="mitt_kostn_per_nem_yn">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_hamark_2">Hámark 2</label>
             <input class="form-control" id="mitt_hamark_2">
           </div>
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label for="mitt_kostn_per_nem_ye">Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</label>
             <input class="form-control" id="mitt_kostn_per_nem_ye">
           </div>  
         </form>
+        -->
         </div>
       </div>
     </div>
@@ -1060,7 +1102,7 @@
   <script src="jasmine/lib/jasmine-2.1.2/jasmine.js"></script>
   <script src="jasmine/lib/jasmine-2.1.2/jasmine-html.js"></script>
   <script src="jasmine/lib/jasmine-2.1.2/boot.js"></script>
-  <script src="jasmine/spec/vinnumat_prof.js"></script>
-  -->
+  <script src="jasmine/spec/vinnumat_prof.js"></script>-->
+  
   </body>
 </html>

@@ -200,17 +200,17 @@ var view = {
     var button4 = document.getElementById('skra');
     button4.addEventListener('click',function(e) {
     	e.preventDefault();
-        var validSynidaemi = document.getElementById('valid').value;
-        var namsaetlun = document.getElementById('mitt_namsaetlun').value;
-        var undirbuningur = document.getElementById('mitt_undirbuningur').value;
-        var profagerd_kennslutima = document.getElementById('mitt_profagerd_kennslutima').value;
-        var onnur_vinna = document.getElementById('mitt_onnur_vinna').value;
-        var vinna_per_nemanda = document.getElementById('mitt_vinna_per_nemanda').value;
-        var lagmark = document.getElementById('mitt_lagmark').value;
-        var hamark_1 = document.getElementById('mitt_hamark_1').value;
-        var kostn_per_nem_yn = document.getElementById('mitt_kostn_per_nem_yn').value;
-        var hamark_2 = document.getElementById('mitt_hamark_2').value;
-        var kostn_per_nem_ye = document.getElementById('mitt_kostn_per_nem_ye').value;
+        var validSynidaemi = document.getElementById('valid').value.replace(',','.');
+        var namsaetlun = document.getElementById('mitt_namsaetlun').value.replace(',','.');
+        var undirbuningur = document.getElementById('mitt_undirbuningur').value.replace(',','.');
+        var profagerd_kennslutima = document.getElementById('mitt_profagerd_kennslutima').value.replace(',','.');
+        var onnur_vinna = document.getElementById('mitt_onnur_vinna').value.replace(',','.');
+        var vinna_per_nemanda = document.getElementById('mitt_vinna_per_nemanda').value.replace(',','.');
+        var lagmark = document.getElementById('mitt_lagmark').value.replace(',','.');
+        var hamark_1 = document.getElementById('mitt_hamark_1').value.replace(',','.');
+        var kostn_per_nem_yn = document.getElementById('mitt_kostn_per_nem_yn').value.replace(',','.');
+        var hamark_2 = document.getElementById('mitt_hamark_2').value.replace(',','.');
+        var kostn_per_nem_ye = document.getElementById('mitt_kostn_per_nem_ye').value.replace(',','.');
         	
         if (isNaN(namsaetlun) || namsaetlun ==='' 
         		|| isNaN(undirbuningur) || undirbuningur ==='' 
@@ -292,16 +292,16 @@ var view = {
         e.preventDefault();
         var validSynidaemi = document.getElementById('valid').value;
 
-        document.getElementById('mitt_namsaetlun').value = synidaemi[validSynidaemi].timar_namsAetlun;
-        document.getElementById('mitt_undirbuningur').value = synidaemi[validSynidaemi].undirb_kennslu;
-        document.getElementById('mitt_profagerd_kennslutima').value = synidaemi[validSynidaemi].verkefnisgerd;
-        document.getElementById('mitt_onnur_vinna').value = synidaemi[validSynidaemi].onnur_vinna;
-        document.getElementById('mitt_vinna_per_nemanda').value = (synidaemi[validSynidaemi].vinna_per_nemanda).toString();
-        document.getElementById('mitt_lagmark').value = synidaemi[validSynidaemi].lagmark;
-        document.getElementById('mitt_hamark_1').value = synidaemi[validSynidaemi].hamark_n;
-        document.getElementById('mitt_kostn_per_nem_yn').value = synidaemi[validSynidaemi].kostn_per_nem_yn;
-        document.getElementById('mitt_hamark_2').value = synidaemi[validSynidaemi].hamark_e;
-        document.getElementById('mitt_kostn_per_nem_ye').value = synidaemi[validSynidaemi].kostn_per_nem_ye;
+        document.getElementById('mitt_namsaetlun').value = synidaemi[validSynidaemi].timar_namsAetlun.toString().replace('.',',');
+        document.getElementById('mitt_undirbuningur').value = synidaemi[validSynidaemi].undirb_kennslu.toString().replace('.',',');
+        document.getElementById('mitt_profagerd_kennslutima').value = synidaemi[validSynidaemi].verkefnisgerd.toString().replace('.',',');
+        document.getElementById('mitt_onnur_vinna').value = synidaemi[validSynidaemi].onnur_vinna.toString().replace('.',',');
+        document.getElementById('mitt_vinna_per_nemanda').value = (synidaemi[validSynidaemi].vinna_per_nemanda).toString().replace('.',',');
+        document.getElementById('mitt_lagmark').value = synidaemi[validSynidaemi].lagmark.toString().replace('.',',');
+        document.getElementById('mitt_hamark_1').value = synidaemi[validSynidaemi].hamark_n.toString().replace('.',',');
+        document.getElementById('mitt_kostn_per_nem_yn').value = synidaemi[validSynidaemi].kostn_per_nem_yn.toString().replace('.',',');
+        document.getElementById('mitt_hamark_2').value = synidaemi[validSynidaemi].hamark_e.toString().replace('.',',');
+        document.getElementById('mitt_kostn_per_nem_ye').value = synidaemi[validSynidaemi].kostn_per_nem_ye.toString().replace('.',',');
         if (!document.getElementById('success')) {
 	           
     	    var success = document.createElement('div');
