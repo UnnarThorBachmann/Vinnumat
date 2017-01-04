@@ -14,6 +14,7 @@ var afangar = {
       'Íþróttir',
       'Listgreinar',
       'Raungreinar',
+      'Sjúkraliðanám',
       'Starfsbraut (1/3)',
       'Starfsbraut (4/6)',
       'Starfsbraut (7/12)',
@@ -46,6 +47,7 @@ var model = {
       'Íþróttafræði',
       'Listgreinar',
       'Raungreinar',
+      'Sjúkraliðanám',
       'Stærðfræði',
       'Tungumál',
       'Tölvuáfangar',
@@ -684,14 +686,12 @@ var view = {
       var b_nofn = kennari.b_nofn();
       //var oll_nofn = kennari.oll_nofn();
       var vinnuthaettir = kennari.radadirVinnuthaettir();
-      console.log(kennari.radadirVinnuthaettir());
       var oll_nofn = [];
       var oll_gildi = [];
       for (var i = 0; i < vinnuthaettir.length; i++) {
       	oll_nofn.push(vinnuthaettir[i]['nafn']);
       	oll_gildi.push(vinnuthaettir[i]['klukkustundir']);
       }
-      console.log(oll_gildi);
 
       var href = document.getElementById('yta3');
       href.addEventListener('click',function(e) {

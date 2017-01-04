@@ -1,4 +1,17 @@
 var synidaemi = {
+  'Sjúkraliðanám': {
+    'heiti': 'Sjúkraliðanám',
+    'lagmark': 17,
+    'hamark_n': 28,
+    'hamark_e': 30,
+    'timar_namsAetlun': 6,
+    'undirb_kennslu': 20,
+    'verkefnisgerd': 22,
+    'onnur_vinna': 4,
+    'vinna_per_nemanda': 160,
+    'kostn_per_nem_yn': 3.2,
+    'kostn_per_nem_ye': 5.3
+  },
   'Stærðfræði': {
     'heiti': 'Stærðfræði',
     'lagmark': 17,
