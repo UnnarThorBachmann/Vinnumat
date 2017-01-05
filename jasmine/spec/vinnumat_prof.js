@@ -202,6 +202,94 @@ $(function() {
 
     });
   });
+  describe('Rétt vinnumat (5,10,15, 18 og 20)', function() {
+    it("Fagbóklegt", function() {
+      var fagb_5 = new Afangi(['a', 3, 5,'Fagbóklegt',6,40]);
+      fagb_5.reikna_vinnumat();
+      var fagb_10 = new Afangi(['a', 3, 10,'Fagbóklegt',6,40]);
+      fagb_10.reikna_vinnumat();
+      var fagb_15 = new Afangi(['a', 3, 15,'Fagbóklegt',6,40]);
+      fagb_15.reikna_vinnumat();
+      var fagb_18 = new Afangi(['a', 3, 18,'Fagbóklegt',6,40]);
+      fagb_18.reikna_vinnumat();
+      var fagb_20 = new Afangi(['a', 3, 20,'Fagbóklegt',6,40]);
+      fagb_20.reikna_vinnumat();
+      
+      expect(Math.abs(fagb_5.vinnumat()-161.2)).toBeLessThan(0.5);
+      expect(Math.abs(fagb_10.vinnumat()-161.2)).toBeLessThan(0.5);
+      expect(Math.abs(fagb_15.vinnumat()-174.5)).toBeLessThan(0.5);
+      expect(Math.abs(fagb_18.vinnumat()-182.5)).toBeLessThan(0.5);
+      expect(Math.abs(fagb_20.vinnumat()-193.1)).toBeLessThan(0.5);
+
+    });
+  });
+  describe('Rétt vinnumat (5,17,25,28,30 og 32)', function() {
+    it("Stærðfræði", function() {
+      var stae_5 = new Afangi(['a', 3, 5,'Stærðfræði',6,40]);
+      stae_5.reikna_vinnumat();
+      var stae_17 = new Afangi(['a', 3, 17,'Stærðfræði',6,40]);
+      stae_17.reikna_vinnumat();
+      var stae_25 = new Afangi(['a', 3, 25,'Stærðfræði',6,40]);
+      stae_25.reikna_vinnumat();
+      var stae_28 = new Afangi(['a', 3, 28,'Stærðfræði',6,40]);
+      stae_28.reikna_vinnumat();
+      var stae_30 = new Afangi(['a', 3, 30,'Stærðfræði',6,40]);
+      stae_30.reikna_vinnumat();
+      var stae_32 = new Afangi(['a', 3, 32,'Stærðfræði',6,40]);
+      stae_32.reikna_vinnumat();
+     
+      expect(Math.abs(stae_5.vinnumat()-166.3)).toBeLessThan(0.5);
+      expect(Math.abs(stae_17.vinnumat()-166.3)).toBeLessThan(0.5);
+      expect(Math.abs(stae_25.vinnumat()-187.7)).toBeLessThan(0.5);
+      expect(Math.abs(stae_28.vinnumat()-195.7)).toBeLessThan(0.5);
+      expect(Math.abs(stae_30.vinnumat()-202.1)).toBeLessThan(0.5);
+      expect(Math.abs(stae_32.vinnumat()-212.7)).toBeLessThan(0.5);
+
+    });
+  });
+  describe('Rétt vinnumat (5,17,25,28,30 og 32)', function() {
+    it("Raungreinar", function() {
+      var raun_5 = new Afangi(['a', 3, 5,'Raungreinar',6,40]);
+      raun_5.reikna_vinnumat();
+      var raun_15 = new Afangi(['a', 3, 15,'Raungreinar',6,40]);
+      raun_15.reikna_vinnumat();
+      var raun_22 = new Afangi(['a', 3, 22,'Raungreinar',6,40]);
+      raun_22.reikna_vinnumat();
+      var raun_26 = new Afangi(['a', 3, 26,'Raungreinar',6,40]);
+      raun_26.reikna_vinnumat();
+      var raun_28 = new Afangi(['a', 3, 28,'Raungreinar',6,40]);
+      raun_28.reikna_vinnumat();
+      
+     
+      expect(Math.abs(raun_5.vinnumat()-165.5)).toBeLessThan(0.5);
+      expect(Math.abs(raun_15.vinnumat()-165.5)).toBeLessThan(0.5);
+      expect(Math.abs(raun_22.vinnumat()-184.2)).toBeLessThan(0.5);
+      expect(Math.abs(raun_26.vinnumat()-194.8)).toBeLessThan(0.5);
+      expect(Math.abs(raun_28.vinnumat()-205.4)).toBeLessThan(0.5);
+
+    });
+  });
+  describe('Rétt vinnumat (5,17,25,28,30 og 32)', function() {
+    it("Tölvuáfangar", function() {
+      var tolv_5 = new Afangi(['a', 3, 5,'Tölvuáfangar',6,40]);
+      tolv_5.reikna_vinnumat();
+      var tolv_12 = new Afangi(['a', 3, 12,'Tölvuáfangar',6,40]);
+      tolv_12.reikna_vinnumat();
+      var tolv_18 = new Afangi(['a', 3, 18,'Tölvuáfangar',6,40]);
+      tolv_18.reikna_vinnumat();
+      var tolv_22 = new Afangi(['a', 3, 22,'Tölvuáfangar',6,40]);
+      tolv_22.reikna_vinnumat();
+      var tolv_24 = new Afangi(['a', 3, 24,'Tölvuáfangar',6,40]);
+      tolv_24.reikna_vinnumat();
+      
+     
+      expect(Math.abs(tolv_5.vinnumat()-162.0)).toBeLessThan(0.5);
+      expect(Math.abs(tolv_12.vinnumat()-162.0)).toBeLessThan(0.5);
+      expect(Math.abs(tolv_18.vinnumat()-178.0)).toBeLessThan(0.5);
+      expect(Math.abs(tolv_22.vinnumat()-188.7)).toBeLessThan(0.5);
+      expect(Math.abs(tolv_24.vinnumat()-199.3)).toBeLessThan(0.5);
+    });
+  });
   /*
    describe('Rétt vinnumat íslenskukennara', function() {
     it("Ársæll", function() {
