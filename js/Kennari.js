@@ -157,6 +157,7 @@ Kennari.prototype.vinnuskylda = function(klstChluti,vinnuskyldaTexti) {
    else {
     vinnuskylda = 551;
    }
+
   if (vinnuskylda > 667) {
     return parseFloat(vinnuskylda);
   }
@@ -164,9 +165,6 @@ Kennari.prototype.vinnuskylda = function(klstChluti,vinnuskyldaTexti) {
     var h = parseFloat(klstChluti)/parseFloat(696);
     if (h >= 1) {
         return parseFloat(696);
-    }
-    else if (vinnuskylda === 667) {
-        return h*parseFloat(696) + (1-h)*parseFloat(667); 
     }
     else {
        return h*parseFloat(696) + (1-h)*parseFloat(vinnuskylda);  
@@ -233,13 +231,13 @@ Kennari.prototype.ryra = function() {
           this.originalAfangar[k].skerda(0.04);
         }
         else if ((j-i) == 3 && this.originalAfangar[k].heiti == this.afangar[i].heiti) {
-          this.ryrnun[k] = 0.16/3*parseFloat(shadow.vinnumat());
-          this.originalAfangar[k].skerda(0.16/3);
+          this.ryrnun[k] = 0.16/parseFloat(3)*parseFloat(shadow.vinnumat());
+          this.originalAfangar[k].skerda(0.16/parseFloat(3));
 
         }
         else if ((j-i) > 3 && this.originalAfangar[k].heiti == this.afangar[i].heiti){
           this.ryrnun[k] = 0.08*(j-i-2)/(j-i)*parseFloat(shadow.vinnumat());
-          this.originalAfangar[k].skerda(0.08*(j-i-2)/(j-i));
+          this.originalAfangar[k].skerda(0.08*parseFloat(j-i-2)/parseFloat(j-i));
         }
       }// end of for
       i = j;

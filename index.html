@@ -460,7 +460,7 @@
       .thumbnail .caption {
         padding: 3px;
       }
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: 1100px) {
         .thumbnail {
         margin-right: 10px;
         margin-bottom: 5px;
@@ -468,13 +468,33 @@
         padding: 1%;
        }
       }
-      @media screen and (max-width: 800px) {
-        
+      @media screen and (max-width: 1000px) {
+        .btn-group-justified>.btn, .btn-group-justified>.btn-group {
+          float: none;
+          display: block;
+          width: 100%;
+        }
        .thumbnail {
         margin-right: 10px;
         margin-bottom: 5px;
         width: 90%;
         padding: 1%;
+       }
+       .btn-group {
+        display: block;
+        position: static;
+        width: 100%;
+       }
+       .delgroup {
+        width: 100%;
+       }
+       .addgroup {
+        margin: 1%;
+        border: 1%;
+        width: 100%;
+       }
+       .pressbutton {
+        width: 100%;
        }
        /*
        .container-fluid {
@@ -483,6 +503,9 @@
 
        .feluleikur {
           display: none;
+        }
+        th, td {
+          display: block;
         }
         .glyphicon-chevron-down{
           display: inline-block;
@@ -505,7 +528,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close pressbutton" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title large">Laun fyrir skatta</h4>
         </div>
         <div class="modal-body medium">
@@ -531,7 +554,7 @@
         </div>
         <div class="modal-body medium">
           <ul class="list-group">
-          <li class="list-group-item"> Í C-hluta vinnumats er hægt að skrá kennslutengda vinnu. Þessi vinna getur hækkað vinnuskyldu kennara í efstu tveimur aldursflokkunum.
+          <li class="list-group-item"> Í C-hluta vinnumats er hægt að skrá kennslutengda vinnu. Þessi vinna getur hækkað vinnuskyldu kennara í efstu tveimur aldursflokkunum.<!-- enda er aldursafsláttur eingöngu veittur af A-hluta vinnumats. Allir kennarar yfir 38 ára aldri hafa vinnuskyldu upp á 696 tíma áður en tekið er tillit til kennsluafsláttar. Kennari sem er kominn yfir 60 ára aldur hefur vinnuskyldu upp á 551 tíma ef hann vinnu eingöngu við kennslu. Ef hann tekur hins vegar að sér 50% starf sem ekki er kennsla þá -->
           </li>
           </ul>
         </div>
@@ -561,17 +584,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Þættir sem hafa áhrifa á vinnumat (sjá 7. grein kjarasamnings)</h4>
+          <h4 class="modal-title">Þættir sem hafa áhrifa á vinnumat í A-hluta</h4>
         </div>
         <div class="modal-body">
           <ul class="list-group">
-          <li class="list-group-item"> <h4 class="medium">Gerð kennslu</h4> Áfangar eru flokkaðir í sýnidæmi. Sýnidæmin ákvarða hvernig vinnumat er reiknað. Þau eru sett fram í reikniverkinu.
+          <li class="list-group-item"> <h4 class="medium">Gerð kennslu</h4> Áfangar eru flokkaðir í sýnidæmi. Sýnidæmin ákvarða hvernig vinnumat er reiknað. Þau eru sett fram í kjarasamningi.
           </li>
           <li class="list-group-item"> <h4 class="medium">Nemendafjöldi</h4> Hvert sýnidæmi inniheldur lágmarksviðmiðunarfjölda og eitt til tvö hámarksviðmið. Í flestum bóknámsáföngum er lágmarksviðmiðunarfjöldi 17. Það þýðir að áfangann má ekki meta með færri nemendum. Hámarksviðmiðin eru 28 og 30. 20% álag reiknast á 29. og 30. nemandann og 100% álag á nemendur umfram 30.
           </li>
-          <li class="list-group-item"> <h4 class="medium">Einingafjöldi (ekki feiningafjöldi)</h4> Þrjár einingar svara alla jafna til sex 40 mínútna kennslustunda á viku.  Fjórar 40 mínútna kennslustundir í hægferðum svara til þriggja eininga. Fimm feiningar svara oftast nær til þriggja eininga.
+          <li class="list-group-item"> <h4 class="medium">Einingafjöldi (ekki feiningafjöldi)</h4>. Einingafjöldi mælir umfang áfanga. Þrjár einingar svara alla jafna til sex 40 mínútna kennslustunda á viku.  Fjórar 40 mínútna kennslustundir í hægferðum svara til þriggja eininga. Fimm feiningar svara oftast nær til þriggja eininga.
           </li>
-          <li class="list-group-item"> <h4 class="medium">Skerðingar</h4> Ef kennari tekur að sér að kenna tveimur hópum eða fleiri í sama áfanga þá skerðist vinnumat þeirra. Skólaárið 2016-2017 verður skerðingin 5% á hvorn hóp ef um tvo er að ræða, 6,33% af hverjum ef þeir eru þrír og 7,5% ef um fleiri er að ræða. Skerðingin er reiknuð út frá meðaltalsfjölda í áföngunum. Ef um tvo hópa er að ræða með 17 og 31 nemanda er skerðingin 10% af vinnumati 24 manna hóps. Dregst helmingurinn (5%) af vinnumati beggja áfanga.
+          <li class="list-group-item"> <h4 class="medium">Skerðingar</h4> Ef kennari tekur að sér að kenna tveimur hópum eða fleiri í sama áfanga þá skerðist vinnumat þeirra. Frá og með vormisseri 2017 skerðast áfangar með eftirfarandi hætti. Ef kenndir eru tveir eins hópar í sama áfanga þá skerðist seinni hópurinn um 8%. Þegar um þrjá hópa er að ræða þá skerðast annar og þriðji um 8%. Engin skerðing kemur á fjórða hóp en 8% skerðing á alla umfram fjóra. Skerðingarnar miðast við meðaltalsfjölda í hópum.
+
+          Dæmi: Þriggja eininga stærðfræðihópur með 24 nemendum gefur óskertur 185 tíma. Tveir slíkir hópar gefa hvor um sig 185 &times; 0,96 = 177,6 tíma. Þrír slíkir gefa hver um sig 185 &times; (1-0,16/3) = 175,13 tíma, fjórir slíkir 177,6 tíma og loks fimm hópar 158 &times; (1-3&times;0,16/5) = 176,12 tíma.
           </li>
           </ul>
         </div>
@@ -612,7 +637,7 @@
           Vinnumat
         </h1>
         <h3 class="medium">
-         Vinnumat kennara skiptist í A-, B- og C-hluta. Vinnumat A-hluta ræðst af vinnumati hópa sem kennari kennir. Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Útreikningar á vinnumati hvers hóps miðast við 15 vikur. Vinnumat B-hluta er 360 tímar á ári fyrir kennara í fullu starfi eða 180 tíma á misseri. C-hlutinn tekur svo til til allra annarra starfa sem kennari tekur að sér. Hægt er að nota síðuna til þess að reikna vinnumat stakra áfanga eða fleiri. Flestar samtölur fyrir kennara miðast við kennara í fullu starfi. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
+         Vinnumat kennara skiptist í A-, B- og C-hluta. Vinnumat A-hluta ræðst af vinnumati hópa sem kennari kennir. Vinnumat hópa ræðst af <strong>einingafjölda</strong>, <strong>sýnidæmi</strong>, <strong>kennslustundum (á viku)</strong>, <strong>lengd kennslustundar</strong>, <strong>hópastærð</strong> og <strong>skerðingum</strong> vegna endurtekninga. Hér er einnig boðið þann möguleika að skerða vinnumat hlutfallslega (%). Útreikningar á vinnumati hvers hóps miðast við 15 vikur. Vinnumat B-hluta er 360 tímar á ári fyrir kennara í fullu starfi eða 180 tíma á misseri. C-hlutinn tekur svo til til allra annarra starfa sem kennari sinnir. Hægt er að nota síðuna til þess að reikna vinnumat stakra áfanga eða fleiri. Flestar samtölur fyrir kennara miðast við kennara í fullu starfi. <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#vinnumatGluggi"></span></h3>
       </div>
       <div class="row">
         <form>
@@ -708,7 +733,7 @@
           <input type="text" class="form-control" id="t-1" value="6">
         </div>
         <div class="form-group col-md-2">
-          <label class="medium" for="m-1">Kennslustund (mín)</label>
+          <label class="medium" for="m-1">Kest (mín)</label>
           <input type="text" class="form-control" id="m-1" value="40">
         </div>
         <div class="form-group col-md-1" data-toggle="tooltip" data-placement="bottom">
@@ -721,22 +746,22 @@
           <input type="text" class="form-control f-1s einingarinput4" id="f-1-1" value="15">
           </div>
         </div>
-        <div class="btn-group col-md-1">
-        <button type="button" class="btn btn-primary delgroup">-</button>
-        <button type="button" class="btn btn-primary addgroup">+</button>
+        <div class="btn-group col-md-1 col-xs-12">
+        <button type="button" class="btn btn-primary delgroup pressbutton">-</button>
+        <button type="button" class="btn btn-primary addgroup pressbutton">+</button>
       </div>
         </form>
       </div><!-- row-->
       <div class="row" id="aftastur">
           <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary btn-block large" id="calculate">Reikna</button>
+              <button type="button" class="btn btn-primary btn-block large pressbutton" id="calculate">Reikna</button>
             </div>
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary btn-block large" id="add">Bæta við áfanga</button>
+              <button type="button" class="btn btn-primary btn-block large pressbutton" id="add">Bæta við áfanga</button>
             </div>
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary btn-block large" id="delete">Eyða áfanga</button>
+              <button type="button" class="btn btn-primary btn-block large pressbutton" id="delete">Eyða áfanga</button>
             </div>
           </div>
       </div>   
@@ -791,7 +816,7 @@
           Skipting vinnustunda miðað við fullt starf
         </h1>
         <h3 class="medium">
-          Súlurnar sýna skiptingu vinnustunda á misseri fyrir fyrir kennara í fullu starfi. Þær rauðleitu tilheyra A-hluta, þær bláleitu B-hluta og súlan lengst til hægri C-hluta. B-hlutinn er fastur 180 stundir á misseri en A- og C-hlutar háðir innslætti. 
+          Súlurnar sýna skiptingu vinnustunda á misseri fyrir fyrir kennara í fullu starfi. Þær rauðu tilheyra A-hluta, þær bláu B-hluta og gráleita súlan C-hluta. B-hlutinn er fastur 180 stundir á misseri en A- og C-hlutar háðir innslætti. 
        </h3>
       </div><!--row-->
       <div class="row">
@@ -958,7 +983,7 @@
         </form>
       </div>
       <div class="row">
-          <button type="submit" class="btn btn-primary large takkisla" id="berasaman">Bera saman</button>
+          <button type="submit" class="btn btn-primary large takkisla pressbutton" id="berasaman">Bera saman</button>
       </div>
       <div class="row">
         <div>
@@ -1101,12 +1126,12 @@
   <script src="js/vinnumatBuilder.js" async></script>
   <script src="js/underscore-min.js" async></script>
 
-  
+  <!--
   <link rel="stylesheet" href="jasmine/lib/jasmine-2.1.2/jasmine.css">
   <script src="jasmine/lib/jasmine-2.1.2/jasmine.js"></script>
   <script src="jasmine/lib/jasmine-2.1.2/jasmine-html.js"></script>
   <script src="jasmine/lib/jasmine-2.1.2/boot.js"></script>
-  <script src="jasmine/spec/vinnumat_prof.js"></script>
+  <script src="jasmine/spec/vinnumat_prof.js"></script>-->
   
   </body>
 </html>

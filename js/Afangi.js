@@ -61,12 +61,12 @@ Afangi.prototype.reikna_vinnumat = function() {
 };
 Afangi.prototype.skerda = function (p) {
   this.vm = this.vm*(1-p);
-  this.thaettir['Kennsluáætlun'] = this.thaettir['Kennsluáætlun']*(1-p);
-  this.thaettir['Verkefnis og prófagerð'] =  this.thaettir['Verkefnis og prófagerð']*(1-p);
-  this.thaettir['Önnur vinna óháð nemendafjölda'] =   this.thaettir['Önnur vinna óháð nemendafjölda']*(1-p);
-  this.thaettir['Staðin kennsla'] = this.thaettir['Staðin kennsla']*(1-p);
-  this.thaettir['Undirbúningur kennslu'] = this.thaettir['Undirbúningur kennslu']*(1-p);
-  this.thaettir['Vinna vegna nemenda'] = this.thaettir['Vinna vegna nemenda']*(1-p);
+  this.thaettir['Kennsluáætlun'] = parseFloat(this.thaettir['Kennsluáætlun'])*parseFloat(1-p);
+  this.thaettir['Verkefnis og prófagerð'] =  parseFloat(this.thaettir['Verkefnis og prófagerð'])*parseFloat(1-p);
+  this.thaettir['Önnur vinna óháð nemendafjölda'] =   parseFloat(this.thaettir['Önnur vinna óháð nemendafjölda'])*parseFloat(1-p);
+  this.thaettir['Staðin kennsla'] = parseFloat(this.thaettir['Staðin kennsla'])*parseFloat(1-p);
+  this.thaettir['Undirbúningur kennslu'] = parseFloat(this.thaettir['Undirbúningur kennslu'])*parseFloat(1-p);
+  this.thaettir['Vinna vegna nemenda'] = parseFloat(this.thaettir['Vinna vegna nemenda'])*parseFloat(1-p);
 };
 Afangi.prototype.setVinnumat = function (vinnumat) {
   this.vm = vinnumat;
