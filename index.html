@@ -41,6 +41,7 @@
         {
           color: #333d51;
         }
+        
         .small {
           font-size:12px;
         }
@@ -486,12 +487,10 @@
         width: 100%;
        }
        .delgroup {
-        width: 100%;
+        /*width: 100%;*/
        }
        .addgroup {
-        margin: 1%;
-        border: 1%;
-        width: 100%;
+        /*width: 100%;*/
        }
        .pressbutton {
         width: 100%;
@@ -728,28 +727,26 @@
             <option>Verklegt</option>
           </select>
         </div>
-        <div class="form-group col-md-1">
-          <label class="medium" for="t-1">kest/vika</label>
+        <div class="form-group col-md-2">
+          <label class="medium" for="t-1">kstundir/viku</label>
           <input type="text" class="form-control" id="t-1" value="6">
         </div>
         <div class="form-group col-md-2">
-          <label class="medium" for="m-1">Kest (mín)</label>
+          <label class="medium" for="m-1">Lengd kstunda (mín)</label>
           <input type="text" class="form-control" id="m-1" value="40">
         </div>
         <div class="form-group col-md-1" data-toggle="tooltip" data-placement="bottom">
-          <label  class="medium" for="p-1">Hlutf.</label>
+          <label  class="medium" for="p-1">%</label>
           <input type="text" class="form-control" id="p-1" value="100" >
         </div>
         <div class="form-group col-md-2" id="f-1s">
-          <label  class="medium">Hópastærð(ir)</label>
+          <label  class="medium">
+            <span>Hópastærð(ir) </span><button type="button" class="btn btn-primary btn-xs delgroup">-</button><button type="button" class="btn btn-primary btn-xs addgroup">+</button>
+          </label>
           <div class="buffer">
           <input type="text" class="form-control f-1s einingarinput4" id="f-1-1" value="15">
           </div>
         </div>
-        <div class="btn-group col-md-1 col-xs-12">
-        <button type="button" class="btn btn-primary delgroup pressbutton">-</button>
-        <button type="button" class="btn btn-primary addgroup pressbutton">+</button>
-      </div>
         </form>
       </div><!-- row-->
       <div class="row" id="aftastur">
@@ -1050,23 +1047,23 @@
             </tr>
             <tr>
               <th>Lágmarks nemendafjöldi</th>
-              <th><input class="form-control" id="mitt_lagmark"></th>
+              <th><input class="form-control" id="mitt_lagmark" readonly></th>
+            </tr>
+            <tr class="felaHamark1">
+              <th>Hámarksfjöldi fram að 20% álag</th>
+              <th><input class="form-control" id="mitt_hamark_1" readonly></th>
+            </tr>
+            <tr class="felaHamark1">
+              <th>Vinnumat fyrir hvern nemanda umfram 20% álagsmörk (klst)</th>
+              <th><input class="form-control" id="mitt_kostn_per_nem_yn" readonly></th>
             </tr>
             <tr>
-              <th>Hámark 1</th>
-              <th><input class="form-control" id="mitt_hamark_1"></th>
+              <th>Hámarksfjöldi fram að 100% álagi</th>
+              <th><input class="form-control" id="mitt_hamark_2" readonly></th>
             </tr>
             <tr>
-              <th>Vinnumat fyrir hvern nemanda umfram hámarki 1 (klst)</th>
-              <th><input class="form-control" id="mitt_kostn_per_nem_yn"></th>
-            </tr>
-            <tr>
-              <th>Hámark 2</th>
-              <th><input class="form-control" id="mitt_hamark_2"></th>
-            </tr>
-            <tr>
-              <th>Vinnumat fyrir hvern nemanda umfram hámark 2 (klst)</th>
-              <th><input class="form-control" id="mitt_kostn_per_nem_ye"></th>
+              <th>Vinnumat fyrir hvern nemanda umfram 100% álagsmörk (klst)</th>
+              <th><input class="form-control" id="mitt_kostn_per_nem_ye" readonly></th>
             </tr>
           </table>
           <!--

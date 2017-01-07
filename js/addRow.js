@@ -54,11 +54,11 @@ var addRow = function (afangiRow) {
     form.appendChild(divSynidaemi);
 
     var divTimar = document.createElement('div');
-    divTimar.setAttribute('class','form-group col-md-1');
+    divTimar.setAttribute('class','form-group col-md-2');
     var labelTimar = document.createElement('label');
     labelTimar.setAttribute('for','t-' + afangar.fjoldi);
     labelTimar.setAttribute('class','medium');
-    labelTimar.innerHTML = 'kest/vika';
+    labelTimar.innerHTML = 'kstundir/vika';
     divTimar.appendChild(labelTimar);
 
     var inputTimar = document.createElement('input');
@@ -76,7 +76,7 @@ var addRow = function (afangiRow) {
     var labelMin = document.createElement('label');
     labelMin.setAttribute('for','m-' + afangar.fjoldi);
     labelMin.setAttribute('class','medium');
-    labelMin.innerHTML = 'Lengd kest';
+    labelMin.innerHTML = 'kstundir (mín)';
     divMin.appendChild(labelMin);
 
     var inputMin = document.createElement('input');
@@ -94,7 +94,7 @@ var addRow = function (afangiRow) {
     var labelProsenta = document.createElement('label');
     labelProsenta.setAttribute('for','p-' + afangar.fjoldi);
     labelProsenta.setAttribute('class','medium');
-    labelProsenta.innerHTML = 'Hlutf.';
+    labelProsenta.innerHTML = '%';
     divProsenta.appendChild(labelProsenta);
 
     var inputProsenta = document.createElement('input');
@@ -116,7 +116,9 @@ var addRow = function (afangiRow) {
     var labelNemendafjoldi = document.createElement('label');
     labelNemendafjoldi.setAttribute('for','f-' + afangar.fjoldi + '-1');
     labelNemendafjoldi.setAttribute('class','medium');
-    labelNemendafjoldi.innerHTML = 'Hópastærð(ir)';
+    var heitiSpan = document.createElement('span');
+    heitiSpan.innerHTML = 'Hópastærð(ir) ';
+    labelNemendafjoldi.append(heitiSpan);
     divNemendafjoldi.appendChild(labelNemendafjoldi);
     var divBuffer = document.createElement('div');
     divBuffer.setAttribute('class','buffer');
@@ -129,18 +131,18 @@ var addRow = function (afangiRow) {
     divNemendafjoldi.appendChild(divBuffer);
     form.appendChild(divNemendafjoldi);
            
-    var divTakkaGroup = document.createElement('div');
-    divTakkaGroup.setAttribute('class','btn-group');
+    //var divTakkaGroup = document.createElement('div');
+    //divTakkaGroup.setAttribute('class','btn-group');
     var takki = document.createElement('button');
     takki.setAttribute('type','button');
-    takki.setAttribute('class','btn btn-primary addgroup');
+    takki.setAttribute('class','btn btn-primary btn-xs addgroup');
     takki.innerHTML = '+';
     var nth = afangar.fjoldi;
 
 
     var takki2 = document.createElement('button');
     takki2.setAttribute('type','button');
-    takki2.setAttribute('class','btn btn-primary delgroup');
+    takki2.setAttribute('class','btn btn-primary btn-xs delgroup');
     takki2.innerHTML = '-';
     takki2.addEventListener('click',function(nth) {
 		return function() {
@@ -154,8 +156,8 @@ var addRow = function (afangiRow) {
 			}
 		};
 	}(nth));
-    divTakkaGroup.appendChild(takki2);
-        takki.addEventListener('click',function(nth) {
+    //divTakkaGroup.appendChild(takki2);
+    takki.addEventListener('click',function(nth) {
 		return function() {
 			var items = document.getElementsByClassName('f-'+ nth +'s');
 			var index = document.getElementsByClassName('f-' + nth + 's').length;
@@ -167,8 +169,10 @@ var addRow = function (afangiRow) {
             document.getElementById('f-' + nth +'s').appendChild(input);
 		};
 	}(nth));
-    divTakkaGroup.appendChild(takki);
-    form.appendChild(divTakkaGroup);   
+    //divTakkaGroup.appendChild(takki);
+    //form.appendChild(divTakkaGroup);
+    labelNemendafjoldi.append(takki2);
+    labelNemendafjoldi.append(takki);   
     afangiRow.appendChild(form);
     //document.getElementById('tafla').appendChild(afangiRow);
     var listi = document.getElementById('tafla');

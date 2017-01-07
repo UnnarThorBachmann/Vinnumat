@@ -270,16 +270,13 @@ var view = {
         	synidaemi[validSynidaemi].verkefnisgerd = parseFloat(profagerd_kennslutima);
         	synidaemi[validSynidaemi].undirb_kennslu = parseFloat(undirbuningur);
         	synidaemi[validSynidaemi].vinna_per_nemanda = parseFloat(vinna_per_nemanda);
-            if (!document.getElementById('success')) {
-	        
-	        
-    	    var success = document.createElement('div');
-       		success.setAttribute('class','alert alert-success');
+
+          if (!document.getElementById('success')) {
+    	     var success = document.createElement('div');
+       	    success.setAttribute('class','alert alert-success');
             success.setAttribute('id','success');
             success.innerHTML = 'Sýnidæmið '+ validSynidaemi +' hefur verið uppfært.';
             document.getElementById('last').appendChild(success);
-            
-        
         	}
         	else {
         		var success = document.getElementById('success');
@@ -304,6 +301,21 @@ var view = {
         document.getElementById('mitt_kostn_per_nem_yn').value = synidaemi[validSynidaemi].kostn_per_nem_yn.toString().replace('.',',');
         document.getElementById('mitt_hamark_2').value = synidaemi[validSynidaemi].hamark_e.toString().replace('.',',');
         document.getElementById('mitt_kostn_per_nem_ye').value = synidaemi[validSynidaemi].kostn_per_nem_ye.toString().replace('.',',');
+        
+        var hamark_1 = parseFloat(synidaemi[validSynidaemi].hamark_n);
+        var hamark_2 = parseFloat(synidaemi[validSynidaemi].hamark_e);
+        if (hamark_1 == hamark_2) {
+          var felaItems = document.getElementsByClassName('felaHamark1');
+          for (var i=0; i < felaItems.length; i++) {
+            felaItems[i].classList.add('hidden');
+          }
+        }
+        else {
+          var felaItems = document.getElementsByClassName('felaHamark1');
+          for (var i=0; i < felaItems.length; i++) {
+            felaItems[i].classList.remove('hidden');
+          }
+        }
         if (!document.getElementById('success')) {
 	           
     	    var success = document.createElement('div');
@@ -406,7 +418,12 @@ var view = {
       afangar.fjoldi += 1;
       var afangiCol = document.createElement('div');
       addRow(afangiCol);
+      var tafla2 = document.getElementById('tafla2');
+      if (tafla2.classList.contains('hidden')) {
+          window.scrollTo(0,document.getElementById('tafla').scrollHeight);
+      }
       
+
     });
     var button5 = document.getElementById('delete');
     button5.addEventListener('click',function () {
