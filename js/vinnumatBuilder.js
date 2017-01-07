@@ -290,7 +290,17 @@ var view = {
     button6.addEventListener('click',function(e) {
         e.preventDefault();
         var validSynidaemi = document.getElementById('valid').value;
+        if (validSynidaemi ==='Sýnidæmið mitt') {
+          $("#mitt_lagmark").prop('readonly', false);
+          $("#mitt_hamark_1").prop('readonly', false);
+          $("#mitt_hamark_2").prop('readonly', false);
 
+        }
+        else {
+           $("#mitt_lagmark").prop('readonly', true);
+           $("#mitt_hamark_1").prop('readonly', true);
+           $("#mitt_hamark_2").prop('readonly', true);
+        }
         document.getElementById('mitt_namsaetlun').value = synidaemi[validSynidaemi].timar_namsAetlun.toString().replace('.',',');
         document.getElementById('mitt_undirbuningur').value = synidaemi[validSynidaemi].undirb_kennslu.toString().replace('.',',');
         document.getElementById('mitt_profagerd_kennslutima').value = synidaemi[validSynidaemi].verkefnisgerd.toString().replace('.',',');
