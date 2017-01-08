@@ -5,6 +5,7 @@ var Afangi = function(param) {
   this.hperweek = param[4];
   this.lengdKest = param[5];
   this.synid = synidaemi[param[3]];
+  this.skerding = 0;
   this.thaettir = {};
   
   this.actualFjoldi = param[2];
@@ -61,6 +62,7 @@ Afangi.prototype.reikna_vinnumat = function() {
 };
 Afangi.prototype.skerda = function (p) {
   this.vm = this.vm*(1-p);
+  this.skerding = p;
   this.thaettir['Kennsluáætlun'] = parseFloat(this.thaettir['Kennsluáætlun'])*parseFloat(1-p);
   this.thaettir['Verkefnis og prófagerð'] =  parseFloat(this.thaettir['Verkefnis og prófagerð'])*parseFloat(1-p);
   this.thaettir['Önnur vinna óháð nemendafjölda'] =   parseFloat(this.thaettir['Önnur vinna óháð nemendafjölda'])*parseFloat(1-p);

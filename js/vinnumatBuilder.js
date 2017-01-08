@@ -42,7 +42,6 @@ var model = {
       'Almenn braut',
       'Fagbóklegt',
       'Félagsgreinar',
-      'Hægferð',
       'Íslenska',
       'Íþróttafræði',
       'Listgreinar',
@@ -591,12 +590,22 @@ var view = {
             templateAfangiNidurst
         );
         divRow.innerHTML = template({
+            id: 'af' + j.toString(),
             heiti: item2.heiti,
             vinnumat: octopus.parseOutput(kennari.originalAfangarVinnumat[j],100),
             einingafjoldi: item2.einingar,
             nemendafjoldi: item2.fjoldi,
             timafjoldi: item2.hperweek,
-            synidaemi: item2.synid.heiti
+            lengd: item2.lengdKest,
+            synidaemi: item2.synid.heiti,
+            kennsluaetlun: (item2.thaettir['Kennsluáætlun'].toFixed(1)).toString().replace('.',','),
+            verkefnis: item2.thaettir['Verkefnis og prófagerð'].toFixed(1).toString().replace('.',','),
+            onnur: item2.thaettir['Önnur vinna óháð nemendafjölda'].toFixed(1).toString().replace('.',','),
+            stadin: item2.thaettir['Staðin kennsla'].toFixed(1).toString().replace('.',','),
+            undirbuningur: item2.thaettir['Undirbúningur kennslu'].toFixed(1).toString().replace('.',','),
+            nemendur: item2.thaettir['Vinna vegna nemenda'].toFixed(1).toString().replace('.',','),
+            skerding: (item2.skerding*parseFloat(100)).toFixed(2).toString().replace('.',','),
+            hlutfall: (kennari.hlutfoll[j]).toFixed(2).toString().replace('.',',')
         });
         t2.appendChild(divRow);   
      }

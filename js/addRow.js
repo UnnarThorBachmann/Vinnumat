@@ -58,7 +58,7 @@ var addRow = function (afangiRow) {
     var labelTimar = document.createElement('label');
     labelTimar.setAttribute('for','t-' + afangar.fjoldi);
     labelTimar.setAttribute('class','medium');
-    labelTimar.innerHTML = 'kstundir/vika';
+    labelTimar.innerHTML = 'Kstundir á viku';
     divTimar.appendChild(labelTimar);
 
     var inputTimar = document.createElement('input');
@@ -76,7 +76,7 @@ var addRow = function (afangiRow) {
     var labelMin = document.createElement('label');
     labelMin.setAttribute('for','m-' + afangar.fjoldi);
     labelMin.setAttribute('class','medium');
-    labelMin.innerHTML = 'kstundir (mín)';
+    labelMin.innerHTML = 'Lengd kstunda (mín)';
     divMin.appendChild(labelMin);
 
     var inputMin = document.createElement('input');
