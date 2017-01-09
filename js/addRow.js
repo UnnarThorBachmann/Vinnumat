@@ -118,7 +118,7 @@ var addRow = function (afangiRow) {
     labelNemendafjoldi.setAttribute('class','medium');
     var heitiSpan = document.createElement('span');
     heitiSpan.innerHTML = 'Hópastærð(ir) ';
-    labelNemendafjoldi.append(heitiSpan);
+    labelNemendafjoldi.appendChild(heitiSpan);
     divNemendafjoldi.appendChild(labelNemendafjoldi);
     var divBuffer = document.createElement('div');
     divBuffer.setAttribute('class','buffer');
@@ -171,8 +171,8 @@ var addRow = function (afangiRow) {
 	}(nth));
     //divTakkaGroup.appendChild(takki);
     //form.appendChild(divTakkaGroup);
-    labelNemendafjoldi.append(takki2);
-    labelNemendafjoldi.append(takki);   
+    labelNemendafjoldi.appendChild(takki2);
+    labelNemendafjoldi.appendChild(takki);   
     afangiRow.appendChild(form);
     //document.getElementById('tafla').appendChild(afangiRow);
     var listi = document.getElementById('tafla');
